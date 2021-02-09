@@ -22,6 +22,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DynamicTableModule } from 'material-dynamic-table';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { DynamicTableModule } from 'material-dynamic-table';
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    DynamicTableModule
+    DynamicTableModule,
+    FlexLayoutModule
 
   ],
 
