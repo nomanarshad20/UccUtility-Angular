@@ -2,10 +2,10 @@ import { RowDataService } from './../../Service/row-data.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Scrapping } from '../my-tool/Scrapping.DTO';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataSource } from '@angular/cdk/collections';
 import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator/paginator';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @Component({
@@ -19,12 +19,10 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   rows: any =[];
   edge: any;
   public colArray = [];
-  displayedColumns: any= [];
+  displayedColumns= [];
   DataTableRow:any =[];
+  listCount =this.DataTableRow.length;
 
-
-
-  //displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator)
@@ -32,17 +30,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
+
   constructor(public rowdataservice: RowDataService) {
-
-    // this.UiColumn = this.prepareUiColumn(this.dataTableExp);
-    // this.DataTableRow =  this.prepareDataTableRows(this.rows);
-
-
-     //  DataTableRow = [];
-
-
-    // Create 100 users
-    const users = Array.from({ length: 50 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.DataTableRow);
@@ -51,8 +40,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -62,6 +51,14 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+
+  opneLicenseDetails(id: any) {
+    const filterValue = id;
+    this.GetLicenseInterDetails(id);
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
+    //console.log( filterValue.trim().toLowerCase());
   }
 
   GetData() {
@@ -81,15 +78,37 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       //console.log((Object.values(template)));
     });
 
-    console.log("caling prepareUiColumn");
-    this.displayedColumns = this.prepareUiColumn(this.template);
-    console.log(this.displayedColumns);
-
+   this.displayedColumns = this.prepareUiColumn(this.template);
    this.DataTableRow= this.prepareDataTableRows(this.rows);
-
    this.dataSource = new MatTableDataSource(this.DataTableRow);
 
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
   }
+
+  GetLicenseInterDetails(id: any) {
+    console.log(this.scrappingModel.Name);
+
+    console.log('calling getCompanyDetails');
+    this.rowdataservice.getCompanyDetails(id).subscribe((res) => {
+      const FullJson = res;
+      console.log(FullJson);
+
+      console.log('extraction complete');
+
+      //console.log(this.template);
+      //console.log((Object.values(template)));
+    });
+
+
+  }
+
+
+
+
+
+
+
 
   prepareUiColumn(template: any) {
     let UiColumn: any = [];
@@ -102,21 +121,19 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   prepareDataTableRows(row: any) {
      let rowObject: any = [];
-
     for (let key in row) {
-      //console.log(row['RECORD_TYPE'].element);
       let value = row[key];
       let data = {
         "UCC Type" : value['RECORD_TYPE'],
-        "Debtor Information" : "element['TITLE']",
+        "Debtor Information" : value['TITLE'],
         "File Number" : value['RECORD_NUM'],
-        "Secured Party Info" : "element['SEC_PARTY']",
+        "Secured Party Info" : value['SEC_PARTY'],
         "Status" : value['STATUS'],
         "Filing Date" : value['FILING_DATE'],
-        "Lapse Date" : value['LAPSE_DATE']
+        "Lapse Date" : value['LAPSE_DATE'],
+        "id" : value['ID']
     };
      rowObject.push(data);
-
   }
 
   return rowObject;
@@ -129,53 +146,22 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       console.log(FullJson);
     });
   }
+
+
+
 }
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon',
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'purple',
-  'fuchsia',
-  'lime',
-  'teal',
-  'aqua',
-  'blue',
-  'navy',
-  'black',
-  'gray',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+
+export interface UserData {
+  dd : string;
+  name: string;
+  progress: string;
+  color: string;
+}
+
 
 /** Builds and returns a new User. */
 function createNewUser(id: number): any {
-  // const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-  //     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
   return {
     id: id.toString(),
     name: 'xxxxxxxxxx',

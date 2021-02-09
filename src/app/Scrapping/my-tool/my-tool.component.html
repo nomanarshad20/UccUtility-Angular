@@ -1,22 +1,60 @@
 
-<input type="text"  [(ngModel)]="scrappingModel.Name"/>
-<input type="button" value="search" (click)="GetData()"/>
+
+
+
+<div class="jumbotron">
+  <div class="search-hero">
+    <h1>UCC Online</h1>
+    <h3>California Secretary of State</h3>
+    <h5><b>Disclaimer:</b> This tool allows you to search the California Secretary of State's Uniform Commercial Code
+      database for abstracts of information for lien notices that have been filed with this office. The UCC Search is
+      updated as documents are filed. The data provided is not a complete or certified record.</h5>
+    <div class="input-group">
+      <div class="form-outline">
+        <input id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.Name" class="form-control"
+          placeholder="Name or File number" />
+      </div>
+      <button type="button" class="btn btn-primary" (click)="GetData()">
+        <i class="fa fa-search">Search</i>
+      </button>
+    </div>
 
 
 
 
-<!--
-<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- <input type="text"  [(ngModel)]="scrappingModel.Name" class="form-control" />
+  <input type="button" value="search" (click)="GetData()" /> -->
+  </div>
+</div>
+<div class="container-fluid text-center">
 
-  <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{disCol}}">
-      <mat-header-cell *matHeaderCellDef>{{disCol}}</mat-header-cell>
 
 
-      <mat-cell *matCellDef="let element "> {{element[disCol]}}
-      </mat-cell>
 
-  </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table> -->
+
+  <div style="float: initial;">
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" (keyup)="applyFilter($event)" autocomplete="off"
+        placeholder="Start searching for table record">
+    </div>
+
+
+
+    <div class="mat-elevation-z8 table-responsive">
+      <table mat-table [dataSource]="dataSource" matSort class="table table-bordered table-striped table-hover">
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > {{column}} </th>
+          <td mat-cell *matCellDef="let element" style="white-space: normal; text-align: center;"
+            (click)="opneLicenseDetails(element['id'])"> {{element[column]}} </td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [length]="listCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </div>
+
+</div>
