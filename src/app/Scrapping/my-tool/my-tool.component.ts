@@ -5,10 +5,6 @@ import { Scrapping } from '../my-tool/Scrapping.DTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-<<<<<<< Updated upstream
-import { MatPaginator } from '@angular/material/paginator/paginator';
-import { FlexLayoutModule } from '@angular/flex-layout';
-=======
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,7 +27,6 @@ import { saveAs } from 'file-saver';
 
 
 
->>>>>>> Stashed changes
 
 
 @Component({
@@ -42,14 +37,9 @@ import { saveAs } from 'file-saver';
 export class MyToolComponent implements OnInit, AfterViewInit {
   scrappingModel: Scrapping = new Scrapping();
   template: any;
-  rows: any =[];
+  rows: any = [];
   edge: any;
   public colArray = [];
-<<<<<<< Updated upstream
-  displayedColumns= [];
-  DataTableRow:any =[];
-  listCount =this.DataTableRow.length;
-=======
   displayedColumns = [];
   DataTableRow: any = [];
   listCount = 0;
@@ -76,42 +66,35 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
   dataSource!: MatTableDataSource<any>;
->>>>>>> Stashed changes
 
-  dataSource: MatTableDataSource<any>;
 
-  @ViewChild(MatPaginator)
+  @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+  @ViewChild(MatAccordion)
+  accordion!: MatAccordion;
 
 
-<<<<<<< Updated upstream
-  constructor(public rowdataservice: RowDataService) {
-=======
   constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule, public dialog: MatDialog, public sanitizer: DomSanitizer) {
 
 
 
 
->>>>>>> Stashed changes
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.DataTableRow);
+    // this.dataSource = new MatTableDataSource(this.DataTableRow);
   }
 
-<<<<<<< Updated upstream
-  ngOnInit(): void {}
-=======
   ngOnInit(): void {
 
   }
->>>>>>> Stashed changes
 
   ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
   }
 
   applyFilter(event: Event) {
@@ -125,8 +108,12 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
 
+  advanceSearch() {
+    console.log(this.scrappingModel.SEARCH_VALUE);
+  }
+
   GetData() {
-    console.log(this.scrappingModel.Name);
+    console.log(this.scrappingModel.SEARCH_VALUE);
 
     console.log('calling search api');
     this.rowdataservice.searchCompany().subscribe((res) => {
@@ -140,8 +127,6 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       this.colArray = Array.from(FullJson['template']);
       //console.log(this.template);
       //console.log((Object.values(template)));
-<<<<<<< Updated upstream
-=======
 
       this.displayedColumns = this.prepareUiColumn(this.template);
       this.DataTableRow = this.prepareDataTableRows(this.rows);
@@ -153,33 +138,10 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
->>>>>>> Stashed changes
     });
 
-   this.displayedColumns = this.prepareUiColumn(this.template);
-   this.DataTableRow= this.prepareDataTableRows(this.rows);
-   this.dataSource = new MatTableDataSource(this.DataTableRow);
-
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
   }
 
-<<<<<<< Updated upstream
-  GetLicenseInterDetails(id: any) {
-    console.log(this.scrappingModel.Name);
-
-    console.log('calling getCompanyDetails');
-    this.rowdataservice.getCompanyDetails(id).subscribe((res) => {
-      const FullJson = res;
-      console.log(FullJson);
-
-      console.log('extraction complete');
-
-      //console.log(this.template);
-      //console.log((Object.values(template)));
-    });
-=======
->>>>>>> Stashed changes
 
 
 
@@ -191,11 +153,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   prepareUiColumn(template: any) {
     let UiColumn: any = [];
-<<<<<<< Updated upstream
-=======
     UiColumn.push('checked');
     UiColumn.push('id');
->>>>>>> Stashed changes
     for (let key in template) {
       let value = template[key];
       UiColumn.push(value['label']);
@@ -205,23 +164,10 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
   prepareDataTableRows(row: any) {
-     let rowObject: any = [];
+    let rowObject: any = [];
     for (let key in row) {
       let value = row[key];
       let data = {
-<<<<<<< Updated upstream
-        "UCC Type" : value['RECORD_TYPE'],
-        "Debtor Information" : value['TITLE'],
-        "File Number" : value['RECORD_NUM'],
-        "Secured Party Info" : value['SEC_PARTY'],
-        "Status" : value['STATUS'],
-        "Filing Date" : value['FILING_DATE'],
-        "Lapse Date" : value['LAPSE_DATE'],
-        "id" : value['ID']
-    };
-     rowObject.push(data);
-  }
-=======
         "UCC Type": value['RECORD_TYPE'],
         "Debtor Information": value['TITLE'],
         "File Number": value['RECORD_NUM'],
@@ -236,9 +182,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       };
       rowObject.push(data);
     }
->>>>>>> Stashed changes
 
-  return rowObject;
+    return rowObject;
   }
 
 
@@ -253,8 +198,6 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
 
-<<<<<<< Updated upstream
-=======
   openDialog(id: any, fileNumber: any) {
     const dialogRef = this.dialog.open(ViewpopupComponent, {
       height: '800px',
@@ -413,12 +356,11 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
 
->>>>>>> Stashed changes
 }
 
 
 export interface UserData {
-  dd : string;
+  dd: string;
   name: string;
   progress: string;
   color: string;
