@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -19,17 +20,38 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DynamicTableModule } from 'material-dynamic-table';
 import { FlexLayoutModule } from '@angular/flex-layout';
+<<<<<<< Updated upstream
+=======
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
+
+import {MatStepperModule} from '@angular/material/stepper';
+import { ViewpopupComponent } from './viewpopup/viewpopup/viewpopup.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
+
+
+
+
+>>>>>>> Stashed changes
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyToolComponent
+    MyToolComponent,
+    ViewpopupComponent
   ],
   imports: [
     BrowserModule,
@@ -49,11 +71,30 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDialogModule,
     MatFormFieldModule,
     DynamicTableModule,
+<<<<<<< Updated upstream
     FlexLayoutModule
+=======
+    FlexLayoutModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatCheckboxModule
+>>>>>>> Stashed changes
+
 
   ],
+  entryComponents:[
+    ViewpopupComponent
+  ],
 
-  providers: [],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
