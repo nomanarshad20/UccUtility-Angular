@@ -1,0 +1,36 @@
+
+<mat-card class="text-white bg-info"  >
+<h2 mat-dialog-title class="">License History</h2>
+</mat-card>
+
+
+
+
+
+
+
+
+<mat-vertical-stepper [linear]="isLinear" #stepper   *ngFor="let history of historyArray; let i = index" >
+  <mat-step [stepControl]="secondFormGroup"  label="{{i}}  {{ history['AMENDMENT_TYPE']}}   {{ history['AMENDMENT_DATE']}}"  style="border: 2px solil grey;
+  border-radius: 8px;" >
+
+    <div class="card text-white bg-info mb-6" style="width: 60%; margin-top: 10px;">
+
+      <div class="card-body">
+        <p class="card-title">Document Type : {{ history['AMENDMENT_TYPE']}} </p>
+        <p class="card-text">File Number : {{ history['AMENDMENT_NUM']}}  </p>
+        <p class="card-text">Date : {{ history['AMENDMENT_DATE']}} </p>
+      </div>
+       <div class="card-header">
+
+
+          <button style="cursor: pointer;" class="btn btn-secondary" type="button" (click)="openUrl( history['DOWNLOAD_LINK'])"> <i class="fa fa-file-pdf-o" ></i> Download File</button>
+          <!-- <a (click)="openUrl({ history['AMENDMENT_DATE']} )" target="_blank" class="btn btn-border" >Download File</a> -->
+           </div>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

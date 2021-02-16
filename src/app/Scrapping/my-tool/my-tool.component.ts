@@ -1,11 +1,37 @@
+import { logging } from 'protractor';
 import { RowDataService } from './../../Service/row-data.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Scrapping } from '../my-tool/Scrapping.DTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
+<<<<<<< Updated upstream
 import { MatPaginator } from '@angular/material/paginator/paginator';
 import { FlexLayoutModule } from '@angular/flex-layout';
+=======
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatAccordion } from '@angular/material/expansion';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewpopupComponent } from 'src/app/viewpopup/viewpopup/viewpopup.component';
+import jsPDF from 'jspdf';
+//import * as jsPDF from 'jspdf'
+import * as fs from 'fs'
+
+import { PDFDocument } from 'pdf-lib'
+import { DomSanitizer } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 
 
 @Component({
@@ -19,9 +45,38 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   rows: any =[];
   edge: any;
   public colArray = [];
+<<<<<<< Updated upstream
   displayedColumns= [];
   DataTableRow:any =[];
   listCount =this.DataTableRow.length;
+=======
+  displayedColumns = [];
+  DataTableRow: any = [];
+  listCount = 0;
+  cardSearchValue = "impresa aerospace";
+  isDataAvailable: boolean = false;
+  step = 0;
+
+  selectedRowArray: any = [];
+  selectedRowCount = 0;
+  pathArray: any = [];
+
+
+
+
+  //pathArray = ["https://bizfileonline.sos.ca.gov/api/report/GetImageByNum/219113069183078115207222128178116038116028201132", "https://bizfileonline.sos.ca.gov/api/report/GetImageByNum/219113069183078115207222128178116038116028201132","https://bizfileonline.sos.ca.gov/api/report/GetImageByNum/202102135249214135195160235181073027076091090246"];
+
+
+
+
+
+
+
+
+
+
+  dataSource!: MatTableDataSource<any>;
+>>>>>>> Stashed changes
 
   dataSource: MatTableDataSource<any>;
 
@@ -31,13 +86,28 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   sort!: MatSort;
 
 
+<<<<<<< Updated upstream
   constructor(public rowdataservice: RowDataService) {
+=======
+  constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
+    matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule, public dialog: MatDialog, public sanitizer: DomSanitizer) {
+
+
+
+
+>>>>>>> Stashed changes
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.DataTableRow);
   }
 
+<<<<<<< Updated upstream
   ngOnInit(): void {}
+=======
+  ngOnInit(): void {
+
+  }
+>>>>>>> Stashed changes
 
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
@@ -54,12 +124,6 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
 
-  opneLicenseDetails(id: any) {
-    const filterValue = id;
-    this.GetLicenseInterDetails(id);
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
-    //console.log( filterValue.trim().toLowerCase());
-  }
 
   GetData() {
     console.log(this.scrappingModel.Name);
@@ -76,6 +140,20 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       this.colArray = Array.from(FullJson['template']);
       //console.log(this.template);
       //console.log((Object.values(template)));
+<<<<<<< Updated upstream
+=======
+
+      this.displayedColumns = this.prepareUiColumn(this.template);
+      this.DataTableRow = this.prepareDataTableRows(this.rows);
+      this.dataSource = new MatTableDataSource(this.DataTableRow);
+      this.listCount = this.DataTableRow.length;
+
+
+      this.isDataAvailable = this.listCount > 0 ? true : false;
+
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+>>>>>>> Stashed changes
     });
 
    this.displayedColumns = this.prepareUiColumn(this.template);
@@ -86,6 +164,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   this.dataSource.sort = this.sort;
   }
 
+<<<<<<< Updated upstream
   GetLicenseInterDetails(id: any) {
     console.log(this.scrappingModel.Name);
 
@@ -99,9 +178,9 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       //console.log(this.template);
       //console.log((Object.values(template)));
     });
+=======
+>>>>>>> Stashed changes
 
-
-  }
 
 
 
@@ -112,10 +191,16 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   prepareUiColumn(template: any) {
     let UiColumn: any = [];
+<<<<<<< Updated upstream
+=======
+    UiColumn.push('checked');
+    UiColumn.push('id');
+>>>>>>> Stashed changes
     for (let key in template) {
       let value = template[key];
       UiColumn.push(value['label']);
     }
+    UiColumn.push('operation');
     return UiColumn;
   }
 
@@ -124,6 +209,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     for (let key in row) {
       let value = row[key];
       let data = {
+<<<<<<< Updated upstream
         "UCC Type" : value['RECORD_TYPE'],
         "Debtor Information" : value['TITLE'],
         "File Number" : value['RECORD_NUM'],
@@ -135,12 +221,30 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     };
      rowObject.push(data);
   }
+=======
+        "UCC Type": value['RECORD_TYPE'],
+        "Debtor Information": value['TITLE'],
+        "File Number": value['RECORD_NUM'],
+        "Secured Party Info": value['SEC_PARTY'],
+        "Status": value['STATUS'],
+        "Filing Date": value['FILING_DATE'],
+        "Lapse Date": value['LAPSE_DATE'],
+        "id": value['ID'],
+        "checked": false,
+        "operation": "button"
+
+      };
+      rowObject.push(data);
+    }
+>>>>>>> Stashed changes
 
   return rowObject;
   }
 
 
   openLicense(value: any) {
+
+
     this.rowdataservice.getCompanyDetails(value).subscribe((res) => {
       const FullJson = res;
       console.log(FullJson);
@@ -149,6 +253,167 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
 
+<<<<<<< Updated upstream
+=======
+  openDialog(id: any, fileNumber: any) {
+    const dialogRef = this.dialog.open(ViewpopupComponent, {
+      height: '800px',
+      width: '1200px',
+      disableClose: false,
+      data: {
+        ucc: id,
+        fileNo: fileNumber
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(" thsi sis pop up value unknown");
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+  clearFilter() { }
+
+  selectedRowCheckbox(e: any, selectedId: any) {
+    if (e.checked) {
+      this.selectedRowArray.push(selectedId);
+    } else {
+      this.selectedRowArray = this.selectedRowArray.filter((item: any) => item !== selectedId);
+    }
+    this.selectedRowCount = this.selectedRowArray.length;
+  }
+
+
+  async downloadSelectedRowsPdfMergeFile() {
+    console.log(`Downloading pdf`);
+
+
+    console.log(this.selectedRowArray);
+
+
+
+
+
+
+
+
+    for (let i = 0; i < this.selectedRowArray.length; i++) {
+      let filenumber = this.selectedRowArray[i];
+
+      await this.rowdataservice.getHistoryOfLicensePromise(filenumber)
+      .then((res:any) => {
+        console.log(`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^66`);
+        const FullJson = res;
+        console.log(" get api data >>>>>>>>>>");
+        console.log(FullJson);
+        let historyArray = FullJson['AMENDMENT_LIST'];
+
+        console.log('parser history');
+        console.log(historyArray);
+
+        for (let index = 0; index < historyArray.length; index++) {
+          const element = historyArray[index];
+          console.log('adding > ' + element['DOWNLOAD_LINK']);
+          this.pathArray.push('https://bizfileonline.sos.ca.gov' + element['DOWNLOAD_LINK']);
+        }
+
+      })
+      .catch((error) => {
+        console.log("getHistoryOfLicensePromise rejected with " + JSON.stringify(error));
+      });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // for (let i = 0; i < this.selectedRowArray.length; i++) {
+    //   let filenumber = this.selectedRowArray[i];
+
+    //   this.rowdataservice.getHistoryOfLicense(filenumber).subscribe((res) => {
+    //     const FullJson = res;
+    //     console.log(" get api data >>>>>>>>>>");
+    //     console.log(FullJson);
+    //     let historyArray = FullJson['AMENDMENT_LIST'];
+
+    //     console.log('parser history');
+    //     console.log(historyArray);
+
+    //     for (let index = 0; index < historyArray.length; index++) {
+    //       const element = historyArray[index];
+    //       console.log('adding > ' + element['DOWNLOAD_LINK']);
+    //       this.pathArray = 'https://bizfileonline.sos.ca.gov' + element['DOWNLOAD_LINK'];
+    //     }
+
+    //   });
+
+    // }
+
+    console.log("prepareed paths > ");
+    console.log(this.pathArray);
+    console.log(this.pathArray.length);
+
+
+
+
+    const pdfDocMain = await PDFDocument.create();
+
+
+    for (let i = 0; i < this.pathArray.length; i++) {
+
+      let url = this.pathArray[i];
+      console.log(url);
+
+      console.log(`Downloading pdf`);
+      console.log(this.pathArray[i]);
+      const donorPdfBytes = await fetch(url).then(res => res.arrayBuffer());
+      const firstDonorPdfDoc = await PDFDocument.load(donorPdfBytes);
+      console.log(`count pdf array`);
+      let pageCount = firstDonorPdfDoc.getPageCount();
+      console.log(` page size`);
+      console.log(pageCount);
+
+      for (let index = 0; index < pageCount; index++) {
+        console.log(`adding page ` + index);
+        const [firstDonorPage] = await pdfDocMain.copyPages(firstDonorPdfDoc, [index]);
+        pdfDocMain.addPage(firstDonorPage);
+      }
+      console.log(`out of inner loop`);
+    }
+    const pdfBytes = await pdfDocMain.save()
+    const blob = new Blob([pdfBytes], { type: 'application/octet-stream' });
+    saveAs(blob, 'pdfffff.pdf');
+
+
+
+    console.log('got completed');
+
+
+
+
+
+
+
+
+
+  }
+
+
+>>>>>>> Stashed changes
 }
 
 
@@ -169,3 +434,12 @@ function createNewUser(id: number): any {
     color: 'sssssssss',
   };
 }
+
+
+
+
+
+
+
+
+
