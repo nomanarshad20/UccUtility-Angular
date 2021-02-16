@@ -1,8 +1,4 @@
 export class Scrapping{
-<<<<<<< Updated upstream
-  Name : string = '';
-  Search : string='';
-=======
   SEARCH_VALUE : string = '';
   STATUS : string='';
   RECORD_TYPE_ID : string='';
@@ -13,5 +9,4 @@ export class Scrapping{
   LAPSE_DATE_START: string='';
   LAPSE_DATE_END: string='';
   CHECKBOX = false;
->>>>>>> Stashed changes
 }

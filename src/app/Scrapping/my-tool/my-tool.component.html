@@ -1,40 +1,10 @@
-<<<<<<< Updated upstream
-=======
 <script src='https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js'></script>
 <div class="container">
->>>>>>> Stashed changes
 
 
 
 
-<<<<<<< Updated upstream
-<div class="jumbotron">
-  <div class="search-hero">
-    <h1>UCC Online</h1>
-    <h3>California Secretary of State</h3>
-    <h5><b>Disclaimer:</b> This tool allows you to search the California Secretary of State's Uniform Commercial Code
-      database for abstracts of information for lien notices that have been filed with this office. The UCC Search is
-      updated as documents are filed. The data provided is not a complete or certified record.</h5>
-    <div class="input-group">
-      <div class="form-outline">
-        <input id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.Name" class="form-control"
-          placeholder="Name or File number" />
-      </div>
-      <button type="button" class="btn btn-primary" (click)="GetData()">
-        <i class="fa fa-search">Search</i>
-      </button>
-    </div>
-
-
-
-
-    <!-- <input type="text"  [(ngModel)]="scrappingModel.Name" class="form-control" />
-  <input type="button" value="search" (click)="GetData()" /> -->
-  </div>
-</div>
-<div class="container-fluid text-center">
-=======
 
 
   <div class="jumbotron text-center">
@@ -183,7 +153,6 @@
 <div class="container-fluid" style="width: 80%; align-self: center;">
 
   <mat-card>
->>>>>>> Stashed changes
 
 
 
@@ -199,22 +168,6 @@
       </div>
 
 
-<<<<<<< Updated upstream
-  <div style="float: initial;">
-    <div class="search-hero">
-      <input class="form-control" type="text" name="search" (keyup)="applyFilter($event)" autocomplete="off"
-        placeholder="Start searching for table record">
-    </div>
-
-
-
-    <div class="mat-elevation-z8 table-responsive">
-      <table mat-table [dataSource]="dataSource" matSort class="table table-bordered table-striped table-hover">
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header > {{column}} </th>
-          <td mat-cell *matCellDef="let element" style="white-space: normal; text-align: center;"
-            (click)="opneLicenseDetails(element['id'])"> {{element[column]}} </td>
-=======
       <div class="filterInput">
         <input class="form-control" type="text" name="search" (keyup)="applyFilter($event)" autocomplete="off"
           placeholder="Filter Record">
@@ -245,18 +198,8 @@
 
 
 
->>>>>>> Stashed changes
 
-        </ng-container>
 
-<<<<<<< Updated upstream
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      <mat-paginator [length]="listCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    </div>
-  </div>
-=======
 
 
         <!-- Row shown when there is no matching data. -->
@@ -282,7 +225,6 @@
 
 
 
->>>>>>> Stashed changes
 
 </div>
 

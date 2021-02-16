@@ -6,26 +6,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyToolComponent } from './Scrapping/my-tool/my-tool.component';
 
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';
-import {InputTextModule} from 'primeng/inputtext';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ButtonModule} from 'primeng/button';
+import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
+import { InputTextModule } from 'primeng/inputtext';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import {MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DynamicTableModule } from 'material-dynamic-table';
 import { FlexLayoutModule } from '@angular/flex-layout';
-<<<<<<< Updated upstream
-=======
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -43,7 +40,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
->>>>>>> Stashed changes
 
 
 
@@ -71,9 +67,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDialogModule,
     MatFormFieldModule,
     DynamicTableModule,
-<<<<<<< Updated upstream
-    FlexLayoutModule
-=======
     FlexLayoutModule,
     MatDatepickerModule,
     MatIconModule,
@@ -84,7 +77,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTabsModule,
     MatStepperModule,
     MatCheckboxModule
->>>>>>> Stashed changes
 
 
   ],
