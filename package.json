@@ -30,6 +30,7 @@
     "jquery": "^3.5.1",
     "jspdf": "^2.3.0",
     "material-dynamic-table": "^9.4.0",
+    "moment": "^2.29.1",
     "pdf-lib": "^1.16.0",
     "pdf-merger-js": "^3.0.5",
     "primeflex": "^2.0.0",
