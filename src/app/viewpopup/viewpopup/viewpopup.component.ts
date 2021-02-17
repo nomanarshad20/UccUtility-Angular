@@ -2,8 +2,8 @@ import { logging } from 'protractor';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RowDataService } from 'src/app/Service/row-data.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
+
 
 
 @Component({
@@ -22,6 +22,7 @@ export class ViewpopupComponent implements OnInit {
 
   firstFormGroup: any;
   secondFormGroup: any;
+  detailsArray:any = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public licenseObj: any , public rowdataservice: RowDataService) {
 
@@ -54,9 +55,9 @@ this.getLicenseHistory(this.licenseFileNumber);
 
   getLicenseDetails(value: any) {
     this.rowdataservice.getCompanyDetails(value).subscribe((res) => {
-      const FullJson = res;
+      this.detailsArray = res['DRAWER_DETAIL_LIST'];
       console.log(" popup data heheeerr");
-      console.log(FullJson);
+      console.log( this.detailsArray );
     });
   }
 

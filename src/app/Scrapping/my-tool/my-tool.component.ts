@@ -1,4 +1,3 @@
-import { logging } from 'protractor';
 import { RowDataService } from './../../Service/row-data.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Scrapping } from '../my-tool/Scrapping.DTO';
@@ -13,13 +12,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewpopupComponent } from 'src/app/viewpopup/viewpopup/viewpopup.component';
-import jsPDF from 'jspdf';
-//import * as jsPDF from 'jspdf'
-import * as fs from 'fs'
-
 import { PDFDocument } from 'pdf-lib'
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
+import moment = require('moment');
 
 
 
@@ -43,28 +39,14 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   displayedColumns = [];
   DataTableRow: any = [];
   listCount = 0;
-  cardSearchValue = "impresa aerospace";
+  cardSearchValue = "";
   isDataAvailable: boolean = false;
   step = 0;
 
   selectedRowArray: any = [];
   selectedRowCount = 0;
   pathArray: any = [];
-
-
-
-
-  //pathArray = ["https://bizfileonline.sos.ca.gov/api/report/GetImageByNum/219113069183078115207222128178116038116028201132", "https://bizfileonline.sos.ca.gov/api/report/GetImageByNum/219113069183078115207222128178116038116028201132","https://bizfileonline.sos.ca.gov/api/report/GetImageByNum/202102135249214135195160235181073027076091090246"];
-
-
-
-
-
-
-
-
-
-
+  durationInSeconds = 5;
   dataSource!: MatTableDataSource<any>;
 
 
@@ -77,7 +59,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
   constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
-    matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule, public dialog: MatDialog, public sanitizer: DomSanitizer) {
+    matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
+    public dialog: MatDialog, public sanitizer: DomSanitizer) {
 
 
 
@@ -113,10 +96,29 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
   GetData() {
-    console.log(this.scrappingModel.SEARCH_VALUE);
+
+
+    this.cardSearchValue = this.scrappingModel.SEARCH_VALUE;
+
+   let searchFilterJson=  {
+      "SEARCH_VALUE": this.scrappingModel.SEARCH_VALUE,
+      "STATUS": (this.scrappingModel.STATUS === ''? "ALL" : this.scrappingModel.STATUS ),
+      "RECORD_TYPE_ID": (this.scrappingModel.RECORD_TYPE_ID === ''? "0" : this.scrappingModel.RECORD_TYPE_ID ),
+      "FILING_DATE": {
+        "start": (this.scrappingModel.FILING_DATE_START === ''? null :  moment(this.scrappingModel.FILING_DATE_START).format('MM/DD/YYYY') ),
+        "end": (this.scrappingModel.FILING_DATE_END === ''? null : moment(this.scrappingModel.FILING_DATE_END).format('MM/DD/YYYY')  )
+      },
+      "LAPSE_DATE": {
+        "start": (this.scrappingModel.LAPSE_DATE_START === ''? null : moment(this.scrappingModel.LAPSE_DATE_START).format('MM/DD/YYYY')  ),
+        "end": (this.scrappingModel.LAPSE_DATE_END === ''? null : moment(this.scrappingModel.LAPSE_DATE_END).format('MM/DD/YYYY') )
+      }
+    }
+
+console.log(searchFilterJson);
+
 
     console.log('calling search api');
-    this.rowdataservice.searchCompany().subscribe((res) => {
+    this.rowdataservice.searchCompany(searchFilterJson).subscribe((res) => {
       const FullJson = res;
       console.log(FullJson);
       this.template = FullJson['template'];
@@ -200,8 +202,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   openDialog(id: any, fileNumber: any) {
     const dialogRef = this.dialog.open(ViewpopupComponent, {
-      height: '800px',
-      width: '1200px',
+      height: '700px',
+      width: '1000px',
       disableClose: false,
       data: {
         ucc: id,
@@ -230,14 +232,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   async downloadSelectedRowsPdfMergeFile() {
     console.log(`Downloading pdf`);
-
-
     console.log(this.selectedRowArray);
-
-
-
-
-
 
 
 
@@ -245,66 +240,31 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       let filenumber = this.selectedRowArray[i];
 
       await this.rowdataservice.getHistoryOfLicensePromise(filenumber)
-      .then((res:any) => {
-        console.log(`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^66`);
-        const FullJson = res;
-        console.log(" get api data >>>>>>>>>>");
-        console.log(FullJson);
-        let historyArray = FullJson['AMENDMENT_LIST'];
+        .then((res: any) => {
+          console.log(`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^66`);
+          const FullJson = res;
+          console.log(" get api data >>>>>>>>>>");
+          console.log(FullJson);
+          let historyArray = FullJson['AMENDMENT_LIST'];
 
-        console.log('parser history');
-        console.log(historyArray);
+          console.log('parser history');
+          console.log(historyArray);
 
-        for (let index = 0; index < historyArray.length; index++) {
-          const element = historyArray[index];
-          console.log('adding > ' + element['DOWNLOAD_LINK']);
-          this.pathArray.push('https://bizfileonline.sos.ca.gov' + element['DOWNLOAD_LINK']);
-        }
+          for (let index = 0; index < historyArray.length; index++) {
+            const element = historyArray[index];
+            console.log('adding > ' + element['DOWNLOAD_LINK']);
+            this.pathArray.push('https://bizfileonline.sos.ca.gov' + element['DOWNLOAD_LINK']);
+          }
 
-      })
-      .catch((error) => {
-        console.log("getHistoryOfLicensePromise rejected with " + JSON.stringify(error));
-      });
+        })
+        .catch((error) => {
+          console.log("getHistoryOfLicensePromise rejected with " + JSON.stringify(error));
+        });
 
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // for (let i = 0; i < this.selectedRowArray.length; i++) {
-    //   let filenumber = this.selectedRowArray[i];
-
-    //   this.rowdataservice.getHistoryOfLicense(filenumber).subscribe((res) => {
-    //     const FullJson = res;
-    //     console.log(" get api data >>>>>>>>>>");
-    //     console.log(FullJson);
-    //     let historyArray = FullJson['AMENDMENT_LIST'];
-
-    //     console.log('parser history');
-    //     console.log(historyArray);
-
-    //     for (let index = 0; index < historyArray.length; index++) {
-    //       const element = historyArray[index];
-    //       console.log('adding > ' + element['DOWNLOAD_LINK']);
-    //       this.pathArray = 'https://bizfileonline.sos.ca.gov' + element['DOWNLOAD_LINK'];
-    //     }
-
-    //   });
-
-    // }
 
     console.log("prepareed paths > ");
     console.log(this.pathArray);
@@ -339,42 +299,20 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     }
     const pdfBytes = await pdfDocMain.save()
     const blob = new Blob([pdfBytes], { type: 'application/octet-stream' });
-    saveAs(blob, 'pdfffff.pdf');
-
-
+    var randomname = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    saveAs(blob, 'License_' + randomname + '.pdf');
 
     console.log('got completed');
-
-
-
-
-
-
-
-
 
   }
 
 
-}
 
 
-export interface UserData {
-  dd: string;
-  name: string;
-  progress: string;
-  color: string;
-}
 
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): any {
-  return {
-    id: id.toString(),
-    name: 'xxxxxxxxxx',
-    progress: 'kkkkkkkkk',
-    color: 'sssssssss',
-  };
+  // main class ended
+
 }
 
 

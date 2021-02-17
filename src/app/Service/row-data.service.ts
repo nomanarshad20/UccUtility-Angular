@@ -22,14 +22,13 @@ export class RowDataService {
 
   }
 
-  searchCompany(): Observable<any> {
+  searchCompany(searchJson:any): Observable<any> {
 
      const serchUrl = 'https://bizfileonline.sos.ca.gov/api/Records/uccsearch';
-     const searchPostData = '{\"SEARCH_VALUE\":\"impresa aerospace\",\"STATUS\":\"ALL\",\"RECORD_TYPE_ID\":\"0\",\"FILING_DATE\":{\"start\":null,\"end\":null},\"LAPSE_DATE\":{\"start\":null,\"end\":null}}';
-
-     const urlJson = JSON.parse(searchPostData);
+    // const searchPostData = '{\"SEARCH_VALUE\":\"impresa aerospace\",\"STATUS\":\"ALL\",\"RECORD_TYPE_ID\":\"0\",\"FILING_DATE\":{\"start\":null,\"end\":null},\"LAPSE_DATE\":{\"start\":null,\"end\":null}}';
+    // const urlJson = JSON.parse(searchPostData);
      const headerss = { 'Content-type': 'application/json' };
-     return this.httpclient.post<any>(serchUrl, urlJson, { headers: { 'Content-type': 'application/json' } });
+     return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
   }
 
 
