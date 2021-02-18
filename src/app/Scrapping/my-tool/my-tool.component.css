@@ -5,6 +5,8 @@
   color: #405065;
 }
 
+
+
 .search-hero {
   max-width: 500px;
   padding-bottom: 50px;
@@ -70,9 +72,41 @@ td{
   color: rgb(41, 39, 39);
 }
 
+.shadow{
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
 
 /* ************* blure back view *********** */
 
 
+.bk{
+  background-image: url(../../../../bk.jpg);
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 
+}
+
+
+.parallax-window {
+  min-height: 1000px;
+}
+
+.container-fluid {
+  max-width: 1310px;
+}
+
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
 /* ************* blure back view *********** */

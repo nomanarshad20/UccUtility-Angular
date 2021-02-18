@@ -1,4 +1,3 @@
-import { logging } from 'protractor';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RowDataService } from 'src/app/Service/row-data.service';
@@ -14,7 +13,6 @@ import { RowDataService } from 'src/app/Service/row-data.service';
 export class ViewpopupComponent implements OnInit {
 
 
-  //secondFormGroup : any;
   licenseSelectedId: any;
   licenseFileNumber: any;
   isLinear : boolean = false;
@@ -23,6 +21,8 @@ export class ViewpopupComponent implements OnInit {
   firstFormGroup: any;
   secondFormGroup: any;
   detailsArray:any = [];
+
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public licenseObj: any , public rowdataservice: RowDataService) {
 
