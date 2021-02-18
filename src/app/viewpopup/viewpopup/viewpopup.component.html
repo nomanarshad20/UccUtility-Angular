@@ -1,66 +1,75 @@
+<div class="row">
+  <div class="col-sm-8">
+    <!-- expandable left -->
+    <h2>License History</h2>
 
-<mat-card class="text-white bg-info">
-  <h3 mat-dialog-title >License History</h3>
-  <div  *ngFor="let details of detailsArray; let i = index">
-    <p>{{ details['LABEL']}}   :   {{ details['VALUE']}} </p>
+
+    <mat-accordion *ngFor="let history of historyArray; let i = index" class="mat-elevation-z8 ">
+      <mat-expansion-panel style="margin-top: 10px; " class="notice2 mat-elevation-z8">
+        <mat-expansion-panel-header class="text-white bg-info">
+          <mat-panel-title class=" align-middle ">
+            <mat-chip color="primary">{{i+1}}</mat-chip>
+            <span class="text-white align-middle  font-smaller font-italic" style="margin-left: 8px;"> {{
+              history['AMENDMENT_TYPE']}} {{ history['AMENDMENT_DATE']}} </span>
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="" style="padding: 10px;">
+
+          <div class="row">
+            <div class="col">
+              <p  class=" align-middle  font-smaller font-italic" style=" color: rgb(5, 130, 168);">Document
+                Type</p>
+              <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_TYPE']}}</p>
+
+            </div>
+            <div class="col">
+              <p class=" align-middle  font-smaller font-italic" style=" color: rgb(5, 130, 168);">File
+                Number</p>
+              <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_NUM']}}</p>
+            </div>
+
+            <div class="col">
+              <p  class=" align-middle  font-smaller font-italic" style=" color: rgb(5, 130, 168);">Date</p>
+              <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_DATE']}}</p>
+            </div>
+
+            <div class="col">
+              <button style="cursor: pointer;" class="btn btn-outline-info btn-sm" type="button"
+                (click)="openUrl( history['DOWNLOAD_LINK'])"> <i class="fa fa-file-pdf-o"></i> Download</button>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- expandable left end -->
   </div>
-</mat-card>
+  <div class="col-sm-4">
+    <!-- mat card right -->
+    <div class="row">
 
+      <div class="col-sm-12" style="padding: 15px;">
+        <div *ngFor="let details of detailsArray; let i = index">
 
-
-
-
-<mat-accordion  *ngFor="let history of historyArray; let i = index" >
-  <mat-expansion-panel style="margin-top: 10px; text-align: left;" >
-    <mat-expansion-panel-header class="text-white bg-info" >
-      <mat-panel-title >
-        <mat-chip color="primary" >{{i+1}}</mat-chip>
-        <span class="text-white"   style="margin-left: 8px; text-align: center;"> {{ history['AMENDMENT_TYPE']}} {{ history['AMENDMENT_DATE']}} </span>
-      </mat-panel-title>
-      <mat-panel-description >
-
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <div class="card-body">
-      <p class="card-title">Document Type : {{ history['AMENDMENT_TYPE']}} </p>
-      <p class="card-text">File Number : {{ history['AMENDMENT_NUM']}}  </p>
-      <p class="card-text">Date : {{ history['AMENDMENT_DATE']}} </p>
-      <button style="cursor: pointer;" class="btn btn-secondary" type="button" (click)="openUrl( history['DOWNLOAD_LINK'])"> <i class="fa fa-file-pdf-o" ></i> Download File</button>
-    </div>
-
-
-  </mat-expansion-panel>
-</mat-accordion>
-
-
-
-<!--
-<mat-vertical-stepper [linear]="isLinear" #stepper   *ngFor="let history of historyArray; let i = index" >
-  <mat-step [stepControl]="secondFormGroup"  label="{{i}}  {{ history['AMENDMENT_TYPE']}}   {{ history['AMENDMENT_DATE']}}"  style="border: 2px solil grey;
-  border-radius: 8px;" >
-
-    <div class="card text-white bg-info mb-6" style="width: 60%; margin-top: 10px;">
-
-      <div class="card-body">
-        <p class="card-title">Document Type : {{ history['AMENDMENT_TYPE']}} </p>
-        <p class="card-text">File Number : {{ history['AMENDMENT_NUM']}}  </p>
-        <p class="card-text">Date : {{ history['AMENDMENT_DATE']}} </p>
+          <mat-card class="notice" >
+            <div class="col  font-smaller font-italic" style=" color: rgb(5, 130, 168);"> {{
+              details['LABEL']}} </div>
+            <div class="col font-smaller text-muted" >{{ details['VALUE']}}</div>
+          </mat-card>
+        </div>
       </div>
-       <div class="card-header">
-
-
-          <button style="cursor: pointer;" class="btn btn-secondary" type="button" (click)="openUrl( history['DOWNLOAD_LINK'])"> <i class="fa fa-file-pdf-o" ></i> Download File</button>
-
-           </div>
+      <!--   mat card end -->
     </div>
-  </mat-step>
-</mat-vertical-stepper>
+  </div>
+</div>
 
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
+
+<mat-dialog-actions align="end" >
+  <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
- -->
-
-
-

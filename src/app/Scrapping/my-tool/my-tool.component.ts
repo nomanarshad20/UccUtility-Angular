@@ -50,6 +50,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   dataSource!: MatTableDataSource<any>;
 
 
+
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   @ViewChild(MatSort)
@@ -91,30 +92,28 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
 
-  advanceSearch() {
-    console.log(this.scrappingModel.SEARCH_VALUE);
-  }
+
 
   GetData() {
 
 
     this.cardSearchValue = this.scrappingModel.SEARCH_VALUE;
 
-   let searchFilterJson=  {
+    let searchFilterJson = {
       "SEARCH_VALUE": this.scrappingModel.SEARCH_VALUE,
-      "STATUS": (this.scrappingModel.STATUS === ''? "ALL" : this.scrappingModel.STATUS ),
-      "RECORD_TYPE_ID": (this.scrappingModel.RECORD_TYPE_ID === ''? "0" : this.scrappingModel.RECORD_TYPE_ID ),
+      "STATUS": (this.scrappingModel.STATUS === '' ? "ALL" : this.scrappingModel.STATUS),
+      "RECORD_TYPE_ID": (this.scrappingModel.RECORD_TYPE_ID === '' ? "0" : this.scrappingModel.RECORD_TYPE_ID),
       "FILING_DATE": {
-        "start": (this.scrappingModel.FILING_DATE_START === ''? null :  moment(this.scrappingModel.FILING_DATE_START).format('MM/DD/YYYY') ),
-        "end": (this.scrappingModel.FILING_DATE_END === ''? null : moment(this.scrappingModel.FILING_DATE_END).format('MM/DD/YYYY')  )
+        "start": (this.scrappingModel.FILING_DATE_START === '' ? null : moment(this.scrappingModel.FILING_DATE_START).format('MM/DD/YYYY')),
+        "end": (this.scrappingModel.FILING_DATE_END === '' ? null : moment(this.scrappingModel.FILING_DATE_END).format('MM/DD/YYYY'))
       },
       "LAPSE_DATE": {
-        "start": (this.scrappingModel.LAPSE_DATE_START === ''? null : moment(this.scrappingModel.LAPSE_DATE_START).format('MM/DD/YYYY')  ),
-        "end": (this.scrappingModel.LAPSE_DATE_END === ''? null : moment(this.scrappingModel.LAPSE_DATE_END).format('MM/DD/YYYY') )
+        "start": (this.scrappingModel.LAPSE_DATE_START === '' ? null : moment(this.scrappingModel.LAPSE_DATE_START).format('MM/DD/YYYY')),
+        "end": (this.scrappingModel.LAPSE_DATE_END === '' ? null : moment(this.scrappingModel.LAPSE_DATE_END).format('MM/DD/YYYY'))
       }
     }
 
-console.log(searchFilterJson);
+    console.log(searchFilterJson);
 
 
     console.log('calling search api');
@@ -260,8 +259,6 @@ console.log(searchFilterJson);
         .catch((error) => {
           console.log("getHistoryOfLicensePromise rejected with " + JSON.stringify(error));
         });
-
-
     }
 
 
@@ -312,7 +309,6 @@ console.log(searchFilterJson);
 
 
   // main class ended
-
 }
 
 
