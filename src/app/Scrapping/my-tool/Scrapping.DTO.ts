@@ -9,4 +9,6 @@ export class Scrapping{
   LAPSE_DATE_START: string='';
   LAPSE_DATE_END: string='';
   CHECKBOX = false;
+  EMAIL : string='';
+  PASSWORD :string='';
 }

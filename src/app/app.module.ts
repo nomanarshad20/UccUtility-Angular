@@ -34,10 +34,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ViewpopupComponent } from './viewpopup/viewpopup/viewpopup.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { Route, RouterModule } from '@angular/router';
+import { Scrapping } from './Scrapping/my-tool/Scrapping.DTO';
 
-
-
-
+const appRoutes: Route[] = [
+   { path: 'mainpage', component: MyToolComponent }
+  ];
 
 
 
@@ -76,7 +78,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatExpansionModule,
     MatTabsModule,
     MatStepperModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    RouterModule.forRoot(appRoutes)
 
 
   ],

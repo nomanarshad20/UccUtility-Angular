@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 
+import { Router } from '@angular/router';
+
+
+import { Scrapping } from '../../src/app/Scrapping/my-tool/Scrapping.DTO';
+
 
 @Component({
   selector: 'app-root',
@@ -9,34 +14,54 @@ import {ButtonModule} from 'primeng/button';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  {
+  scrappingModellogin: Scrapping = new Scrapping();
   title = 'MyDemoa';
 
 
+  creadentialArray: any[] = [
+    { email: "GerardiT", pass: "Scr@p3r12021" },
+    { email: "WyattB", pass: "Scr@p3r22021" },
+    { email: "MooreA", pass: "Scr@p3r32021" },
+    { email: "HayesB", pass: "Scr@p3r42021" },
+    { email: "KowalskiT", pass: "Scr@p3r52021" },
+    { email: "BoadwayS", pass: "Scr@p3r62021" },
+    { email: "ChangG", pass: "Scr@p3r72021" },
+    { email: "GarciaD", pass: "Scr@p3r82021" },
+    { email: "ChandS", pass: "Scr@p3r92021" },
+    { email: "CamuaS", pass: "Scr@p3r102021" },
+    { email: "RileyM", pass: "Scr@p3r112021" },
+    { email: "BradfordM", pass: "Scr@p3r122021" },
+    { email: "ChangJ", pass: "Scr@p3r132021" },
+    { email: "RileyT", pass: "Scr@p3r142021" },
+    { email: "Administrator", pass: "P@ssword2021!" },
+    { email: "aa", pass: "aa" }
+];
 
+  constructor(public inputTextModule: InputTextModule ,public buttonModule:ButtonModule ,private router: Router) {
 
-
-  json : any = {"622615":{"SORT_INDEX":18,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":622615,"SEC_PARTY":["LEAF CAPITAL FUNDING, LLC AND/OR ITS ASSIGNS - PHILADELPHIA, PA"],"RECORD_NUM":"167558688993","FILING_DATE":"11/30/2016","RECORD_TYPE":"UCC","LAPSE_DATE":"11/30/2021","STATUS":"Active","ALERT":false},"874498":{"SORT_INDEX":0,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":874498,"SEC_PARTY":["CITIBANK, N.A., ITS BRANCHES, SUBSIDIARIES AND AFFILIATES - NEW YORK, NY"],"RECORD_NUM":"187642982633","FILING_DATE":"04/11/2018","RECORD_TYPE":"UCC","LAPSE_DATE":"04/11/2023","STATUS":"Active","ALERT":false},"894643":{"SORT_INDEX":3,"TITLE":["IMPRESA AEROSPACE LLC - GARDENA, CA"],"ID":894643,"SEC_PARTY":["MARLIN BUSINESS BANK - SALT LAKE CITY, UT"],"RECORD_NUM":"187654053908","FILING_DATE":"06/13/2018","RECORD_TYPE":"UCC","LAPSE_DATE":"06/13/2023","STATUS":"Active","ALERT":false},"1051933":{"SORT_INDEX":10,"TITLE":["IMPRESA AEROSPACE, LLC - COMPTON, CA"],"ID":1051933,"SEC_PARTY":[null],"RECORD_NUM":"1273188845","FILING_DATE":"09/13/2011","RECORD_TYPE":"UCC","LAPSE_DATE":"09/13/2021","STATUS":"Active","ALERT":false},"1051940":{"SORT_INDEX":11,"TITLE":["IMPRESA AEROSPACE, LLC - COMPTON, CA"],"ID":1051940,"SEC_PARTY":[null],"RECORD_NUM":"1273188846","FILING_DATE":"09/13/2011","RECORD_TYPE":"UCC","LAPSE_DATE":"09/13/2021","STATUS":"Active","ALERT":false},"1773575":{"SORT_INDEX":9,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":1773575,"SEC_PARTY":["FIRST CORPORATE SOLUTIONS, AS REPRESENTATIVE - SACRAMENTO, CA"],"RECORD_NUM":"187664106079","FILING_DATE":"08/15/2018","RECORD_TYPE":"UCC","LAPSE_DATE":"08/15/2023","STATUS":"Active","ALERT":false},"1820674":{"SORT_INDEX":6,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":1820674,"SEC_PARTY":["C T CORPORATION SYSTEM, AS REPRESENTATIVE - GLENDALE, CA"],"RECORD_NUM":"197723389322","FILING_DATE":"07/16/2019","RECORD_TYPE":"UCC","LAPSE_DATE":"07/16/2024","STATUS":"Active","ALERT":false},"1849844":{"SORT_INDEX":16,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":1849844,"SEC_PARTY":["VAR TECHNOLOGY FINANCE - MESQUITE, TX"],"RECORD_NUM":"197744537481","FILING_DATE":"11/01/2019","RECORD_TYPE":"UCC","LAPSE_DATE":"11/01/2024","STATUS":"Active","ALERT":false},"2377551":{"SORT_INDEX":4,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":2377551,"SEC_PARTY":["ELM SERVICES - IRVINE, CA"],"RECORD_NUM":"157471195595","FILING_DATE":"06/23/2015","RECORD_TYPE":"UCC","LAPSE_DATE":"06/23/2020","STATUS":"Lapsed","ALERT":false},"2810821":{"SORT_INDEX":12,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":2810821,"SEC_PARTY":[null],"RECORD_NUM":"1373818859","FILING_DATE":"09/13/2011","RECORD_TYPE":"UCC","LAPSE_DATE":"09/13/2021","STATUS":"Active","ALERT":false},"2810828":{"SORT_INDEX":13,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":2810828,"SEC_PARTY":[null],"RECORD_NUM":"1373818861","FILING_DATE":"09/13/2011","RECORD_TYPE":"UCC","LAPSE_DATE":"09/13/2021","STATUS":"Active","ALERT":false},"2942700":{"SORT_INDEX":15,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":2942700,"SEC_PARTY":["HEWLETT-PACKARD FINANCIAL SERVICES COMPANY - BERKELEY HEIGHTS, NJ"],"RECORD_NUM":"147433549797","FILING_DATE":"10/22/2014","RECORD_TYPE":"UCC","LAPSE_DATE":"10/22/2019","STATUS":"Lapsed","ALERT":false},"2975230":{"SORT_INDEX":14,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":2975230,"SEC_PARTY":["TWIN HAVEN SPECIAL OPPORTUNITIES FUND IV, LP - WESTPORT, CT"],"RECORD_NUM":"147432716449","FILING_DATE":"10/16/2014","RECORD_TYPE":"UCC","LAPSE_DATE":"10/16/2024","STATUS":"Active","ALERT":false},"3035469":{"SORT_INDEX":8,"TITLE":["IMPRESA AEROSPACE, LLC, A LIMITED LIABILITY COMPANY - SACRAMENTO, CA"],"ID":3035469,"SEC_PARTY":["ACCOUNTING PRINCIPALS INC - PASADENA, CA"],"RECORD_NUM":"147421987861","FILING_DATE":"07/28/2014","RECORD_TYPE":"Judgment Lien","LAPSE_DATE":"07/28/2019","STATUS":"Lapsed","ALERT":false},"3072942":{"SORT_INDEX":17,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":3072942,"SEC_PARTY":["DE LAGE LANDEN FINANCIAL SERVICES, INC. - WAYNE, PA"],"RECORD_NUM":"157493094890","FILING_DATE":"11/02/2015","RECORD_TYPE":"UCC","LAPSE_DATE":"11/02/2020","STATUS":"Active","ALERT":false},"3298931":{"SORT_INDEX":1,"TITLE":["IMPRESA AEROSPACE, LLC, A CALIFORNIA LIMITED LIABILITY COMPANY - GARDENA, CA"],"ID":3298931,"SEC_PARTY":["TWIN HAVEN SPECIAL OPPORTUNITIES FUND IV, L.P., A DELAWARE LIMITED PARTNERSHIP - LOS ANGELES, CA"],"RECORD_NUM":"167522661793","FILING_DATE":"04/29/2016","RECORD_TYPE":"UCC","LAPSE_DATE":"04/29/2021","STATUS":"Active","ALERT":false},"3393527":{"SORT_INDEX":5,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":3393527,"SEC_PARTY":["SUSQUEHANNA COMMERCIAL FINANCE, INC. - MALVERN, PA"],"RECORD_NUM":"167535675348","FILING_DATE":"07/08/2016","RECORD_TYPE":"UCC","LAPSE_DATE":"07/08/2021","STATUS":"Active","ALERT":false},"4496762":{"SORT_INDEX":2,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":4496762,"SEC_PARTY":["CITIBANK, N.A., ITS BRANCHES, SUBSIDIARIES AND AFFILIATES - NEW YORK, NY"],"RECORD_NUM":"207788833309","FILING_DATE":"06/10/2020","RECORD_TYPE":"UCC","LAPSE_DATE":"06/10/2025","STATUS":"Active","ALERT":false},"4738501":{"SORT_INDEX":7,"TITLE":["IMPRESA AEROSPACE, LLC - GARDENA, CA"],"ID":4738501,"SEC_PARTY":["CITIBANK, N.A., ITS BRANCHES, SUBSIDIARIES AND AFFILIATES - NEW YORK, NY"],"RECORD_NUM":"U200003619925","FILING_DATE":"07/22/2020","RECORD_TYPE":"UCC","LAPSE_DATE":"07/22/2025","STATUS":"Active","ALERT":false}};
-
-  //  myjson ={
-  //   "name":"John",
-  //   "age":30,
-  //   "cars":[ "Ford", "BMW", "Fiat" ]
-  //   };
-
-  //  myArry : any= JSON.parse(this.json);
-  constructor(public inputTextModule: InputTextModule ,public buttonModule:ButtonModule) {
-
-    Object.keys(this.json).forEach((key) => {
-      let value = this.json[key].FILING_DATE;
-      console.log(value);
-  });
 
   }
 
-  GetData(){
 
+  signIn(){
+
+   for (var i = 0; i < this.creadentialArray.length; i++) {
+   let row= this.creadentialArray[i];
+    if(row['pass'] === this.scrappingModellogin.PASSWORD && row['email'] === this.scrappingModellogin.EMAIL ){
+
+      // this.router.navigate(['/', '../MyToolComponent']);
+      console.log( 'break');
+      break;
+    }
+   }
+
+
+
+   console.log( 'ending method');
   }
-
-
-
 }
+
+
+
+
+
