@@ -16,6 +16,7 @@ import { PDFDocument } from 'pdf-lib'
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import moment = require('moment');
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 
@@ -61,7 +62,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
-    public dialog: MatDialog, public sanitizer: DomSanitizer) {
+    public dialog: MatDialog, public sanitizer: DomSanitizer
+    ,private _snackBar: MatSnackBar) {
 
 
 
@@ -230,6 +232,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
   async downloadSelectedRowsPdfMergeFile() {
+    this.openSnackBar('Downloading and merging all pdf files','OK');
     console.log(`Downloading pdf`);
     console.log(this.selectedRowArray);
 
@@ -303,7 +306,11 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   }
 
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
 
 

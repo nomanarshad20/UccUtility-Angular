@@ -36,9 +36,12 @@ import { ViewpopupComponent } from '@app/viewpopup/viewpopup/viewpopup.component
 import { CommonModule } from '@angular/common';
 
 
-const appRoutes: Route[] = [
-  { path: 'ScrappingModule', component: MyToolComponent }
+const appRout: Route[] = [
+  { path: '',
+   component: MyToolComponent }
 ];
+
+
 
 @NgModule({
   declarations: [
@@ -50,8 +53,7 @@ const appRoutes: Route[] = [
     CommonModule,
     AccordionModule,
 
-    InputTextModule,
-    ButtonModule,
+    
 
     MatInputModule,
     MatTableModule,
@@ -73,11 +75,11 @@ const appRoutes: Route[] = [
     MatStepperModule,
     MatCheckboxModule,
 
-    RouterModule.forChild(appRoutes),
+    RouterModule.forChild(appRout),
   ],
   entryComponents: [
     ViewpopupComponent
   ],
 
 })
-export class ScrappingModule { }
+export class ScrappingModule {}
