@@ -44,18 +44,22 @@ export class AppComponent  {
 
 
   signIn(){
-
+   let isFound: boolean =false;
    for (var i = 0; i < this.creadentialArray.length; i++) {
+    
    let row= this.creadentialArray[i];
     if(row['pass'] === this.scrappingModellogin.PASSWORD && row['email'] === this.scrappingModellogin.EMAIL ){
-
-      // this.router.navigate(['/', '../MyToolComponent']);
       console.log( 'break');
+      isFound = true;
       break;
     }
    }
 
+   if(isFound){
+    this.router.navigate(['/ScrappingModule']);
+   }
 
+   
 
    console.log( 'ending method');
   }

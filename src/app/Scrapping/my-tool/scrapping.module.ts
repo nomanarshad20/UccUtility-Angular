@@ -1,10 +1,9 @@
-import { environment } from './../environments/environment.prod';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MyToolComponent } from './Scrapping/my-tool/my-tool.component';
+
+import { NgModule } from '@angular/core';
+import { Route, RouterModule } from '@angular/router';
+import { MyToolComponent } from './my-tool.component';
+
 
 import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
 import { InputTextModule } from 'primeng/inputtext';
@@ -27,54 +26,58 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
 
-import {MatStepperModule} from '@angular/material/stepper';
-import { ViewpopupComponent } from './viewpopup/viewpopup/viewpopup.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { Route, RouterModule } from '@angular/router';
-import { Scrapping } from './Scrapping/my-tool/Scrapping.DTO';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ViewpopupComponent } from '@app/viewpopup/viewpopup/viewpopup.component';
 import { CommonModule } from '@angular/common';
-import { ScrappingModule } from './Scrapping/my-tool/scrapping.module';
 
 
-
-
-
-// const appRoute: Route[] = [
-//   { path: 'ScrappingModule', loadChildren: './Scrapping/my-tool/scrapping.module#ScrappingModule' }
-//   // { path: 'scrappingSearch', loadChildren:() => import('../app/Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule)}
-
-
-// ];
-
-const appRoute: Route[] = [
+const appRoutes: Route[] = [
   { path: 'ScrappingModule', component: MyToolComponent }
 ];
 
-
-
-
 @NgModule({
   declarations: [
-    AppComponent,
+    MyToolComponent,
+    ViewpopupComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AppRoutingModule,
     FormsModule,
-    ScrappingModule,
-    RouterModule.forRoot(appRoute)
+    CommonModule,
+    AccordionModule,
+
+    InputTextModule,
+    ButtonModule,
+
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    DynamicTableModule,
+    FlexLayoutModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatCheckboxModule,
+
+    RouterModule.forChild(appRoutes),
+  ],
+  entryComponents: [
+    ViewpopupComponent
   ],
 
-
-  providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
-  ],
-  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class ScrappingModule { }
