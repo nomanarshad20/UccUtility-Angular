@@ -17,7 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import moment = require('moment');
 import {MatSnackBar} from '@angular/material/snack-bar';
-
+import { Router } from '@angular/router';
 
 
 
@@ -63,14 +63,14 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
     public dialog: MatDialog, public sanitizer: DomSanitizer
-    ,private _snackBar: MatSnackBar) {
+    ,private _snackBar: MatSnackBar , private router: Router) {
 
+    // session value here
+     let loginValue= sessionStorage.getItem('loginKey');
+     if(loginValue===null){
+      this.router.navigate(['/login']);
+     }
 
-
-
-
-    // Assign the data to the data source for the table to render
-    // this.dataSource = new MatTableDataSource(this.DataTableRow);
   }
 
   ngOnInit(): void {

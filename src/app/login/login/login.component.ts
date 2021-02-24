@@ -54,6 +54,9 @@ export class LoginComponent {
       let row = this.creadentialArray[i];
       if (row['pass'] === this.scrappingModellogin.PASSWORD && row['email'] === this.scrappingModellogin.EMAIL) {
         console.log('break');
+
+        // session value here
+        sessionStorage.setItem('loginKey', 'yes');
         isFound = true;
         break;
       }
