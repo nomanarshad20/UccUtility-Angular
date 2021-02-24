@@ -16,7 +16,8 @@ import { PDFDocument } from 'pdf-lib'
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import moment = require('moment');
-
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 
@@ -61,14 +62,15 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
-    public dialog: MatDialog, public sanitizer: DomSanitizer) {
+    public dialog: MatDialog, public sanitizer: DomSanitizer
+    ,private _snackBar: MatSnackBar , private router: Router) {
 
+    // session value here
+     let loginValue= sessionStorage.getItem('loginKey');
+     if(loginValue===null){
+      this.router.navigate(['/login']);
+     }
 
-
-
-
-    // Assign the data to the data source for the table to render
-    // this.dataSource = new MatTableDataSource(this.DataTableRow);
   }
 
   ngOnInit(): void {
@@ -230,6 +232,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
   async downloadSelectedRowsPdfMergeFile() {
+    this.openSnackBar('Downloading and merging all pdf files','OK');
     console.log(`Downloading pdf`);
     console.log(this.selectedRowArray);
 
@@ -303,7 +306,11 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   }
 
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
 
 
