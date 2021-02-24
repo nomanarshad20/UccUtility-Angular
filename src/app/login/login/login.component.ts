@@ -36,7 +36,7 @@ export class LoginComponent {
     { email: "BradfordM", pass: "Scr@p3r122021" },
     { email: "ChangJ", pass: "Scr@p3r132021" },
     { email: "RileyT", pass: "Scr@p3r142021" },
-    { email: "aa", pass: "aa" }
+    { email: "noman", pass: "pakistan" }
   ];
 
   constructor(public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
@@ -67,12 +67,12 @@ export class LoginComponent {
     }else{
       this.openSnackBar('Wrong Id or Password','OK');
     }
-    
+
 
     console.log('ending method');
   }
 
- 
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 1000,

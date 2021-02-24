@@ -53,7 +53,7 @@ const appRout: Route[] = [
     CommonModule,
     AccordionModule,
 
-    
+
 
     MatInputModule,
     MatTableModule,
