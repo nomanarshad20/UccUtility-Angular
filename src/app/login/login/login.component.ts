@@ -41,6 +41,11 @@ export class LoginComponent {
 
   constructor(public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
     ,private _snackBar: MatSnackBar ) {
+
+      let loginValue= sessionStorage.getItem('loginKey');
+      if(loginValue!=null){
+       this.router.navigate(['/ScrappingModule']);
+      }
   }
 
 

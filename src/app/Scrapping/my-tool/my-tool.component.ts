@@ -48,7 +48,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   selectedRowCount = 0;
   pathArray: any = [];
   durationInSeconds = 5;
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<string>;
 
 
 

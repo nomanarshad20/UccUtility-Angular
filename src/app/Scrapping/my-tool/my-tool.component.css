@@ -82,31 +82,31 @@ td{
 
 .bk{
   background-image: url(../../../../bk.jpg);
-  -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
+  /* -webkit-background-size: 100%;
+-moz-background-size: 100%;
+-o-background-size: 100%; */
+background-size: 100%;
 /* Center and scale the image nicely */
-background-position: center;
+/* background-position: center; */
 background-repeat: no-repeat;
-background-size: cover;
+
 
 }
 
 
 .parallax-window {
-  min-height: 1000px;
+  min-height: 100%;
 }
 
 .container-fluid {
-  max-width: 1310px;
+  max-width: 90%;
 }
 
 
 
 
 
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 /* ************* blure back view *********** */
