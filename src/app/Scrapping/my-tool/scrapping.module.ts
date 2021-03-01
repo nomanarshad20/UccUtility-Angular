@@ -37,7 +37,7 @@ import { CommonModule } from '@angular/common';
 
 
 const appRout: Route[] = [
-  { path: '',
+  { path: 'ScrappingModule',
    component: MyToolComponent }
 ];
 

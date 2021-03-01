@@ -30,7 +30,7 @@ export class LoginComponent {
     { email: "BoadwayS", pass: "Scr@p3r62021" },
     { email: "ChangG", pass: "Scr@p3r72021" },
     { email: "GarciaD", pass: "Scr@p3r82021" },
-    { email: "ChandS", pass: "Scr@p3r92021" },
+    { email: "ChanS", pass: "Scr@p3r92021" },
     { email: "CamuaS", pass: "Scr@p3r102021" },
     { email: "RileyM", pass: "Scr@p3r112021" },
     { email: "BradfordM", pass: "Scr@p3r122021" },
@@ -68,7 +68,7 @@ export class LoginComponent {
     }
 
     if (isFound) {
-      this.router.navigate(['/scrapping']);
+      this.router.navigate(['/ScrappingModule']);
     }else{
       this.openSnackBar('Wrong Id or Password','OK');
     }
