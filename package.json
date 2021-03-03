@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~11.0.4",
     "@angular/platform-browser-dynamic": "~11.0.4",
     "@angular/router": "~11.0.4",
+    "@ionic-native/sqlite": "^5.31.1",
+    "@ionic-native/sqlite-porter": "^5.31.1",
     "bootstrap": "^4.6.0",
     "easy-pdf-merge": "^0.2.6",
     "file-saver": "^2.0.5",

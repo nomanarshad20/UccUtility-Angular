@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,12 +13,12 @@ import { LoginComponent } from './login/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
+//, pathMatch: 'full'
 
 const appRoute: Route[] = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'ScrappingModule', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) }
-
+  { path: '', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent  },
+  { path: 'scrapping', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) }
 ];
 
 
@@ -37,13 +36,11 @@ const appRoute: Route[] = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
     FormsModule,
     InputTextModule,
     ButtonModule,
     RouterModule.forRoot(appRoute),
     MatSnackBarModule
-
   ],
 
 

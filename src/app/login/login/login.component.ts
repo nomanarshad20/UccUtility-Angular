@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-
 import { Router } from '@angular/router';
-
-import {MatSnackBar} from '@angular/material/snack-bar';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Scrapping } from '../../Scrapping/my-tool/Scrapping.DTO';
+import { RowDataService } from './../../Service/row-data.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -39,13 +39,28 @@ export class LoginComponent {
     { email: "noman", pass: "pakistan" }
   ];
 
-  constructor(public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
-    ,private _snackBar: MatSnackBar ) {
+  constructor(public rowdataservice: RowDataService, public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
+    , private _snackBar: MatSnackBar) {
 
-      let loginValue= sessionStorage.getItem('loginKey');
-      if(loginValue!=null){
-       this.router.navigate(['/ScrappingModule']);
-      }
+    let loginValue = localStorage.getItem('loginKey');
+    if (loginValue != null) {
+      this.router.navigate(['/scrapping']);
+    }
+
+
+    
+    this.rowdataservice.getHistory().then((res: any) => {
+      const FullJson = res;
+      console.log('ssssssssssssssssssssssssssssss');
+      let historyJson = JSON.parse(FullJson);
+      console.log(historyJson);
+    });
+
+
+
+
+
+
   }
 
 
@@ -61,16 +76,16 @@ export class LoginComponent {
         console.log('break');
 
         // session value here
-        sessionStorage.setItem('loginKey', 'yes');
+        localStorage.setItem('loginKey', 'yes');
         isFound = true;
         break;
       }
     }
 
     if (isFound) {
-      this.router.navigate(['/ScrappingModule']);
-    }else{
-      this.openSnackBar('Wrong Id or Password','OK');
+      this.router.navigate(['/scrapping']);
+    } else {
+      this.openSnackBar('Wrong Id or Password', 'OK');
     }
 
 

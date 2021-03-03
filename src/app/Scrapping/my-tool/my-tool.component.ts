@@ -66,7 +66,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     ,private _snackBar: MatSnackBar , private router: Router) {
 
     // session value here
-     let loginValue= sessionStorage.getItem('loginKey');
+     let loginValue= localStorage.getItem('loginKey');
      if(loginValue===null){
       this.router.navigate(['/login']);
      }
@@ -313,6 +313,11 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
 
+  logout(){
+    localStorage.clear();
+    console.log('session ended');
+    this.router.navigate(['/login']);
+  }
 
 
   // main class ended

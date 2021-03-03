@@ -1,17 +1,8 @@
-
-
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { MyToolComponent } from './my-tool.component';
-
-
 import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
-import { InputTextModule } from 'primeng/inputtext';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ButtonModule } from 'primeng/button';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -29,15 +20,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
-
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ViewpopupComponent } from '@app/viewpopup/viewpopup/viewpopup.component';
 import { CommonModule } from '@angular/common';
 
 
+
 const appRout: Route[] = [
-  { path: 'ScrappingModule',
+  { path: '', redirectTo: 'scrapping', pathMatch: 'full' },
+  { path: '',
    component: MyToolComponent }
 ];
 
@@ -52,9 +44,6 @@ const appRout: Route[] = [
     FormsModule,
     CommonModule,
     AccordionModule,
-
-
-
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
@@ -74,7 +63,6 @@ const appRout: Route[] = [
     MatTabsModule,
     MatStepperModule,
     MatCheckboxModule,
-
     RouterModule.forChild(appRout),
   ],
   entryComponents: [
