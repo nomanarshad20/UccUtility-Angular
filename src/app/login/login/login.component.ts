@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-
 import { Router } from '@angular/router';
-
-import {MatSnackBar} from '@angular/material/snack-bar';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Scrapping } from '../../Scrapping/my-tool/Scrapping.DTO';
+import { RowDataService } from './../../Service/row-data.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,7 @@ export class LoginComponent {
     { email: "BoadwayS", pass: "Scr@p3r62021" },
     { email: "ChangG", pass: "Scr@p3r72021" },
     { email: "GarciaD", pass: "Scr@p3r82021" },
-    { email: "ChandS", pass: "Scr@p3r92021" },
+    { email: "ChanS", pass: "Scr@p3r92021" },
     { email: "CamuaS", pass: "Scr@p3r102021" },
     { email: "RileyM", pass: "Scr@p3r112021" },
     { email: "BradfordM", pass: "Scr@p3r122021" },
@@ -39,8 +39,28 @@ export class LoginComponent {
     { email: "noman", pass: "pakistan" }
   ];
 
-  constructor(public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
-    ,private _snackBar: MatSnackBar ) {
+  constructor(public rowdataservice: RowDataService, public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
+    , private _snackBar: MatSnackBar) {
+
+    let loginValue = localStorage.getItem('loginKey');
+    if (loginValue != null) {
+      this.router.navigate(['/scrapping']);
+    }
+
+
+    
+    this.rowdataservice.getHistory().then((res: any) => {
+      const FullJson = res;
+      console.log('ssssssssssssssssssssssssssssss');
+      let historyJson = JSON.parse(FullJson);
+      console.log(historyJson);
+    });
+
+
+
+
+
+
   }
 
 
@@ -56,7 +76,7 @@ export class LoginComponent {
         console.log('break');
 
         // session value here
-        sessionStorage.setItem('loginKey', 'yes');
+        localStorage.setItem('loginKey', 'yes');
         isFound = true;
         break;
       }
@@ -64,8 +84,8 @@ export class LoginComponent {
 
     if (isFound) {
       this.router.navigate(['/scrapping']);
-    }else{
-      this.openSnackBar('Wrong Id or Password','OK');
+    } else {
+      this.openSnackBar('Wrong Id or Password', 'OK');
     }
 
 

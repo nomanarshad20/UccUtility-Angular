@@ -1,24 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {  MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { Route, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login/login.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
+//, pathMatch: 'full'
 
 const appRoute: Route[] = [
-  { path: 'login', component:LoginComponent  },
-  { path: 'ScrappingModule', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent  },
+  { path: 'scrapping', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) }
 ];
 
 
@@ -36,18 +36,16 @@ const appRoute: Route[] = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
     FormsModule,
     InputTextModule,
     ButtonModule,
     RouterModule.forRoot(appRoute),
     MatSnackBarModule
-
   ],
 
 
   providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
   ],
   bootstrap: [AppComponent]
 })

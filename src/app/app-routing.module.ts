@@ -10,8 +10,8 @@ import {
 
 const routes: Routes = [
   {
-    path: "scrapping",
-loadChildren: "./Scrapping/my-tool/scrapping.module#ScrappingModule"
+    path: "",
+loadChildren: "./Scrapping/my-tool/scrapping.module#scrapping"
   }
 ];
 
@@ -24,6 +24,7 @@ loadChildren: "./Scrapping/my-tool/scrapping.module#ScrappingModule"
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 
 
 

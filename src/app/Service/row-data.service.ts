@@ -61,8 +61,12 @@ getHistoryOfLicensePromise(value : any) {
 
 
 
+getHistory(){
 
-// https://bizfileonline.sos.ca.gov/api/History/ucc/187642982633
+  return this.httpclient.get('assets/history.json', { responseType: 'text' as 'json'}).toPromise();
+
+}
+
 
 
 

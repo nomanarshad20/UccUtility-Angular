@@ -1,325 +1,311 @@
-<div class="parallax-window  bk" data-parallax="scroll">
-  <div class="container-fluid img-responsive">
+<div class="parallax-window  bk" >
+
+<div style="float: right;"><button (click)="logout()"
+  mat-stroked-button color="accent">Logout</button></div>
+  
+
+
+  <div class="container">
 
 
 
+    <div class="row">
 
-
-
-    <div class="container">
-
-
-
-      <div class="row">
-
-        <div class="col-sm-1 ">
-          <div class="shadow">
-            <img src="../../../assets/license.png" alt="" style="width: 100px; height: 100px;">
-          </div>
-        </div>
-        <div class="col-sm-11">
-          <div class=" text-white  " style="margin-left: 20px;">
-            <h1 class="display-1 font-weight-bolder text-monospace "> <b> UCC Online </b>
-            </h1>
-            <!-- <h3 class="display-3">California Secretary of State</h3> -->
-          </div>
-
+      <div class="col-sm-1 ">
+        <div class="shadow">
+          <img src="../../../assets/license.png" alt="" style="width: 100px; height: 100px;">
         </div>
       </div>
+      <div class="col-sm-11">
+        <div class=" text-white  " style="margin-left: 20px;">
+          <h1 class="display-1 font-weight-bolder text-monospace "> <b> UCC Online </b>
+          </h1>
+          <!-- <h3 class="display-3">California Secretary of State</h3> -->
+        </div>
 
-
-
-
-      <mat-card class="text-white ">
-
-        <mat-tab-group dynamicHeight class="text-white">
-          <mat-tab label="Search">
-
-
-
-            <div class="row" style="margin-top: 10px;">
-              <!-- <div class="col-sm-3"></div> -->
-              <div class="col-sm-12">
-                <!-- search -->
-
-                <div >
-                  <div class="form-outline">
-                    <input id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.SEARCH_VALUE"
-                      class="form-control" placeholder="Name or File number" />
-                  </div>
-                </div>
-
-                <!-- search end -->
-              </div>
-              <!-- <div class="col-sm-3 "></div> -->
-            </div>
-
-
-
-
-            <div class="row" style="margin-top: 10px; margin-bottom: 5px;">
-              <div class="col-sm-3"></div>
-              <div class="col-sm-6">
-                <!--  s buttorn  -->
-                <button mat-raised-button  type="button" class="btn btn-info btn-block" (click)="GetData()">
-                  <i class="fa fa-search">Search</i>
-                </button>
-                <!--  s button end -->
-              </div>
-              <div class="col-sm-3"></div>
-            </div>
-
-
-
-          </mat-tab>
-          <mat-tab class="text-white" label="Advance Search">
-
-
-            <div class="row" style="margin-top: 10px;">
-              <!-- <div class="col-sm-3"> </div> -->
-              <div class="col-sm-12">
-                <!-- search -->
-
-                <div >
-                  <div class="form-outline">
-                    <input id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.SEARCH_VALUE"
-                      class="form-control" placeholder="Name or File number" />
-                  </div>
-                </div>
-
-                <!-- search end -->
-              </div>
-              <!-- <div class="col-sm-3 "></div> -->
-            </div>
-
-
-
-            <div class="row" style="margin-top: 10px;">
-              <div class="col-sm-4">
-
-                <!-- status  -->
-
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Status</label>
-                  </div>
-                  <select class="custom-select form-control" id="inputGroupSelect01"
-                    [(ngModel)]="scrappingModel.STATUS">
-                    <option value="ALL" selected>All</option>
-                    <option value="ACTIVE_UNLAPSED">Active (unlapsed)</option>
-                    <option value="ACTIVE_LAPSED_UNLAPSED">Active (lapsed and unlapsed)</option>
-                  </select>
-                </div>
-                <!-- status -->
-
-              </div>
-              <div class="col-sm-4">
-
-                <!-- file start date -->
-
-                <mat-form-field>
-                  <mat-label>File Date Start</mat-label>
-                  <input class="text-black-50" matInput [matDatepicker]="fileDateStart" placeholder="Start Date"
-                    [(ngModel)]="scrappingModel.FILING_DATE_START">
-                  <mat-datepicker-toggle matSuffix [for]="fileDateStart"></mat-datepicker-toggle>
-                  <mat-datepicker #fileDateStart></mat-datepicker>
-                </mat-form-field>
-
-
-                <!--file start date  -->
-
-              </div>
-              <div class="col-sm-4">
-                <!--file end date  -->
-
-                <mat-form-field>
-                  <mat-label>File Date End</mat-label>
-                  <input class="text-black-50" matInput [matDatepicker]="fileDateEnd" placeholder="End date"
-                    [(ngModel)]="scrappingModel.FILING_DATE_END">
-                  <mat-datepicker-toggle matSuffix [for]="fileDateEnd"></mat-datepicker-toggle>
-                  <mat-datepicker #fileDateEnd></mat-datepicker>
-                </mat-form-field>
-                <!--file end date  -->
-
-              </div>
-            </div>
-
-            <div class="row" style="margin-top: 10px;">
-              <div class="col-sm-4">
-                <!-- file type -->
-
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect4">File Type</label>
-                  </div>
-                  <select class="custom-select form-control" id="inputGroupSelect4"
-                    [(ngModel)]="scrappingModel.RECORD_TYPE_ID">
-                    <option value="0" selected>All</option>
-                    <option value="2170">Financing Statement</option>
-                    <option value="2154">Judgment Lien</option>
-                    <option value="2175">State Tax Lien</option>
-                    <option value="2174">Federal Tax Lien</option>
-                    <option value="2155">Attachment</option>
-                  </select>
-                </div>
-                <!-- file type -->
-              </div>
-              <div class="col-sm-4">
-                <!-- Start date -->
-                <mat-form-field>
-                  <mat-label>Lapse Date Start</mat-label>
-                  <input class="text-black-50" matInput [matDatepicker]="lapseDateStart" placeholder="Start date"
-                    [(ngModel)]="scrappingModel.LAPSE_DATE_START">
-                  <mat-datepicker-toggle matSuffix [for]="lapseDateStart"></mat-datepicker-toggle>
-                  <mat-datepicker #lapseDateStart></mat-datepicker>
-                </mat-form-field>
-
-                <!-- Start date -->
-              </div>
-              <div class="col-sm-4">
-                <!-- End date -->
-
-                <mat-form-field>
-                  <mat-label>Lapse Date End</mat-label>
-                  <input class="text-black-50" matInput [matDatepicker]="lapseDateEnd" placeholder="End date"
-                    [(ngModel)]="scrappingModel.LAPSE_DATE_END">
-                  <mat-datepicker-toggle matSuffix [for]="lapseDateEnd"></mat-datepicker-toggle>
-                  <mat-datepicker #lapseDateEnd></mat-datepicker>
-                </mat-form-field>
-                <!-- End date -->
-              </div>
-            </div>
-
-            <div class="row" style="margin-top: 10px; margin-bottom: 5px;">
-              <div class="col-sm-3"></div>
-              <div class="col-sm-6">
-                <!--  s buttorn  -->
-                <button mat-raised-button  type="button" class="btn btn-info btn-block" (click)="GetData()">
-                  <i class="fa fa-search">Search</i>
-                </button>
-                <!--  s button end -->
-              </div>
-              <div class="col-sm-3"></div>
-            </div>
-
-
-          </mat-tab>
-        </mat-tab-group>
-      </mat-card>
+      </div>
     </div>
 
 
 
 
-    <br>
-    <br>
-    <br>
+    <mat-card class="text-white ">
 
-    <div class="container-fluid" [style.display]="isDataAvailable ? 'block' : 'none'">
-
-      <mat-card>
-
-        <div class="filterCard mat-elevation-z8 ">
-
-          <div class="" style="float: left;">
-            <mat-chip-list aria-label="data area">
-              <mat-chip color="secondary" class="text-white bg-info" selected>Search : {{cardSearchValue}}</mat-chip>
-              <mat-chip color="secondary" class="text-white bg-info" selected> Total : {{listCount}}</mat-chip>
-              <mat-chip color="secondary" class="text-white bg-info" selected>Selected : {{selectedRowCount}}</mat-chip>
-              <mat-chip color="primary" selected *ngIf="selectedRowCount>0"
-                (click)="downloadSelectedRowsPdfMergeFile()">
-                Downlaod pdf Merge File </mat-chip>
-            </mat-chip-list>
-          </div>
-
-
-          <div class="filterInput">
-            <input class="form-control" type="text" name="search" (keyup)="applyFilter($event)" autocomplete="off"
-              placeholder="Filter Record">
-          </div>
-
-        </div>
+      <mat-tab-group dynamicHeight class="text-white">
+        <mat-tab label="Search">
 
 
 
+          <div class="row" style="margin-top: 10px;">
+            <!-- <div class="col-sm-3"></div> -->
+            <div class="col-sm-12">
+              <!-- search -->
 
+              <div>
+                <div class="form-outline">
+                  <input id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.SEARCH_VALUE"
+                    class="form-control" placeholder="Name or File number" />
+                </div>
+              </div>
 
-
-        <div class="table-responsive">
-          <table mat-table [dataSource]="dataSource" matSort
-            class="table align-middle  table-striped table-hover mat-elevation-z8 my-ripple-container table-condensed ">
-            <div class="table-responsive">
-              <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-                <th style="padding: 5px;"
-                  class="mat-sort-header-sorted text-white bg-info  align-middle font-weight-bold text-capitalize"
-                  scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
-                  {{column}} </th>
-                <td matRipple mat-cell *matCellDef="let element" scope="row" class="align-middle  font-weight-light"
-                  style="padding: 5px;">
-                  <div *ngIf="column==='checked'">
-                    <mat-checkbox [checked]="scrappingModel.CHECKBOX"
-                      (change)="selectedRowCheckbox($event, element['File Number'])"></mat-checkbox>
-                  </div>
-                  <div *ngIf="column==='operation'"> <button
-                      (click)="openDialog(element['id'] , element['File Number'] )" mat-stroked-button
-                      color="accent">Details</button> </div>
-                  <div *ngIf="column!=='checked' && column!=='operation'" class="center-block">{{element[column]}}
-                  </div>
-                </td>
-              </ng-container>
-
-              <!-- (click)="openDialog(element['id'] , element['File Number'] )" -->
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-              <!-- Row shown when there is no matching data. -->
-              <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "</td>
-              </tr>
+              <!-- search end -->
             </div>
-          </table>
-          <mat-paginator class="text-white bg-info" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]"
-            [showFirstLastButtons]="true">
-          </mat-paginator>
-
-        </div>
-
-      </mat-card>
-
-
-      <div style="margin: 20px; padding: 20px;"> </div>
-    </div>
-
-
-
-    <router-outlet></router-outlet>
+            <!-- <div class="col-sm-3 "></div> -->
+          </div>
 
 
 
 
+          <div class="row" style="margin-top: 10px; margin-bottom: 5px;">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+              <!--  s buttorn  -->
+              <button mat-raised-button type="button" class="btn btn-info btn-block" (click)="GetData()">
+                <i class="fa fa-search">Search</i>
+              </button>
+              <!--  s button end -->
+            </div>
+            <div class="col-sm-3"></div>
+          </div>
 
 
 
+        </mat-tab>
+        <mat-tab class="text-white" label="Advance Search">
+
+
+          <div class="row" style="margin-top: 10px;">
+            <!-- <div class="col-sm-3"> </div> -->
+            <div class="col-sm-12">
+              <!-- search -->
+
+              <div>
+                <div class="form-outline">
+                  <input id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.SEARCH_VALUE"
+                    class="form-control" placeholder="Name or File number" />
+                </div>
+              </div>
+
+              <!-- search end -->
+            </div>
+            <!-- <div class="col-sm-3 "></div> -->
+          </div>
 
 
 
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-4">
+
+              <!-- status  -->
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                </div>
+                <select class="custom-select form-control" id="inputGroupSelect01" [(ngModel)]="scrappingModel.STATUS">
+                  <option value="ALL" selected>All</option>
+                  <option value="ACTIVE_UNLAPSED">Active (unlapsed)</option>
+                  <option value="ACTIVE_LAPSED_UNLAPSED">Active (lapsed and unlapsed)</option>
+                </select>
+              </div>
+              <!-- status -->
+
+            </div>
+            <div class="col-sm-4">
+
+              <!-- file start date -->
+
+              <mat-form-field>
+                <mat-label>File Date Start</mat-label>
+                <input class="text-black-50" matInput [matDatepicker]="fileDateStart" placeholder="Start Date"
+                  [(ngModel)]="scrappingModel.FILING_DATE_START">
+                <mat-datepicker-toggle matSuffix [for]="fileDateStart"></mat-datepicker-toggle>
+                <mat-datepicker #fileDateStart></mat-datepicker>
+              </mat-form-field>
 
 
+              <!--file start date  -->
+
+            </div>
+            <div class="col-sm-4">
+              <!--file end date  -->
+
+              <mat-form-field>
+                <mat-label>File Date End</mat-label>
+                <input class="text-black-50" matInput [matDatepicker]="fileDateEnd" placeholder="End date"
+                  [(ngModel)]="scrappingModel.FILING_DATE_END">
+                <mat-datepicker-toggle matSuffix [for]="fileDateEnd"></mat-datepicker-toggle>
+                <mat-datepicker #fileDateEnd></mat-datepicker>
+              </mat-form-field>
+              <!--file end date  -->
+
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-4">
+              <!-- file type -->
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect4">File Type</label>
+                </div>
+                <select class="custom-select form-control" id="inputGroupSelect4"
+                  [(ngModel)]="scrappingModel.RECORD_TYPE_ID">
+                  <option value="0" selected>All</option>
+                  <option value="2170">Financing Statement</option>
+                  <option value="2154">Judgment Lien</option>
+                  <option value="2175">State Tax Lien</option>
+                  <option value="2174">Federal Tax Lien</option>
+                  <option value="2155">Attachment</option>
+                </select>
+              </div>
+              <!-- file type -->
+            </div>
+            <div class="col-sm-4">
+              <!-- Start date -->
+              <mat-form-field>
+                <mat-label>Lapse Date Start</mat-label>
+                <input class="text-black-50" matInput [matDatepicker]="lapseDateStart" placeholder="Start date"
+                  [(ngModel)]="scrappingModel.LAPSE_DATE_START">
+                <mat-datepicker-toggle matSuffix [for]="lapseDateStart"></mat-datepicker-toggle>
+                <mat-datepicker #lapseDateStart></mat-datepicker>
+              </mat-form-field>
+
+              <!-- Start date -->
+            </div>
+            <div class="col-sm-4">
+              <!-- End date -->
+
+              <mat-form-field>
+                <mat-label>Lapse Date End</mat-label>
+                <input class="text-black-50" matInput [matDatepicker]="lapseDateEnd" placeholder="End date"
+                  [(ngModel)]="scrappingModel.LAPSE_DATE_END">
+                <mat-datepicker-toggle matSuffix [for]="lapseDateEnd"></mat-datepicker-toggle>
+                <mat-datepicker #lapseDateEnd></mat-datepicker>
+              </mat-form-field>
+              <!-- End date -->
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px; margin-bottom: 5px;">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+              <!--  s buttorn  -->
+              <button mat-raised-button type="button" class="btn btn-info btn-block" (click)="GetData()">
+                <i class="fa fa-search">Search</i>
+              </button>
+              <!--  s button end -->
+            </div>
+            <div class="col-sm-3"></div>
+          </div>
 
 
-
-
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
   </div>
 
 
-    <!-- Page footer -->
-    <footer class="row footer" style="position: relative; background: rgba(37, 37, 37, 0.568) ;">
 
-      <div class="col-12  text-center tm-copyright-text text-monospace text-white " style="position:absolute; bottom:0;">
-        Copyright California Secretary of State &copy; 2021 App Landing Page.
-        Designed by <b>Biz Utility</b>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="container-fluid" [style.display]="isDataAvailable ? 'block' : 'none'">
+
+    <mat-card>
+
+      <div class="filterCard mat-elevation-z8 ">
+
+        <div class="" style="float: left;">
+          <mat-chip-list aria-label="data area">
+            <mat-chip color="secondary" class="text-white bg-info" selected>Search : {{cardSearchValue}}</mat-chip>
+            <mat-chip color="secondary" class="text-white bg-info" selected> Total : {{listCount}}</mat-chip>
+            <mat-chip color="secondary" class="text-white bg-info" selected>Selected : {{selectedRowCount}}</mat-chip>
+            <mat-chip color="primary" selected *ngIf="selectedRowCount>0" (click)="downloadSelectedRowsPdfMergeFile()">
+              Downlaod pdf Merge File </mat-chip>
+          </mat-chip-list>
+        </div>
+
+
+        <div class="filterInput">
+          <input class="form-control" type="text" name="search" (keyup)="applyFilter($event)" autocomplete="off"
+            placeholder="Filter Record">
+        </div>
+
       </div>
-    </footer>
+
+
+
+
+
+
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" matSort
+          class="table align-middle  table-striped table-hover mat-elevation-z8 my-ripple-container table-condensed ">
+          <div class="table-responsive">
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+              <th style="padding: 5px;"
+                class="mat-sort-header-sorted text-white bg-info  align-middle font-weight-bold text-capitalize"
+                scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{column}} </th>
+              <td matRipple mat-cell *matCellDef="let element" scope="row" class="align-middle  font-weight-light"
+                style="padding: 5px;">
+                <div *ngIf="column==='checked'">
+                  <mat-checkbox [checked]="scrappingModel.CHECKBOX"
+                    (change)="selectedRowCheckbox($event, element['File Number'])"></mat-checkbox>
+                </div>
+                <div *ngIf="column==='operation'"> <button (click)="openDialog(element['id'] , element['File Number'] )"
+                    mat-stroked-button color="accent">Details</button> </div>
+                <div *ngIf="column!=='checked' && column!=='operation'" class="center-block">{{element[column]}}
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- (click)="openDialog(element['id'] , element['File Number'] )" -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "</td>
+            </tr>
+          </div>
+        </table>
+        <mat-paginator class="text-white bg-info" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]"
+          [showFirstLastButtons]="true">
+        </mat-paginator>
+
+      </div>
+
+    </mat-card>
+
+
+    <div style="margin: 20px; padding: 20px;"> </div>
+  </div>
+
+
+
+  <!-- <router-outlet></router-outlet> -->
+
+
+
+
+
+
+
+
+
+  <!-- Page footer -->
+  <footer class="row footer" style="position: relative; background: rgba(37, 37, 37, 0.568) ;">
+
+    <div class="col-12  text-center tm-copyright-text text-monospace text-white " style="position:absolute; bottom:0;">
+      Copyright California Secretary of State &copy; 2021 App Landing Page.
+      Designed by <b>UCC Utility</b>
+    </div>
+  </footer>
 
   <!-- .container-fluid -->
 </div>
