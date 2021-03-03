@@ -13,10 +13,10 @@ import { LoginComponent } from './login/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
-//, pathMatch: 'full'
+
 
 const appRoute: Route[] = [
-  { path: '', redirectTo: 'login' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent  },
   { path: 'scrapping', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) }
 ];
