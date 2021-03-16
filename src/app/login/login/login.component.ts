@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Scrapping } from '../../Scrapping/my-tool/Scrapping.DTO';
@@ -39,7 +38,7 @@ export class LoginComponent {
     { email: "noman", pass: "pakistan" }
   ];
 
-  constructor(public rowdataservice: RowDataService, public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
+  constructor(public rowdataservice: RowDataService,  private router: Router
     , private _snackBar: MatSnackBar) {
 
     let loginValue = localStorage.getItem('loginKey');

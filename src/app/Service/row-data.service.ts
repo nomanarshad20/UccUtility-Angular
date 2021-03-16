@@ -67,7 +67,6 @@ getHistoryOfLicensePromise(value : any) {
 
 getHistory(){
 
-
    const headerss = { 'Content-type': 'application/json' };
   // return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
   

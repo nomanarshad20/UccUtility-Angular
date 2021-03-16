@@ -1,5 +1,6 @@
 export class HistoryModel {
-    id: number = 0;
+    id: string = '';
     action: string = '';
     timestamp: string = '';
+    userName: string = '';
 }

@@ -1,0 +1,47 @@
+
+
+<!-- <mat-selection-list #log [multiple]="false"> -->
+<!-- <mat-list-option *ngFor="let log of auditlogJson" [value]="log" > -->
+<div *ngFor="let log of auditlogJson">
+
+
+  <div class="card  mat-elevation-z2 align-middle" style="margin-top: 5px;">
+  
+
+  <div class="row  font-weight-normal text-monospace align-middle text-capitalize" style="  padding: 7px;">
+    <div class="col-sm-2 " style=" ">
+      <p class="font-weight-bolder" style="" > {{log.id}} <span style="color: darkgrey;">|</span></p>
+    </div>
+
+    <div class="col-sm-3">
+      
+      <p>  <i class="fa fa-user-circle" aria-hidden="true"></i> {{log.userName}}</p>
+    </div>
+
+    <div class="col-sm-3">
+      <!-- 
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> -->
+
+
+      <p><i class="fa fa-sign-in" aria-hidden="true"></i> {{log.action}}</p>
+    </div>
+
+    <div class="col-sm-3">
+      <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{log.timestamp}}</p>
+    </div>
+
+
+
+
+
+
+  </div>
+</div>
+</div>
+<!-- </mat-list-option> -->
+<!-- </mat-selection-list>  -->
+
+
+

@@ -12,12 +12,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewpopupComponent } from 'src/app/viewpopup/viewpopup/viewpopup.component';
+
+import { AuditlogComponent } from 'src/app/auditlog/auditlog/auditlog.component';
 import { PDFDocument } from 'pdf-lib'
 import { DomSanitizer } from '@angular/platform-browser';
 //import { saveAs } from 'file-saver';
 import moment = require('moment');
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -63,7 +66,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
     public dialog: MatDialog, public sanitizer: DomSanitizer
-    ,private _snackBar: MatSnackBar , private router: Router) {
+    ,private _snackBar: MatSnackBar , private router: Router , public matListModule: MatListModule) {
 
     // session value here
      let loginValue= localStorage.getItem('loginKey');
@@ -202,6 +205,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
   openDialog(id: any, fileNumber: any) {
+
+
     const dialogRef = this.dialog.open(ViewpopupComponent, {
       height: '700px',
       width: '1000px',
@@ -216,7 +221,25 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       console.log(" thsi sis pop up value unknown");
       console.log(`Dialog result: ${result}`);
     });
+    
   }
+
+
+  openDialogAuditlog() {
+
+    const dialogRefAudit = this.dialog.open(AuditlogComponent, {
+      height: '700px',
+      width: '700px',
+      disableClose: false
+    });
+
+    dialogRefAudit.afterClosed().subscribe(result => {
+      console.log(" thsi sis pop up value Auditlog");
+      console.log(`Dialog result: ${result}`);
+    });
+    
+  }
+
 
 
   clearFilter() { }

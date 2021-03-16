@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { MyToolComponent } from './my-tool.component';
-import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -24,13 +23,13 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ViewpopupComponent } from '@app/viewpopup/viewpopup/viewpopup.component';
 import { CommonModule } from '@angular/common';
-
-
+import {MatGridListModule} from '@angular/material/grid-list';
+import { AuditlogComponent } from '@app/auditlog/auditlog/auditlog.component';
+import {MatListModule} from '@angular/material/list';
 
 const appRout: Route[] = [
-  { path: '', redirectTo: 'scrapping', pathMatch: 'full' },
-  { path: '',
-   component: MyToolComponent }
+  // { path: 'scrapping', redirectTo: 'scrapping', pathMatch: 'full' },
+  { path: '', component: MyToolComponent }
 ];
 
 
@@ -38,12 +37,13 @@ const appRout: Route[] = [
 @NgModule({
   declarations: [
     MyToolComponent,
-    ViewpopupComponent
+    ViewpopupComponent,
+    AuditlogComponent
   ],
   imports: [
     FormsModule,
     CommonModule,
-    AccordionModule,
+    MatListModule,
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
@@ -64,9 +64,12 @@ const appRout: Route[] = [
     MatStepperModule,
     MatCheckboxModule,
     RouterModule.forChild(appRout),
+    MatGridListModule,
+    MatListModule
   ],
   entryComponents: [
-    ViewpopupComponent
+    ViewpopupComponent,
+    AuditlogComponent
   ],
 
 })
