@@ -14,7 +14,11 @@ export class RowDataService {
   respons: any;
 
 
+   javaServerPort : string = "8081";
 
+   javaServerIp :string = "localhost";
+
+   
   constructor(private httpclient: HttpClient) {
 
 
@@ -63,10 +67,16 @@ getHistoryOfLicensePromise(value : any) {
 
 getHistory(){
 
-  return this.httpclient.get('assets/history.json', { responseType: 'text' as 'json'}).toPromise();
+
+   const headerss = { 'Content-type': 'application/json' };
+  // return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
+  
+
+  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog';
+  console.log(serchUrl);
+  return this.httpclient.get(serchUrl,{ headers: { 'Content-type': 'application/json' } }).toPromise();
 
 }
-
 
 
 

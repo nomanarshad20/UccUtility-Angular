@@ -82,11 +82,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MyDemoa:build"
+            "browserTarget": "MyDemoa:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MyDemoa:build:production"
+              "browserTarget": "MyDemoa:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },
