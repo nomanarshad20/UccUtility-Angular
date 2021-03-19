@@ -72,11 +72,23 @@ getHistory(){
   
 
   const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog';
-  console.log(serchUrl);
+  //console.log(serchUrl);
   return this.httpclient.get(serchUrl,{ headers: { 'Content-type': 'application/json' } }).toPromise();
 
 }
 
+
+
+saveAuditlog(auditlogJson:any): Observable<any> {
+
+  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/create';
+
+  console.log(auditlogJson);
+  console.log(serchUrl);
+
+  const headerss = { 'Content-type': 'application/json' };
+  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 'Content-type': 'application/json' } });
+}
 
 
 

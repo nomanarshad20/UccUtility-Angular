@@ -3,4 +3,5 @@ export class HistoryModel {
     action: string = '';
     timestamp: string = '';
     userName: string = '';
+ 
 }

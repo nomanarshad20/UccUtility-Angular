@@ -229,7 +229,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
     const dialogRefAudit = this.dialog.open(AuditlogComponent, {
       height: '700px',
-      width: '700px',
+      width: '900px',
       disableClose: false
     });
 
@@ -258,6 +258,16 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     this.openSnackBar('Downloading and merging all pdf files','OK');
     console.log(`Downloading pdf`);
     console.log(this.selectedRowArray);
+
+
+    let data = {
+      id: "",
+      action: "Downloaded Pdf bundle",
+      timestamp: ''+new Date()+'',
+      userName: ''+localStorage.getItem('userName')
+    };
+    this.rowdataservice.saveAuditlog(data).subscribe((res) => {
+     });
 
 
 
@@ -337,6 +347,16 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
   logout(){
+
+    let data = {
+      id: "",
+      action: "User Logout",
+      timestamp: ''+new Date()+'',
+      userName: ''+localStorage.getItem('userName')
+    };
+    this.rowdataservice.saveAuditlog(data).subscribe((res) => {
+     });
+
     localStorage.clear();
     console.log('session ended');
     this.router.navigate(['/login']);

@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatListModule} from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 
@@ -39,7 +41,7 @@ const appRoute: Route[] = [
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-
+    MatPaginatorModule,
     RouterModule.forRoot(appRoute),
     MatSnackBarModule,
     MatListModule

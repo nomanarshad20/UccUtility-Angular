@@ -76,12 +76,23 @@ export class LoginComponent {
 
         // session value here
         localStorage.setItem('loginKey', 'yes');
+        localStorage.setItem('userName', ''+this.scrappingModellogin.EMAIL);
         isFound = true;
         break;
       }
     }
 
     if (isFound) {
+
+      let data = {
+        id: "",
+        action: "User Login",
+        timestamp: ''+new Date()+'',
+        userName: ''+this.scrappingModellogin.EMAIL
+      };
+      this.rowdataservice.saveAuditlog(data).subscribe((res) => {
+       });
+
       this.router.navigate(['/scrapping']);
     } else {
       this.openSnackBar('Wrong Id or Password', 'OK');
