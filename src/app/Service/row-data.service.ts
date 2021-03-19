@@ -65,7 +65,7 @@ getHistoryOfLicensePromise(value : any) {
 
 
 
-getHistory(){
+getHistory2(){
 
    const headerss = { 'Content-type': 'application/json' };
   // return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
@@ -78,14 +78,21 @@ getHistory(){
 }
 
 
+getHistory(auditlogJson:any): Observable<any> {
+
+  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog';
+  const headerss = { 'Content-type': 'application/json' };
+  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 'Content-type': 'application/json' } });
+}
+
+
 
 saveAuditlog(auditlogJson:any): Observable<any> {
 
-  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/create';
 
+  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/create';
   console.log(auditlogJson);
   console.log(serchUrl);
-
   const headerss = { 'Content-type': 'application/json' };
   return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 'Content-type': 'application/json' } });
 }

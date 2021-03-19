@@ -266,6 +266,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       timestamp: ''+new Date()+'',
       userName: ''+localStorage.getItem('userName')
     };
+    
     this.rowdataservice.saveAuditlog(data).subscribe((res) => {
      });
 
@@ -363,10 +364,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
 
-  getAuditLog(){
-   //this.rowdataservice.getHistory();
-   console.log(this.rowdataservice.getHistory());
-  }
+  
 
   // main class ended
 }

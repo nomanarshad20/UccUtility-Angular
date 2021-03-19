@@ -38,27 +38,13 @@ export class LoginComponent {
     { email: "noman", pass: "pakistan" }
   ];
 
-  constructor(public rowdataservice: RowDataService,  private router: Router
+  constructor(public rowdataservice: RowDataService, private router: Router
     , private _snackBar: MatSnackBar) {
 
     let loginValue = localStorage.getItem('loginKey');
     if (loginValue != null) {
       this.router.navigate(['/scrapping']);
     }
-
-
-    
-    this.rowdataservice.getHistory().then((res: any) => {
-      const FullJson = res;
-      console.log('ssssssssssssssssssssssssssssss');
-      let historyJson = JSON.parse(FullJson);
-      console.log(historyJson);
-    });
-
-
-
-
-
 
   }
 
@@ -76,7 +62,7 @@ export class LoginComponent {
 
         // session value here
         localStorage.setItem('loginKey', 'yes');
-        localStorage.setItem('userName', ''+this.scrappingModellogin.EMAIL);
+        localStorage.setItem('userName', '' + this.scrappingModellogin.EMAIL);
         isFound = true;
         break;
       }
@@ -87,11 +73,11 @@ export class LoginComponent {
       let data = {
         id: "",
         action: "User Login",
-        timestamp: ''+new Date()+'',
-        userName: ''+this.scrappingModellogin.EMAIL
+        timestamp: '' + new Date() + '',
+        userName: '' + this.scrappingModellogin.EMAIL
       };
       this.rowdataservice.saveAuditlog(data).subscribe((res) => {
-       });
+      });
 
       this.router.navigate(['/scrapping']);
     } else {
