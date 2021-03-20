@@ -30,6 +30,7 @@ import {MatListModule} from '@angular/material/list';
 const appRout: Route[] = [
   // { path: 'scrapping', redirectTo: 'scrapping', pathMatch: 'full' },
   { path: '', component: MyToolComponent }
+
 ];
 
 
