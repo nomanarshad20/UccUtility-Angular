@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Scrapping } from '../../Scrapping/my-tool/Scrapping.DTO';
@@ -39,27 +38,13 @@ export class LoginComponent {
     { email: "noman", pass: "pakistan" }
   ];
 
-  constructor(public rowdataservice: RowDataService, public inputTextModule: InputTextModule, public buttonModule: ButtonModule, private router: Router
+  constructor(public rowdataservice: RowDataService, private router: Router
     , private _snackBar: MatSnackBar) {
 
     let loginValue = localStorage.getItem('loginKey');
     if (loginValue != null) {
       this.router.navigate(['/scrapping']);
     }
-
-
-    
-    this.rowdataservice.getHistory().then((res: any) => {
-      const FullJson = res;
-      console.log('ssssssssssssssssssssssssssssss');
-      let historyJson = JSON.parse(FullJson);
-      console.log(historyJson);
-    });
-
-
-
-
-
 
   }
 
@@ -77,12 +62,23 @@ export class LoginComponent {
 
         // session value here
         localStorage.setItem('loginKey', 'yes');
+        localStorage.setItem('userName', '' + this.scrappingModellogin.EMAIL);
         isFound = true;
         break;
       }
     }
 
     if (isFound) {
+
+      let data = {
+        id: "",
+        action: "User Login",
+        timestamp: '' + new Date() + '',
+        userName: '' + this.scrappingModellogin.EMAIL
+      };
+      this.rowdataservice.saveAuditlog(data).subscribe((res) => {
+      });
+
       this.router.navigate(['/scrapping']);
     } else {
       this.openSnackBar('Wrong Id or Password', 'OK');

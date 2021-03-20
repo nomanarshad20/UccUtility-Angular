@@ -1,8 +1,11 @@
-<div class="parallax-window  bk" >
+<div class="parallax-window  " style="background-color: rgb(219, 214, 214);" >
 
+  
 <div style="float: right;"><button (click)="logout()"
   mat-stroked-button color="accent">Logout</button></div>
-  
+
+  <div style="float: right;"><button (click)="openDialogAuditlog()"
+    mat-stroked-button color="primary">Audit Log</button></div>
 
 
   <div class="container">
@@ -213,7 +216,7 @@
   <br>
   <br>
 
-  <div class="container-fluid" [style.display]="isDataAvailable ? 'block' : 'none'">
+  <div class="container-fluid " [style.display]="isDataAvailable ? 'block' : 'none'">
 
     <mat-card>
 

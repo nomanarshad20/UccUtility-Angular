@@ -83,6 +83,16 @@ this.getLicenseHistory(this.licenseFileNumber);
 
   openUrl(siteWeb: string) {
 
+    let data = {
+      id: "",
+      action: "Downloaded Pdf File",
+      timestamp: ''+new Date()+'',
+      userName: ''+localStorage.getItem('userName')
+    };
+    this.rowdataservice.saveAuditlog(data).subscribe((res) => {
+     });
+
+
     let downloadLink = "https://bizfileonline.sos.ca.gov"+ siteWeb;
     window.location.href = downloadLink;
   }

@@ -12,3 +12,4 @@ export class Scrapping{
   EMAIL : string='';
   PASSWORD :string='';
 }
+
