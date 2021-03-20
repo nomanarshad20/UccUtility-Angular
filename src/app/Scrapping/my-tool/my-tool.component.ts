@@ -229,11 +229,12 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   openDialogAuditlog() {
 
     const dialogRefAudit = this.dialog.open(AuditlogComponent, {
-      height: '700px',
-      width: '900px',
+      height: '730px',
+      width: '1000px',
       disableClose: false,
       autoFocus : true,
-      hasBackdrop:true
+      hasBackdrop:true,
+      backdropClass: 'scroolHide'
     });
 
     dialogRefAudit.afterClosed().subscribe(result => {
