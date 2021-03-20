@@ -103,7 +103,6 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
     this.cardSearchValue = this.scrappingModel.SEARCH_VALUE;
-
     let searchFilterJson = {
       "SEARCH_VALUE": this.scrappingModel.SEARCH_VALUE,
       "STATUS": (this.scrappingModel.STATUS === '' ? "ALL" : this.scrappingModel.STATUS),

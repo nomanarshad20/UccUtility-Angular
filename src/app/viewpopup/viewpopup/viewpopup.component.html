@@ -1,12 +1,26 @@
 <div class="row">
+  <div class="col-sm-12">
+    <nav class="navbar navbar-inverse container">
+      <div class="navbar-header">
+        <div class="navbar-brand" >
+          <h2>License History</h2>
+        </div>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>  
+          <button  mat-dialog-close class="btn btn-danger bg-white text-danger">Close</button>
+      </li>
+      </ul>
+    </nav>
+  </div>
   <div class="col-sm-8">
     <!-- expandable left -->
-    <h2>License History</h2>
-
+    
+  
 
     <mat-accordion *ngFor="let history of historyArray; let i = index" class="mat-elevation-z8 ">
       <mat-expansion-panel style="margin-top: 10px; " class="notice2 mat-elevation-z8">
-        <mat-expansion-panel-header class="text-white bg-info">
+        <mat-expansion-panel-header class="text-white bg-secondary">
           <mat-panel-title class=" align-middle ">
             <mat-chip color="primary">{{i+1}}</mat-chip>
             <span class="text-white align-middle  font-smaller font-italic" style="margin-left: 8px;"> {{
@@ -21,24 +35,24 @@
 
           <div class="row">
             <div class="col">
-              <p  class=" align-middle  font-smaller font-italic" style=" color: rgb(5, 130, 168);">Document
+              <p  class="align-middle  font-smaller font-italic text-primary">Document
                 Type</p>
               <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_TYPE']}}</p>
 
             </div>
             <div class="col">
-              <p class=" align-middle  font-smaller font-italic" style=" color: rgb(5, 130, 168);">File
+              <p class=" align-middle  font-smaller font-italic text-primary" >File
                 Number</p>
               <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_NUM']}}</p>
             </div>
 
             <div class="col">
-              <p  class=" align-middle  font-smaller font-italic" style=" color: rgb(5, 130, 168);">Date</p>
+              <p  class=" align-middle  font-smaller font-italic text-primary" >Date</p>
               <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_DATE']}}</p>
             </div>
 
             <div class="col">
-              <button style="cursor: pointer;" class="btn btn-outline-info btn-sm" type="button"
+              <button style="cursor: pointer;" class="btn btn-outline-primary btn-sm" type="button"
                 (click)="openUrl( history['DOWNLOAD_LINK'])"> <i class="fa fa-file-pdf-o"></i> Download</button>
             </div>
           </div>
@@ -70,6 +84,4 @@
 </div>
 
 
-<mat-dialog-actions align="end" >
-  <button mat-button mat-dialog-close>Close</button>
-</mat-dialog-actions>
+
