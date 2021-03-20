@@ -12,7 +12,7 @@ export class AuditlogComponent implements OnInit {
 
 
   length = 10;
-  pageSize = 10;
+  pageSize = 20;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageIndex = 0;
   // MatPaginator Output

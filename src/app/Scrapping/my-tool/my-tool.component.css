@@ -1,3 +1,8 @@
+.bodyMain{
+  height: 100%;
+ 
+}
+
 .width-100
 {
   width: 100%;
@@ -5,46 +10,21 @@
 .container {
   padding-top: 50px;
   padding-bottom: 10px;
-  color: #405065;
 }
 .display-1 b
 {
   font-size: 15px;
 }
-
-
-
-
-
-
- /* td {
-  display: table-cell;
-  text-align: center;
-  vertical-align: inherit;
-}
-
-th {
-  display: table-cell;
-  vertical-align: inherit;
-  font-weight: bold;
-  text-align: center;
-
-} */
-
 th{
-  align-items: center;
-  text-align: center;
-  font-size: 13px;
-  font-weight: bold;
-  display: table-cell;
 
+  text-align: end;
+  padding: 5px;
 
 }
 td{
-  align-items: center;
-  padding: 8px;
+  padding: 5px;
   display: table-cell;
-  text-align: center;
+
 
 }
 
@@ -62,8 +42,29 @@ td{
 /* ************* blure back view *********** */
 
 .parallax-window {
-  min-height: 100%;
-  background: rgb(248, 248, 248);
+  
+
+
+}
+
+
+
+.tital-family{
+ 
+
+  
+      font-family: "Krona One", sans-serif;
+      font-weight: bold;
+      text-align: center;
+      font-size: 30px;
+      letter-spacing: 2px;
+      word-spacing: -4px;
+      color: rgba(153, 67, 223, 0.94);
+      background-color: rgb(255, 255, 255);
+      text-shadow: rgb(153, 153, 153) 2px 2px 2px;
+  
+
+
 }
 
 .container-fluid {
@@ -89,11 +90,23 @@ td{
 {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.align-center
+.footer
 {
-  padding-left: 350px;
+  padding: 20px;
+
 }
 /* html {
   scroll-behavior: smooth;
 } */
 /* ************* blure back view *********** */
+
+
+
+
+
+
+
+
+
+
+

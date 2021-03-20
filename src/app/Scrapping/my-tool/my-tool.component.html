@@ -1,287 +1,289 @@
+<div >
+
+  <div class="parallax-window container-fluid">
 
 
-<div class="parallax-window container-fluid" >
-  <nav class="navbar navbar-inverse container">
+
+    <nav class="navbar navbar-inverse container">
       <div class="navbar-header">
-        <div class="navbar-brand" >
-          <img src="../../../assets/license.png" alt="" style="width:45%;border-radius: 100%;"><sup><b> UCC <span style="color:#00917c;">Online</span> </b></sup>
+        <div class=" " >
+          <img src="../../../assets/license.png" alt="" style="width:45%;border-radius: 100%; "><span class="tital-family" >UccUtility  </span>
 
         </div>
       </div>
-     
+
       <ul class="nav navbar-nav navbar-right">
-        <li><div  class="btn-group"><button (click)="logout()"
-          mat-stroked-button color="" class="btn text-success">optin</button>
-          <button (click)="logout()"
-          mat-stroked-button color="primary" class="btn">Logout</button>
-        </div></li>
-      </ul>
-  </nav>
-  <div class="container">
-    <hr>
-    <mat-card >
-
-      <mat-tab-group dynamicHeight >
-        <mat-tab label="Search">
-
-
-
-          <div class="row">
-            <!-- <div class="col-sm-3"></div> -->
-            <div class="col-sm-12 text-center">
-              <!-- search -->
-              <br>
-              <mat-form-field class="example-full-width">
-                <mat-label>Name or File number</mat-label>
-                <input matInput id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.SEARCH_VALUE"
-                      autocomplete="off" class="text-dark"/>
-              </mat-form-field>
-              <button mat-raised-button type="button" class="btn-sreach btn" (click)="GetData()">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-            <!-- <div class="col-sm-3 "></div> -->
+        <li>
+          <div class="btn-group"><button (click)="openDialogAuditlog()" mat-stroked-button color=""
+              class="btn text-primary">Audit Log</button>
+            <button (click)="logout()" mat-stroked-button color="" class="btn text-danger">Logout</button>
           </div>
+        </li>
+      </ul>
+    </nav>
 
-        </mat-tab>
-        <mat-tab  label="Advance Search">
 
-          <div class="container">
-          <div class="row" style="margin-top: 10px;">
-            <!-- <div class="col-sm-3"> </div> -->
-            <div class="col-sm-12">
-              <!-- search -->         
-                <div class="form-outline">
-                <mat-form-field style="width: 100%;">
+
+    <div class="container">
+
+
+
+      <mat-card>
+        <mat-tab-group dynamicHeight>
+
+
+          <mat-tab label="Search">
+
+
+
+            <div class="row">
+              <!-- <div class="col-sm-3"></div> -->
+              <div class="col-sm-12 text-center">
+                <!-- search -->
+                <br>
+                <mat-form-field class="example-full-width">
                   <mat-label>Name or File number</mat-label>
                   <input matInput id="search-focus" type="search" id="form1" [(ngModel)]="scrappingModel.SEARCH_VALUE"
-                        autocomplete="off" class="text-dark" />
+                    autocomplete="off" class="text-dark" />
                 </mat-form-field>
+                <button mat-raised-button type="button" class="btn-sreach btn" (click)="GetData()">
+                  <i class="fa fa-search"></i>
+                </button>
               </div>
-              <!-- search end -->
+              <!-- <div class="col-sm-3 "></div> -->
             </div>
-            <!-- <div class="col-sm-3 "></div> -->
-          </div>
+
+          </mat-tab>
+
+
+          <mat-tab label="Advance Search">
+
+            <div class="container">
+              <div class="row" style="margin-top: 10px;">
+                <!-- <div class="col-sm-3"> </div> -->
+                <div class="col-sm-12">
+                  <!-- search -->
+                  <div class="form-outline">
+                    <mat-form-field style="width: 100%;">
+                      <mat-label>Name or File number</mat-label>
+                      <input matInput id="search-focus" type="search" id="form1"
+                        [(ngModel)]="scrappingModel.SEARCH_VALUE" autocomplete="off" class="text-dark" />
+                    </mat-form-field>
+                  </div>
+                  <!-- search end -->
+                </div>
+                <!-- <div class="col-sm-3 "></div> -->
+              </div>
 
 
 
-          <div class="row" style="margin-top: 10px;">
-            <div class="col-sm-4">
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-4">
 
-              <!-- status  -->
-              <mat-form-field class="width-100">
-                <mat-label>Status</mat-label>
-                <select matNativeControl [(ngModel)]="scrappingModel.STATUS">
-                  <option value="ALL" selected>All</option>
-                  <option value="ACTIVE_UNLAPSED">Active (unlapsed)</option>
-                  <option value="ACTIVE_LAPSED_UNLAPSED">Active (lapsed and unlapsed)</option>
-                </select>
-              </mat-form-field>
-              <!-- status -->
+                  <!-- status  -->
+                  <mat-form-field class="width-100">
+                    <mat-label>Status</mat-label>
+                    <select matNativeControl [(ngModel)]="scrappingModel.STATUS">
+                      <option value="ALL" selected>All</option>
+                      <option value="ACTIVE_UNLAPSED">Active (unlapsed)</option>
+                      <option value="ACTIVE_LAPSED_UNLAPSED">Active (lapsed and unlapsed)</option>
+                    </select>
+                  </mat-form-field>
+                  <!-- status -->
+
+                </div>
+                <div class="col-sm-4">
+
+                  <!-- file start date -->
+
+                  <mat-form-field class="width-100">
+                    <mat-label>File Date Start</mat-label>
+                    <input class="text-black-50" matInput [matDatepicker]="fileDateStart" placeholder="Start Date"
+                      [(ngModel)]="scrappingModel.FILING_DATE_START">
+                    <mat-datepicker-toggle matSuffix [for]="fileDateStart"></mat-datepicker-toggle>
+                    <mat-datepicker #fileDateStart></mat-datepicker>
+                  </mat-form-field>
+
+
+                  <!--file start date  -->
+
+                </div>
+                <div class="col-sm-4">
+                  <!--file end date  -->
+
+                  <mat-form-field class="width-100">
+                    <mat-label>File Date End</mat-label>
+                    <input class="text-black-50" matInput [matDatepicker]="fileDateEnd" placeholder="End date"
+                      [(ngModel)]="scrappingModel.FILING_DATE_END">
+                    <mat-datepicker-toggle matSuffix [for]="fileDateEnd"></mat-datepicker-toggle>
+                    <mat-datepicker #fileDateEnd></mat-datepicker>
+                  </mat-form-field>
+                  <!--file end date  -->
+
+                </div>
+              </div>
+
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-4">
+                  <!-- file type -->
+                  <mat-form-field class="width-100">
+                    <mat-label>File Type</mat-label>
+                    <select matNativeControl [(ngModel)]="scrappingModel.RECORD_TYPE_ID">
+                      <option value="0" selected>All</option>
+                      <option value="2170">Financing Statement</option>
+                      <option value="2154">Judgment Lien</option>
+                      <option value="2175">State Tax Lien</option>
+                      <option value="2174">Federal Tax Lien</option>
+                      <option value="2155">Attachment</option>
+                    </select>
+                  </mat-form-field>
+                  <!-- file type -->
+                </div>
+                <div class="col-sm-4">
+                  <!-- Start date -->
+                  <mat-form-field class="width-100">
+                    <mat-label>Lapse Date Start</mat-label>
+                    <input class="text-black-50" matInput [matDatepicker]="lapseDateStart" placeholder="Start date"
+                      [(ngModel)]="scrappingModel.LAPSE_DATE_START">
+                    <mat-datepicker-toggle matSuffix [for]="lapseDateStart"></mat-datepicker-toggle>
+                    <mat-datepicker #lapseDateStart></mat-datepicker>
+                  </mat-form-field>
+
+                  <!-- Start date -->
+                </div>
+                <div class="col-sm-4">
+                  <!-- End date -->
+
+                  <mat-form-field class="width-100">
+                    <mat-label>Lapse Date End</mat-label>
+                    <input class="text-black-50" matInput [matDatepicker]="lapseDateEnd" placeholder="End date"
+                      [(ngModel)]="scrappingModel.LAPSE_DATE_END">
+                    <mat-datepicker-toggle matSuffix [for]="lapseDateEnd"></mat-datepicker-toggle>
+                    <mat-datepicker #lapseDateEnd></mat-datepicker>
+                  </mat-form-field>
+                  <!-- End date -->
+                </div>
+              </div>
+
+              <div class="row mx-auto" style="margin-top: 10px; margin-bottom: 5px;">
+
+                <div class="col-sm-12 text-center">
+                  <!--  s buttorn  -->
+                  <button mat-raised-button type="button" class="btn" (click)="GetData()">
+                    <i class="fa fa-search"> Search</i>
+                  </button>
+                  <!--  s button end -->
+                </div>
+
+              </div>
 
             </div>
-            <div class="col-sm-4">
+          </mat-tab>
 
-              <!-- file start date -->
+        </mat-tab-group>
+      </mat-card>
 
-              <mat-form-field class="width-100">
-                <mat-label>File Date Start</mat-label>
-                <input class="text-black-50" matInput [matDatepicker]="fileDateStart" placeholder="Start Date"
-                  [(ngModel)]="scrappingModel.FILING_DATE_START">
-                <mat-datepicker-toggle matSuffix [for]="fileDateStart"></mat-datepicker-toggle>
-                <mat-datepicker #fileDateStart></mat-datepicker>
-              </mat-form-field>
+    </div>
 
 
-              <!--file start date  -->
+    <br>
 
-            </div>
-            <div class="col-sm-4">
-              <!--file end date  -->
 
-              <mat-form-field class="width-100">
-                <mat-label>File Date End</mat-label>
-                <input class="text-black-50" matInput [matDatepicker]="fileDateEnd" placeholder="End date"
-                  [(ngModel)]="scrappingModel.FILING_DATE_END">
-                <mat-datepicker-toggle matSuffix [for]="fileDateEnd"></mat-datepicker-toggle>
-                <mat-datepicker #fileDateEnd></mat-datepicker>
-              </mat-form-field>
-              <!--file end date  -->
+    <div class="container-fluid" [style.display]="isDataAvailable ? 'block' : 'none'">
 
-            </div>
-          </div>
+      <mat-card>
 
-          <div class="row" style="margin-top: 10px;">
-            <div class="col-sm-4">
-              <!-- file type -->
-              <mat-form-field class="width-100">
-                <mat-label>File Type</mat-label>
-                <select matNativeControl  [(ngModel)]="scrappingModel.RECORD_TYPE_ID">
-                  <option value="0" selected>All</option>
-                  <option value="2170">Financing Statement</option>
-                  <option value="2154">Judgment Lien</option>
-                  <option value="2175">State Tax Lien</option>
-                  <option value="2174">Federal Tax Lien</option>
-                  <option value="2155">Attachment</option>
-                </select>
-              </mat-form-field>
-              <!-- file type -->
-            </div>
-            <div class="col-sm-4">
-              <!-- Start date -->
-              <mat-form-field class="width-100">
-                <mat-label>Lapse Date Start</mat-label>
-                <input class="text-black-50" matInput [matDatepicker]="lapseDateStart" placeholder="Start date"
-                  [(ngModel)]="scrappingModel.LAPSE_DATE_START">
-                <mat-datepicker-toggle matSuffix [for]="lapseDateStart"></mat-datepicker-toggle>
-                <mat-datepicker #lapseDateStart></mat-datepicker>
-              </mat-form-field>
-
-              <!-- Start date -->
-            </div>
-            <div class="col-sm-4">
-              <!-- End date -->
-
-              <mat-form-field class="width-100">
-                <mat-label>Lapse Date End</mat-label>
-                <input class="text-black-50" matInput [matDatepicker]="lapseDateEnd" placeholder="End date"
-                  [(ngModel)]="scrappingModel.LAPSE_DATE_END">
-                <mat-datepicker-toggle matSuffix [for]="lapseDateEnd"></mat-datepicker-toggle>
-                <mat-datepicker #lapseDateEnd></mat-datepicker>
-              </mat-form-field>
-              <!-- End date -->
-            </div>
-          </div>
-
-          <div class="row mx-auto" style="margin-top: 10px; margin-bottom: 5px;">
-         
-            <div class="col-sm-12 text-center">
-              <!--  s buttorn  -->
-              <button mat-raised-button type="button" class="btn" (click)="GetData()">
-                <i class="fa fa-search"> Search</i>
-              </button>
-              <!--  s button end -->
-            </div>
-           
-          </div>
-
-        </div>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card>
-  </div>
-
-  <br>
-  <br>
-  <br>
-
-  <div class="container" [style.display]="isDataAvailable ? 'block' : 'none'">
-
-    <mat-card>
-
-      <div>
-        <!--table navbar -->
-        <nav class="navbar">
-          <ul class="nav navbar-nav">
-            <mat-chip-list aria-label="data area">
-              <mat-chip  class="label label-default" >Search : {{cardSearchValue}}</mat-chip>
-              <mat-chip class="label label-default" > Total : {{listCount}}</mat-chip>
-              <mat-chip class="label label-default" >Selected : {{selectedRowCount}}</mat-chip>
-              <mat-chip color="primary" selected *ngIf="selectedRowCount>0" (click)="downloadSelectedRowsPdfMergeFile()">
-                Downlaod pdf Merge File </mat-chip>
-            </mat-chip-list>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li> 
-            <mat-form-field >
-              <mat-label>Filter Record</mat-label>
-              <input matInput  type="text" name="search" (keyup)="applyFilter($event)" autocomplete="off" class="text-dark"/>
-            </mat-form-field>
-          </li>
-          </ul>
+        <div>
+          <!--table navbar -->
+          <nav class="navbar">
+            <ul class="nav navbar-nav">
+              <mat-chip-list aria-label="data area">
+                <mat-chip class="label label-default">Search : {{cardSearchValue}}</mat-chip>
+                <mat-chip class="label label-default"> Total : {{listCount}}</mat-chip>
+                <mat-chip class="label label-default">Selected : {{selectedRowCount}}</mat-chip>
+                <mat-chip color="primary" selected *ngIf="selectedRowCount>0"
+                  (click)="downloadSelectedRowsPdfMergeFile()">
+                  Downlaod pdf Merge File </mat-chip>
+              </mat-chip-list>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <mat-form-field>
+                  <mat-label>Filter Record</mat-label>
+                  <input matInput type="text" name="search" (keyup)="applyFilter($event)" autocomplete="off"
+                    class="text-dark" />
+                </mat-form-field>
+              </li>
+            </ul>
           </nav>
           <!--table navbar end-->
-          <hr>
-        <div>
-         
+
         </div>
 
-      </div>
 
 
 
 
 
+        <div class="table-responsive ">
+          <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-hover  ">
+            <div>
+              <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+                <tr>
+                  <th class="text-uppercase bg-secondary text-white align-middle  " scope="col" mat-header-cell
+                    *matHeaderCellDef mat-sort-header>
+                    {{column}} </th>
+                </tr>
+                <tr>
+                  <td matRipple mat-cell *matCellDef="let element" scope="row"
+                    class="text-center align-middle  font-weight-light">
+                    <div *ngIf="column==='checked'">
+                      <mat-checkbox [checked]="scrappingModel.CHECKBOX"
+                        (change)="selectedRowCheckbox($event, element['File Number'])"></mat-checkbox>
+                    </div>
+                    <div *ngIf="column==='operation'"> <button
+                        (click)="openDialog(element['id'] , element['File Number'] )"
+                        class="btn btn-primary bg-white text-primary">Details</button> </div>
+                    <div *ngIf="column!=='checked' && column!=='operation'" class="center-block">{{element[column]}}
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
 
-      <div class="table-responsive ">
-        <table mat-table [dataSource]="dataSource" matSort
-          class="table table-striped table-hover  ">
-          <div >
-            <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-              <tr>
-                <th class="text-uppercase bg-secondary text-white " style="padding-left:15px;padding-right: 10px;"
-                scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{column}} </th>
+              <!-- (click)="openDialog(element['id'] , element['File Number'] )" -->
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "</td>
               </tr>
-             <tr>
-              <td matRipple mat-cell *matCellDef="let element" scope="row" class="align-middle align-left  font-weight-light"
-              >
-              <div *ngIf="column==='checked'">
-                <mat-checkbox [checked]="scrappingModel.CHECKBOX"
-                  (change)="selectedRowCheckbox($event, element['File Number'])"></mat-checkbox>
-              </div>
-              <div *ngIf="column==='operation'"> <button (click)="openDialog(element['id'] , element['File Number'] )"
-                  class="btn btn-primary bg-white text-primary">Details</button> </div>
-              <div *ngIf="column!=='checked' && column!=='operation'" class="center-block">{{element[column]}}
-              </div>
-            </td>
-             </tr>
-            </ng-container>
+            </div>
+          </table>
+          <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true">
+          </mat-paginator>
 
-            <!-- (click)="openDialog(element['id'] , element['File Number'] )" -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </div>
 
-            <!-- Row shown when there is no matching data. -->
-            <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell" colspan="4">No data matching the filter "</td>
-            </tr>
-          </div>
-        </table>
-        <mat-paginator  [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]"
-          [showFirstLastButtons]="true">
-        </mat-paginator>
+      </mat-card>
 
-      </div>
+      <!-- .container-fluid -->
 
-    </mat-card>
-
-
-
-
-
-  <!-- <router-outlet></router-outlet> -->
-
-
-
-
- 
-
-
-
-
-
-
-
-
-  <!-- .container-fluid -->
-</div>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid bg-dark " style="position: absolute;bottom: 0px;left:0px;height: 35px;;">
-    <div class="navbar-header   text-white">
-      <a class="text-white align-center" >Copyright California Secretary of State &copy; 2021 App Landing Page.
-        Designed by <b>UCC Utility</b></a>
     </div>
-   
+
+
   </div>
-</nav>
+
+
+
+
+  <nav class=" text-center align-middle text-secondary" style="  height: 35px; margin-top: 40px;" >
+    <p class="">
+      Copyright California Secretary of State &copy; 2021 App Landing Page.
+      Designed by UCC Utility</p>
+
+  </nav>
+
+
+</div>
+
