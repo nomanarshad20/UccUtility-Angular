@@ -1,3 +1,34 @@
+
+
+<!-- <div class="row">
+  <div class="col">
+    <button  mat-dialog-close class="btn btn-danger bg-white text-danger" style="float: right;">Close</button>
+  </div>
+</div> -->
+<div mat-dialog-title>
+<nav class="navbar container align-center bg-secondary text-white navbar-fixed-top">
+  <div class="navbar-header">
+    <div class="navbar-brand" >
+      <h2>Audit Log</h2>
+    </div>
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+    <li>  
+      <button  mat-dialog-close class="btn btn-danger bg-white text-danger">Close</button>
+  </li>
+  </ul>
+</nav>
+</div>
+
+
+
+
+
+
+
+
+<mat-dialog-content>
+
 <div *ngFor="let log of auditlogJson">
 
 
@@ -45,3 +76,4 @@
 <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
   (page)="handlePageEvent($event)" [pageIndex]="pageIndex">
 </mat-paginator>
+</mat-dialog-content>

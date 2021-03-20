@@ -210,6 +210,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       height: '700px',
       width: '1000px',
       disableClose: false,
+      autoFocus : true,
+      hasBackdrop:true,
       data: {
         ucc: id,
         fileNo: fileNumber
@@ -229,7 +231,9 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     const dialogRefAudit = this.dialog.open(AuditlogComponent, {
       height: '700px',
       width: '900px',
-      disableClose: false
+      disableClose: false,
+      autoFocus : true,
+      hasBackdrop:true
     });
 
     dialogRefAudit.afterClosed().subscribe(result => {
