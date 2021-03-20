@@ -20,11 +20,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 const appRoute: Route[] = [
-<<<<<<< HEAD
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-=======
-  //{ path: '', redirectTo: 'login' },
->>>>>>> 730221c (jahaz design changes)
+
   { path: 'login', component: LoginComponent  },
   { path: 'scrapping', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) }
 ];
