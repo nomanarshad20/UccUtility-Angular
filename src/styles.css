@@ -8,16 +8,9 @@ html, body {height: 100%;margin: 0; font-family: Roboto, "Helvetica Neue", sans-
     repeating-radial-gradient(
         farthest-corner at 20% 20%,
       /* circle at 0 0,  */
-      rgba(248, 248, 248, 0.76),
+      rgba(235, 233, 233, 0.726),
       rgb(255, 255, 255) 900px
     );  
-
-    
-  
-   
-    
-
-    
 
 }
     
@@ -25,7 +18,14 @@ html, body {height: 100%;margin: 0; font-family: Roboto, "Helvetica Neue", sans-
 
 
 
+.gradiant-black{
 
+  background-color:  #555757;
+  background: #555757;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #8b939a, #636568, #5b6467);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #8b939a, #636568, #5b6467); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
 
 
 

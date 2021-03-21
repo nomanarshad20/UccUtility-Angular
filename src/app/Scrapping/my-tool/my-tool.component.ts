@@ -158,7 +158,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   prepareUiColumn(template: any) {
     let UiColumn: any = [];
-    UiColumn.push('checked');
+    UiColumn.push('#');
     UiColumn.push('id');
     for (let key in template) {
       let value = template[key];
@@ -181,7 +181,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
         "Filing Date": value['FILING_DATE'],
         "Lapse Date": value['LAPSE_DATE'],
         "id": value['ID'],
-        "checked": false,
+        "#": false,
         "operation": "button"
 
       };
