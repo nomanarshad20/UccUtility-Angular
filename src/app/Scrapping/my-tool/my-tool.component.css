@@ -53,19 +53,35 @@ td{
  
 
   
-      font-family: "Krona One", sans-serif;
+         
       font-weight: bold;
       text-align: center;
       font-size: 30px;
       letter-spacing: 2px;
-      word-spacing: -4px;
+      /* word-spacing: -4px; */
+
+      color: rgb(88, 87, 87);
+
+
+/* 
       color: rgba(153, 67, 223, 0.94);
       background-color: rgb(255, 255, 255);
       text-shadow: rgb(153, 153, 153) 2px 2px 2px;
-  
+   */
 
 
 }
+
+.gradiant-black{
+ 
+
+
+}
+
+
+
+
+
 
 .container-fluid {
   max-width: 100%;

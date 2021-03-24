@@ -1,15 +1,19 @@
 <div >
 
+
+  
+
+  
   <div class="parallax-window container-fluid">
 
 
 
     <nav class="navbar navbar-inverse container">
-      <div class="navbar-header">
-        <div class=" " >
-          <img src="../../../assets/license.png" alt="" style="width:45%;border-radius: 100%; "><span class="tital-family" >UccUtility  </span>
+      <div class="navbar-header" >
+       
+          <img src="../../../assets/license.png" alt="" style="width:45%;border-radius: 100%; "><span class="tital-family title-fonts" style="background-color: rgba(240, 236, 236, 0.11);" >UccUtility  </span>
 
-        </div>
+        
       </div>
 
       <ul class="nav navbar-nav navbar-right">
@@ -28,7 +32,7 @@
 
 
 
-      <mat-card>
+      <mat-card class="mat-elevation-z4">
         <mat-tab-group dynamicHeight>
 
 
@@ -189,9 +193,9 @@
     <br>
 
 
-    <div class="container-fluid" [style.display]="isDataAvailable ? 'block' : 'none'">
+    <div class="container-fluid " [style.display]="isDataAvailable ? 'block' : 'none'">
 
-      <mat-card>
+      <mat-card class="mat-elevation-z4">
 
         <div>
           <!--table navbar -->
@@ -230,21 +234,21 @@
             <div>
               <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
                 <tr>
-                  <th class="text-uppercase bg-secondary text-white align-middle  " scope="col" mat-header-cell
+                  <th class="text-uppercase gradiant-black   text-white align-middle " scope="col" mat-header-cell
                     *matHeaderCellDef mat-sort-header>
-                    {{column}} </th>
+                    <div class=" align-middle">{{column}} </div></th>
                 </tr>
                 <tr>
                   <td matRipple mat-cell *matCellDef="let element" scope="row"
-                    class="text-center align-middle  font-weight-light">
-                    <div *ngIf="column==='checked'">
+                    class="align-middle  font-weight-light" style="padding-left: 5px; padding-right: 5px;">
+                    <div *ngIf="column==='#'">
                       <mat-checkbox [checked]="scrappingModel.CHECKBOX"
                         (change)="selectedRowCheckbox($event, element['File Number'])"></mat-checkbox>
                     </div>
                     <div *ngIf="column==='operation'"> <button
                         (click)="openDialog(element['id'] , element['File Number'] )"
                         class="btn btn-primary bg-white text-primary">Details</button> </div>
-                    <div *ngIf="column!=='checked' && column!=='operation'" class="center-block">{{element[column]}}
+                    <div *ngIf="column!=='#' && column!=='operation'" class="">{{element[column]}}
                     </div>
                   </td>
                 </tr>

@@ -16,7 +16,8 @@ export class RowDataService {
 
    javaServerPort : string = "8081";
 
-   javaServerIp :string = "localhost";
+//   javaServerIp :string = "localhost";
+   javaServerIp :string = "162.214.196.99";
 
    
   constructor(private httpclient: HttpClient) {
@@ -79,24 +80,43 @@ getHistory2(){
 
 
 getHistory(auditlogJson:any): Observable<any> {
+  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/get';
+  console.log(serchUrl);
 
-  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog';
-  const headerss = { 'Content-type': 'application/json' };
-  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 'Content-type': 'application/json' } });
+ 
+  
+  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 
+    'Content-type': "application/json"
+    
+} });
+
+
 }
 
 
 
 saveAuditlog(auditlogJson:any): Observable<any> {
 
-
   const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/create';
-  console.log(auditlogJson);
   console.log(serchUrl);
-  const headerss = { 'Content-type': 'application/json' };
-  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 'Content-type': 'application/json' } });
+
+  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 
+    'Content-type': "application/json"
+    
+} });
+
+
 }
 
 
 
 }
+
+// 'Content-type': "application/json",
+// 'Access-Control-Allow-Origin': "*",
+// 'Access-Control-Allow-Methods': "*",
+// // 'Access-Control-Allow-Methods': "GET, POST, PUT, DELETE, OPTIONS",
+// // "Access-Control-Allow-Headers": "origin, content-type, accept, x-requested-with",
+// "Access-Control-Allow-Headers": "*",
+// 'Referrer-Policy' :"no-referrer"
+// // 'Referrer-Policy' :"no-referrer-when-downgrade"
