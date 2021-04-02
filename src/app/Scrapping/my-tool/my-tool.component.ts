@@ -16,7 +16,7 @@ import { ViewpopupComponent } from 'src/app/viewpopup/viewpopup/viewpopup.compon
 import { AuditlogComponent } from 'src/app/auditlog/auditlog/auditlog.component';
 import { PDFDocument } from 'pdf-lib'
 import { DomSanitizer } from '@angular/platform-browser';
-//import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 import moment = require('moment');
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -101,6 +101,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   GetData() {
 
+    this.selectedRowCount= 0;
+    this.selectedRowArray = []; 
 
     this.cardSearchValue = this.scrappingModel.SEARCH_VALUE;
     let searchFilterJson = {
@@ -338,7 +340,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     const pdfBytes = await pdfDocMain.save()
     const blob = new Blob([pdfBytes], { type: 'application/octet-stream' });
     var randomname = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  //  saveAs(blob, 'License_' + randomname + '.pdf');
+    saveAs(blob, 'License_' + randomname + '.pdf');
 
     console.log('got completed');
 
