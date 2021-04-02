@@ -14,7 +14,8 @@ export class RowDataService {
   respons: any;
 
 
-   javaServerPort : string = "8081";
+   javaServerPort : string = "8443";
+   //javaServerPort : string = "9595";
 
 //   javaServerIp :string = "localhost";
    javaServerIp :string = "162.214.196.99";
@@ -80,14 +81,11 @@ getHistory2(){
 
 
 getHistory(auditlogJson:any): Observable<any> {
-  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/get';
+  const serchUrl = 'https://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/get';
   console.log(serchUrl);
 
- 
-  
   return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 
     'Content-type': "application/json"
-    
 } });
 
 
@@ -96,8 +94,7 @@ getHistory(auditlogJson:any): Observable<any> {
 
 
 saveAuditlog(auditlogJson:any): Observable<any> {
-
-  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/create';
+  const serchUrl = 'https://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/create';
   console.log(serchUrl);
 
   return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 
