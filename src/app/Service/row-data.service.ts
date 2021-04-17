@@ -86,6 +86,7 @@ getHistory(auditlogJson:any): Observable<any> {
 
   return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 
     'Content-type': "application/json"
+   
 } });
 
 

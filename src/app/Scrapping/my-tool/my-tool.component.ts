@@ -49,7 +49,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   selectedRowArray: any = [];
   selectedRowCount = 0;
-  pathArray: any = [];
+
   durationInSeconds = 5;
   dataSource!: MatTableDataSource<string>;
 
@@ -255,12 +255,15 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       this.selectedRowArray.push(selectedId);
     } else {
       this.selectedRowArray = this.selectedRowArray.filter((item: any) => item !== selectedId);
+      
     }
+    console.log(`selected Row ids: ${this.selectedRowArray}`);
     this.selectedRowCount = this.selectedRowArray.length;
   }
 
 
   async downloadSelectedRowsPdfMergeFile() {
+    let pathArray:any = [];
     this.openSnackBar('Downloading and merging all pdf files','OK');
     console.log(`Downloading pdf`);
     console.log(this.selectedRowArray);
@@ -295,7 +298,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
           for (let index = 0; index < historyArray.length; index++) {
             const element = historyArray[index];
             console.log('adding > ' + element['DOWNLOAD_LINK']);
-            this.pathArray.push('https://bizfileonline.sos.ca.gov' + element['DOWNLOAD_LINK']);
+            pathArray.push('https://bizfileonline.sos.ca.gov' + element['DOWNLOAD_LINK']);
           }
 
         })
@@ -307,8 +310,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
     console.log("prepareed paths > ");
-    console.log(this.pathArray);
-    console.log(this.pathArray.length);
+    console.log(pathArray);
+    
 
 
 
@@ -316,13 +319,13 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     const pdfDocMain = await PDFDocument.create();
 
 
-    for (let i = 0; i < this.pathArray.length; i++) {
+    for (let i = 0; i < pathArray.length; i++) {
 
-      let url = this.pathArray[i];
+      let url = pathArray[i];
       console.log(url);
 
       console.log(`Downloading pdf`);
-      console.log(this.pathArray[i]);
+      
       const donorPdfBytes = await fetch(url).then(res => res.arrayBuffer());
       const firstDonorPdfDoc = await PDFDocument.load(donorPdfBytes);
       console.log(`count pdf array`);
