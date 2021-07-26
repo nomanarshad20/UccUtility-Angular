@@ -140,7 +140,6 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       this.dataSource = new MatTableDataSource(this.DataTableRow);
       this.listCount = this.DataTableRow.length;
 
-
       this.isDataAvailable = this.listCount > 0 ? true : false;
 
       this.dataSource.paginator = this.paginator;

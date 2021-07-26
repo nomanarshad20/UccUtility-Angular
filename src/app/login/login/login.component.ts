@@ -41,10 +41,19 @@ export class LoginComponent {
   constructor(public rowdataservice: RowDataService, private router: Router
     , private _snackBar: MatSnackBar) {
 
+
+
     let loginValue = localStorage.getItem('loginKey');
     if (loginValue != null) {
-      this.router.navigate(['/scrapping']);
+      this.router.navigate(['/florida']);
+      //this.router.navigate(['/scrapping']);
+
+      
     }
+
+
+
+
 
   }
 
@@ -79,7 +88,8 @@ export class LoginComponent {
       this.rowdataservice.saveAuditlog(data).subscribe((res) => {
       });
 
-      this.router.navigate(['/scrapping']);
+      //this.router.navigate(['/scrapping']);
+      this.router.navigate(['/florida']);
     } else {
       this.openSnackBar('Wrong Id or Password', 'OK');
     }

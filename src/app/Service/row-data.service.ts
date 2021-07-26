@@ -14,98 +14,117 @@ export class RowDataService {
   respons: any;
 
 
-   javaServerPort : string = "8443";
-   //javaServerPort : string = "9595";
+  //javaServerPort : string = "8443";
+  javaServerPort: string = "9595";
 
-//   javaServerIp :string = "localhost";
-   javaServerIp :string = "162.214.196.99";
+  javaServerIp: string = "localhost";
+  //javaServerIp :string = "162.214.196.99";
 
-   
+
   constructor(private httpclient: HttpClient) {
 
-
-
-
   }
 
-  searchCompany(searchJson:any): Observable<any> {
+  searchCompany(searchJson: any): Observable<any> {
 
-     const serchUrl = 'https://bizfileonline.sos.ca.gov/api/Records/uccsearch';
+    const serchUrl = 'https://bizfileonline.sos.ca.gov/api/Records/uccsearch';
     // const searchPostData = '{\"SEARCH_VALUE\":\"impresa aerospace\",\"STATUS\":\"ALL\",\"RECORD_TYPE_ID\":\"0\",\"FILING_DATE\":{\"start\":null,\"end\":null},\"LAPSE_DATE\":{\"start\":null,\"end\":null}}';
     // const urlJson = JSON.parse(searchPostData);
-     const headerss = { 'Content-type': 'application/json' };
-     return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
+    const headerss = { 'Content-type': 'application/json' };
+    return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
   }
 
 
-  getCompanyDetails(value : any): Observable<any> {
+  getCompanyDetails(value: any): Observable<any> {
 
-    const serchUrl = 'https://bizfileonline.sos.ca.gov/api/FilingDetail/ucc/' +value + '/false';
+    const serchUrl = 'https://bizfileonline.sos.ca.gov/api/FilingDetail/ucc/' + value + '/false';
     //const searchPostData = '{\"SEARCH_VALUE\":\"impresa aerospace\",\"STATUS\":\"ALL\",\"RECORD_TYPE_ID\":\"0\",\"FILING_DATE\":{\"start\":null,\"end\":null},\"LAPSE_DATE\":{\"start\":null,\"end\":null}}';
 
     //const urlJson = JSON.parse(searchPostData);
     //const headerss = { 'Content-type': 'application/json' };
     return this.httpclient.get<any>(serchUrl);
- }
+  }
 
 
- getHistoryOfLicense(value : any): Observable<any> {
+  getHistoryOfLicense(value: any): Observable<any> {
 
-  const serchUrl = 'https://bizfileonline.sos.ca.gov/api/History/ucc/' +value ;
-  //const searchPostData = '{\"SEARCH_VALUE\":\"impresa aerospace\",\"STATUS\":\"ALL\",\"RECORD_TYPE_ID\":\"0\",\"FILING_DATE\":{\"start\":null,\"end\":null},\"LAPSE_DATE\":{\"start\":null,\"end\":null}}';
+    const serchUrl = 'https://bizfileonline.sos.ca.gov/api/History/ucc/' + value;
+    //const searchPostData = '{\"SEARCH_VALUE\":\"impresa aerospace\",\"STATUS\":\"ALL\",\"RECORD_TYPE_ID\":\"0\",\"FILING_DATE\":{\"start\":null,\"end\":null},\"LAPSE_DATE\":{\"start\":null,\"end\":null}}';
 
-  //const urlJson = JSON.parse(searchPostData);
-  //const headerss = { 'Content-type': 'application/json' };
-  return this.httpclient.get<any>(serchUrl);
-}
+    //const urlJson = JSON.parse(searchPostData);
+    //const headerss = { 'Content-type': 'application/json' };
+    return this.httpclient.get<any>(serchUrl);
+  }
 
-getHistoryOfLicensePromise(value : any) {
+  getHistoryOfLicensePromise(value: any) {
 
-  const serchUrl = 'https://bizfileonline.sos.ca.gov/api/History/ucc/' +value ;
-  return this.httpclient.get(serchUrl).toPromise();
-}
-
-
-
-getHistory2(){
-
-   const headerss = { 'Content-type': 'application/json' };
-  // return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
-  
-
-  const serchUrl = 'http://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog';
-  //console.log(serchUrl);
-  return this.httpclient.get(serchUrl,{ headers: { 'Content-type': 'application/json' } }).toPromise();
-
-}
-
-
-getHistory(auditlogJson:any): Observable<any> {
-  const serchUrl = 'https://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/get';
-  console.log(serchUrl);
-
-  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 
-    'Content-type': "application/json"
-   
-} });
-
-
-}
+    const serchUrl = 'https://bizfileonline.sos.ca.gov/api/History/ucc/' + value;
+    return this.httpclient.get(serchUrl).toPromise();
+  }
 
 
 
-saveAuditlog(auditlogJson:any): Observable<any> {
-  const serchUrl = 'https://'+this.javaServerIp+':'+ this.javaServerPort + '/api/auditlog/create';
-  console.log(serchUrl);
+  getHistory2() {
 
-  return this.httpclient.post<any>(serchUrl, auditlogJson, { headers: { 
-    'Content-type': "application/json"
-    
-} });
+    const headerss = { 'Content-type': 'application/json' };
+    // return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
 
 
-}
+    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog';
+    //console.log(serchUrl);
+    return this.httpclient.get(serchUrl, { headers: { 'Content-type': 'application/json' } }).toPromise();
 
+  }
+
+
+  getHistory(auditlogJson: any): Observable<any> {
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/get';
+    console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, auditlogJson, {
+      headers: {
+        'Content-type': "application/json"
+
+      }
+    });
+
+
+  }
+
+
+
+  saveAuditlog(auditlogJson: any): Observable<any> {
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/create';
+    console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, auditlogJson, {
+      headers: {
+        'Content-type': "application/json"
+
+      }
+    });
+  }
+
+
+
+
+  searcFloridaData(searchJson: any) {
+    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search';
+    console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
+         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+    }).toPromise();
+
+
+
+
+
+
+
+  }
 
 
 }
