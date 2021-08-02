@@ -35,7 +35,7 @@ export class LoginComponent {
     { email: "BradfordM", pass: "Scr@p3r122021" },
     { email: "ChangJ", pass: "Scr@p3r132021" },
     { email: "RileyT", pass: "Scr@p3r142021" },
-    { email: "noman", pass: "pakistan" }
+    { email: "admin", pass: "Pakistan22" }
   ];
 
   constructor(public rowdataservice: RowDataService, private router: Router

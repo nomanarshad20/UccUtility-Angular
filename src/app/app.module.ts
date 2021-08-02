@@ -8,7 +8,7 @@ import { Route, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { FloridaComponent } from './floridaucc/florida/florida.component';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -30,9 +30,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { AuditlogComponent } from '@app/auditlog/auditlog/auditlog.component';
-
+import { FloridaviewpopupComponent } from './floridaucc/floridapopup/floridaviewpopup/floridaviewpopup.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -45,10 +46,10 @@ const appRoute: Route[] = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  { path: 'login', component: LoginComponent  },
+  { path: 'login', component: LoginComponent },
   { path: 'scrapping', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) },
-  { path: 'florida',  component: FloridaComponent  }
-  
+  { path: 'florida', component: FloridaComponent }
+
 ];
 
 
@@ -58,7 +59,8 @@ const appRoute: Route[] = [
   declarations: [
     AppComponent,
     LoginComponent,
-    FloridaComponent
+    FloridaComponent,
+    FloridaviewpopupComponent
   ],
   imports: [
 
@@ -95,8 +97,14 @@ const appRoute: Route[] = [
     MatStepperModule,
     MatCheckboxModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    FontAwesomeModule
   ],
+  entryComponents: [
+    FloridaviewpopupComponent,
+    AuditlogComponent
+  ],
+
 
 
   providers: [

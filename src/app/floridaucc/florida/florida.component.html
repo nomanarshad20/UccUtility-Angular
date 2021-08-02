@@ -21,6 +21,9 @@
       </ul>
     </nav>
 
+
+
+
     <div class="container">
       <mat-card class="mat-elevation-z4">
         <mat-tab-group dynamicHeight>
@@ -33,7 +36,7 @@
                 <mat-form-field class="" style="width: 100%;">
                   <mat-label>Name or File number</mat-label>
                   <input matInput id="search-focus" type="search" id="form1" [(ngModel)]="floridaDTO.searchValue"
-                    autocomplete="off" class="text-dark" />
+                    class="text-dark" />
                 </mat-form-field>
 
               </div>
@@ -91,7 +94,7 @@
           <nav class="navbar">
             <ul class="nav navbar-nav">
               <mat-chip-list aria-label="data area">
-                <mat-chip class="label label-default">Search : {{cardSearchValue}}</mat-chip>
+                <mat-chip class="label label-default">Search : {{floridaDTO.searchValue}}</mat-chip>
 
                 <mat-chip class="label label-default">Selected : {{selectedRowCount}}</mat-chip>
                 <mat-chip color="primary" selected *ngIf="selectedRowCount>0"
@@ -129,14 +132,13 @@
                   </th>
                 </tr>
                 <tr>
-                  <td matRipple mat-cell *matCellDef="let element" scope="row" class="align-middle  font-weight-light"
+                  <td matRipple  mat-cell *matCellDef="let element" scope="row" class="align-middle  font-weight-light"
                     style="padding-left: 5px; padding-right: 5px;">
                     <div *ngIf="column==='#'">
                       <mat-checkbox [checked]="floridaDTO.checkbox"
                         (change)="selectedRowCheckbox($event, element['File Number'])"></mat-checkbox>
                     </div>
-                    <div *ngIf="column==='operation'"> <button
-                        (click)="openDialog(element['id'] , element['File Number'] )"
+                    <div *ngIf="column==='operation'"> <button (click)="openDialog(element['anchor'] )"
                         class="btn btn-primary bg-white text-primary">Details</button> </div>
                     <div *ngIf="column!=='#' && column!=='operation'" class="">{{element[column]}}
                     </div>
@@ -154,21 +156,31 @@
               </tr>
             </div>
           </table>
+          <!--
           <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true">
           </mat-paginator>
-
+          -->
         </div>
 
 
-        
-          <button (click)="previousButton()"  color="" class=" gradiant-black   text-white align-middle" style="align-items: center;">
-            previous 20 results
-          </button>
-          <button (click)="nextButton()"  color="" class=" gradiant-black   text-white align-middle" style="align-items: center;">
-            Next 20 results
-          </button>
-          
-        
+
+        <div class="row">
+          <div class="col-sm-6">
+            <button (click)="previousButton()" *ngIf="previousButtonHide()" class="btn" style=" float: right; ">
+              <i class="fa fa-chevron-circle-left fa-3x"></i>
+            </button>
+          </div>
+          <div class="col-sm-6">
+            <button (click)="nextButton()" *ngIf="nextButtonHide()" class="btn" style=" float: left; ">
+              <i class="fa fa-chevron-circle-right fa-3x"></i>
+            </button>
+          </div>
+        </div>
+
+
+
+
+
 
       </mat-card>
 
@@ -187,4 +199,17 @@
 
 
   </div>
+
+
+
+
+  <nav class=" text-center align-middle text-secondary" style="  height: 35px; margin-top: 40px;">
+    <p class="">
+      Copyright California Secretary of State &copy; 2021 App Landing Page.
+      Designed by UCC Utility</p>
+
+  </nav>
+
+
+
 </div>

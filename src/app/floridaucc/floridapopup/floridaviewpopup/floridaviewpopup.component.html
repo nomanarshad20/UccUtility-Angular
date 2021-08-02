@@ -1,0 +1,124 @@
+<div mat-dialog-title class="row ">
+    <div class="col-sm-12">
+        <nav class="navbar navbar-inverse container align-center gradiant-black text-white mat-elevation-z4">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <h2>Search Results Detail</h2>
+                </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button mat-dialog-close class="btn btn-danger bg-white text-danger">Close</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+
+
+
+<div class="parallax-window container-fluid">
+
+    <div>
+
+
+
+        <div class="row">
+            <mat-card class="notice col-sm-12 mat-elevation-z4">
+                <p>Status</p>
+                <table class="col-sm-12 table table-striped table-hover table-sm">
+                    <tr>
+                        <th>Status</th>
+                        <th>Date Filed</th>
+                        <th>Filings Completed Thru</th>
+                        <th>Summary For Filing</th>
+                        <th>Expires</th>
+                    </tr>
+
+
+                    <tr *ngFor="let statusContent of statusList">
+                        <td>{{statusContent.Status}}</td>
+                        <td>{{statusContent.Date_Filed}}</td>
+                        <td>{{statusContent.Filings_Completed_Thru}}</td>
+                        <td>{{statusContent.Summary_For_Filing}}</td>
+                        <td>{{statusContent.Expires}}</td>
+                    </tr>
+                </table>
+            </mat-card>
+        </div>
+
+
+
+
+
+
+        <div class="row" style="margin-top: 20px;">
+            <mat-card class="notice col-sm-12 mat-elevation-z4">
+                <p>Filing Events</p>
+                <div>
+                    <div [innerHTML]="fillingTable"></div>
+                </div>
+            </mat-card>
+        </div>
+
+
+
+
+
+        <div class="row" style="margin-top: 20px;">
+            <mat-card class="notice col-sm-12 mat-elevation-z4">
+                <p>Secured Parties </p>
+                <div>
+                    <hr>
+                </div>
+                <div *ngFor="let securedParties of securedPartiesList">
+                    <p>{{securedParties}}</p>
+                </div>
+
+            </mat-card>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="row" style="margin-top: 20px;">
+            <mat-card class="notice col-sm-12 mat-elevation-z4">
+                <p>Document Images</p>
+                <table class="col-sm-12 table table-striped table-hover table-sm">
+                    <tr>
+                        <th>Pages</th>
+                        <th>Type</th>
+                        <th>Document Number</th>
+                        <th>Filing Date</th>
+                        <th>File</th>
+                    </tr>
+
+
+                    <tr *ngFor="let documentImages of documentImagesList">
+                        <td>{{documentImages.Pages}}</td>
+                        <td>{{documentImages.Type}}</td>
+                        <td>{{documentImages.Document_Number}}</td>
+                        <td>{{documentImages.Filing_Date}}</td>
+                        <td>
+                            <button class="btn btn-primary bg-white text-primary"> <a href={{documentImages.anchor}}
+                                    download="newname.pdf">Download File</a> </button>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card>
+        </div>
+
+
+
+
+
+
+
+    </div>
+</div>

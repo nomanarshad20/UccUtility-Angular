@@ -18,9 +18,9 @@ import { PDFDocument } from 'pdf-lib'
 import { DomSanitizer } from '@angular/platform-browser';
 import { saveAs } from 'file-saver';
 import moment = require('moment');
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -66,13 +66,13 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
     public dialog: MatDialog, public sanitizer: DomSanitizer
-    ,private _snackBar: MatSnackBar , private router: Router , public matListModule: MatListModule) {
+    , private _snackBar: MatSnackBar, private router: Router, public matListModule: MatListModule) {
 
     // session value here
-     let loginValue= localStorage.getItem('loginKey');
-     if(loginValue===null){
+    let loginValue = localStorage.getItem('loginKey');
+    if (loginValue === null) {
       this.router.navigate(['/login']);
-     }
+    }
 
   }
 
@@ -101,8 +101,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
   GetData() {
 
-    this.selectedRowCount= 0;
-    this.selectedRowArray = []; 
+    this.selectedRowCount = 0;
+    this.selectedRowArray = [];
 
     this.cardSearchValue = this.scrappingModel.SEARCH_VALUE;
     let searchFilterJson = {
@@ -132,7 +132,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       this.edge = FullJson['edge'];
       console.log('extraction complete');
       this.colArray = Array.from(FullJson['template']);
-      //console.log(this.template);
+      console.log(this.template);
       //console.log((Object.values(template)));
 
       this.displayedColumns = this.prepareUiColumn(this.template);
@@ -211,8 +211,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       height: '700px',
       width: '1000px',
       disableClose: false,
-      autoFocus : true,
-      hasBackdrop:true,
+      autoFocus: true,
+      hasBackdrop: true,
       data: {
         ucc: id,
         fileNo: fileNumber
@@ -223,7 +223,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       console.log(" thsi sis pop up value unknown");
       console.log(`Dialog result: ${result}`);
     });
-    
+
   }
 
 
@@ -233,8 +233,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       height: '730px',
       width: '1000px',
       disableClose: false,
-      autoFocus : true,
-      hasBackdrop:true,
+      autoFocus: true,
+      hasBackdrop: true,
       backdropClass: 'scroolHide'
     });
 
@@ -242,7 +242,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       console.log(" thsi sis pop up value Auditlog");
       console.log(`Dialog result: ${result}`);
     });
-    
+
   }
 
 
@@ -254,7 +254,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       this.selectedRowArray.push(selectedId);
     } else {
       this.selectedRowArray = this.selectedRowArray.filter((item: any) => item !== selectedId);
-      
+
     }
     console.log(`selected Row ids: ${this.selectedRowArray}`);
     this.selectedRowCount = this.selectedRowArray.length;
@@ -262,8 +262,8 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
 
   async downloadSelectedRowsPdfMergeFile() {
-    let pathArray:any = [];
-    this.openSnackBar('Downloading and merging all pdf files','OK');
+    let pathArray: any = [];
+    this.openSnackBar('Downloading and merging all pdf files', 'OK');
     console.log(`Downloading pdf`);
     console.log(this.selectedRowArray);
 
@@ -271,12 +271,12 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     let data = {
       id: "",
       action: "Downloaded Pdf bundle",
-      timestamp: ''+new Date()+'',
-      userName: ''+localStorage.getItem('userName')
+      timestamp: '' + new Date() + '',
+      userName: '' + localStorage.getItem('userName')
     };
-    
+
     this.rowdataservice.saveAuditlog(data).subscribe((res) => {
-     });
+    });
 
 
 
@@ -310,7 +310,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
 
     console.log("prepareed paths > ");
     console.log(pathArray);
-    
+
 
 
 
@@ -324,7 +324,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       console.log(url);
 
       console.log(`Downloading pdf`);
-      
+
       const donorPdfBytes = await fetch(url).then(res => res.arrayBuffer());
       const firstDonorPdfDoc = await PDFDocument.load(donorPdfBytes);
       console.log(`count pdf array`);
@@ -355,16 +355,16 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
 
-  logout(){
+  logout() {
 
     let data = {
       id: "",
       action: "User Logout",
-      timestamp: ''+new Date()+'',
-      userName: ''+localStorage.getItem('userName')
+      timestamp: '' + new Date() + '',
+      userName: '' + localStorage.getItem('userName')
     };
     this.rowdataservice.saveAuditlog(data).subscribe((res) => {
-     });
+    });
 
     localStorage.clear();
     console.log('session ended');
@@ -372,7 +372,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   }
 
 
-  
+
 
   // main class ended
 }

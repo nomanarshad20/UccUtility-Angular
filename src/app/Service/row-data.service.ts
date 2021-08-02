@@ -117,14 +117,43 @@ export class RowDataService {
         'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
          'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
     }).toPromise();
-
-
-
-
-
-
-
   }
+
+  getNextFloridaData(searchJson: any) {
+    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/next';
+    console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
+         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+    }).toPromise();
+  }
+
+
+  getPreviousFloridaData(searchJson: any) {
+    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/previous';
+    console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
+         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+    }).toPromise();
+  }
+
+
+  searcFlorida2ndPageResult(searchJson: any) {
+    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result';
+    console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
+         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+    }).toPromise();
+  }
+
 
 
 }

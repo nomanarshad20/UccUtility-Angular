@@ -22,6 +22,9 @@ import moment = require('moment');
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import {MatListModule} from '@angular/material/list';
+import { FloridaviewpopupComponent } from '../floridapopup/floridaviewpopup/floridaviewpopup.component';
+
+
 
 @Component({
   selector: 'app-florida',
@@ -33,8 +36,8 @@ export class FloridaComponent implements OnInit {
 
   floridaDTO: FloridaDTO = new FloridaDTO();
 
-
-  displayedColumns = ['#', 'Name' , 'UCC Number' , 'Address' , 'City' , 'State' , 'Zip Code' , 'Status'];
+  
+  displayedColumns = ['#', 'Name' , 'UCC Number' , 'Address' , 'City' , 'State' , 'Zip Code' , 'Status', 'operation'];
   DataTableRow: any = [];
   listCount = 0;
   isDataAvailable: boolean = false;
@@ -58,6 +61,11 @@ export class FloridaComponent implements OnInit {
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
     public dialog: MatDialog, public sanitizer: DomSanitizer
     ,private _snackBar: MatSnackBar , private router: Router , public matListModule: MatListModule) {
+
+
+      
+      this.openDialog('anchor');
+
 
 
       // session value here
@@ -109,21 +117,10 @@ export class FloridaComponent implements OnInit {
           //console.log(this.floridaDTO);
         })
         .catch((error) => {
-          console.log("getHistoryOfLicensePromise rejected with " + JSON.stringify(error));
+          console.log("search data rejected with " + JSON.stringify(error));
         });
     
-     
-      console.log('recivedResponse');
-      // TEMP this.DataTableRow = this.prepareDataTableRows(response);
-      this.DataTableRow = this.prepareDataTableRows(this.floridaDTO.tableJson);
-      console.log(this.DataTableRow);
-      this.dataSource = new MatTableDataSource(this.DataTableRow);
-      
-      this.listCount = this.DataTableRow.length;
-      this.isDataAvailable = this.listCount > 0 ? true : false;
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+        this.prepareTableAndData();
 
     
   }
@@ -144,6 +141,7 @@ export class FloridaComponent implements OnInit {
         "State": value['State'],
         "Zip Code": value['Zip Code'],
         "Status": value['Status'],
+        "anchor": value['anchor'],
         "#": false,
         "operation": "button"
 
@@ -196,6 +194,109 @@ export class FloridaComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+
+
+  async previousButton(){
+    
+    let json = JSON.stringify(this.floridaDTO);  
+    await this.rowdataservice.getPreviousFloridaData(json)
+        .then((res: any) => {
+          console.log(`^^^^^^^^^^^^^^previousButton^^^^^^^^^^^^^^^^`);
+          this.floridaDTO = res;
+          //console.log(this.floridaDTO);
+        })
+        .catch((error) => {
+          console.log("previous data rejected with " + JSON.stringify(error));
+        });
+    
+        this.prepareTableAndData();
+
+
+
+  }
+
+
+  async nextButton(){
+   
+    let json = JSON.stringify(this.floridaDTO);  
+    await this.rowdataservice.getNextFloridaData(json)
+        .then((res: any) => {
+          console.log(`^^^^^^^^^^^^^^nextButton^^^^^^^^^^^^^^^^`);
+          this.floridaDTO = res;
+          //console.log(this.floridaDTO);
+        })
+        .catch((error) => {
+          console.log("next data rejected with " + JSON.stringify(error));
+        });
+    
+        this.prepareTableAndData();
+  }
+
+
+
+  prepareTableAndData(){
+
+  
+    console.log('recivedResponse');
+    console.log(this.floridaDTO.next);
+    console.log(this.floridaDTO.previous);
+    // TEMP this.DataTableRow = this.prepareDataTableRows(response);
+    this.DataTableRow = this.prepareDataTableRows(this.floridaDTO.tableJson);
+    console.log(this.DataTableRow);
+    this.dataSource = new MatTableDataSource(this.DataTableRow);
+    
+    this.listCount = this.DataTableRow.length;
+    this.isDataAvailable = this.listCount > 0 ? true : false;
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+
+
+  previousButtonHide(){
+
+    console.log(this.floridaDTO.previous);
+    if(this.floridaDTO.previous == "" || this.floridaDTO.previous == null ){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  nextButtonHide(){
+    console.log(this.floridaDTO.next);
+    if(this.floridaDTO.next == ""  || this.floridaDTO.next == null){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+
+
+
+
+  openDialog(anchor: any) {
+
+
+    const dialogRef = this.dialog.open(FloridaviewpopupComponent, {
+      height: '700px',
+      width: '1000px',
+      disableClose: false,
+      autoFocus: true,
+      hasBackdrop: true,
+      data: {
+        anchor: anchor,
+        floridaDto: this.floridaDTO
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
+  }
 
 
 
