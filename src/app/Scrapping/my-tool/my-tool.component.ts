@@ -321,23 +321,22 @@ export class MyToolComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < pathArray.length; i++) {
 
       let url = pathArray[i];
-      console.log(url);
 
-      console.log(`Downloading pdf`);
+     // console.log(`Downloading pdf`);
 
       const donorPdfBytes = await fetch(url).then(res => res.arrayBuffer());
       const firstDonorPdfDoc = await PDFDocument.load(donorPdfBytes);
-      console.log(`count pdf array`);
+     // console.log(`count pdf array`);
       let pageCount = firstDonorPdfDoc.getPageCount();
-      console.log(` page size`);
-      console.log(pageCount);
+    //  console.log(` page size`);
+     // console.log(pageCount);
 
       for (let index = 0; index < pageCount; index++) {
-        console.log(`adding page ` + index);
+      //  console.log(`adding page ` + index);
         const [firstDonorPage] = await pdfDocMain.copyPages(firstDonorPdfDoc, [index]);
         pdfDocMain.addPage(firstDonorPage);
       }
-      console.log(`out of inner loop`);
+    //  console.log(`out of inner loop`);
     }
     const pdfBytes = await pdfDocMain.save()
     const blob = new Blob([pdfBytes], { type: 'application/octet-stream' });

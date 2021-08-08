@@ -79,7 +79,7 @@ export class RowDataService {
 
   getHistory(auditlogJson: any): Observable<any> {
     const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/get';
-    console.log(serchUrl);
+  //  console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, auditlogJson, {
       headers: {
@@ -95,7 +95,7 @@ export class RowDataService {
 
   saveAuditlog(auditlogJson: any): Observable<any> {
     const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/create';
-    console.log(serchUrl);
+  //  console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, auditlogJson, {
       headers: {
@@ -110,7 +110,7 @@ export class RowDataService {
 
   searcFloridaData(searchJson: any) {
     const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search';
-    console.log(serchUrl);
+  //  console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
@@ -121,7 +121,7 @@ export class RowDataService {
 
   getNextFloridaData(searchJson: any) {
     const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/next';
-    console.log(serchUrl);
+   // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
@@ -133,7 +133,7 @@ export class RowDataService {
 
   getPreviousFloridaData(searchJson: any) {
     const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/previous';
-    console.log(serchUrl);
+   // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
@@ -145,7 +145,19 @@ export class RowDataService {
 
   searcFlorida2ndPageResult(searchJson: any) {
     const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result';
-    console.log(serchUrl);
+   // console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
+         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+    }).toPromise();
+  }
+
+
+  getFloridaDocLinksByAnchors(searchJson: any) {
+    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result/link';
+   // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {

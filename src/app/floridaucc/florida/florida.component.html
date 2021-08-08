@@ -10,10 +10,32 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <div class="btn-group">
-            <button (click)="openDialogAuditlog()" mat-stroked-button color="" class="btn text-primary">
+
+
+
+            <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-right:5px">
+              <label class="btn btn-outline-primary btn-toggle active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> California
+              </label>
+              <label class="btn btn-outline-primary btn-toggle">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Florida
+              </label>
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <button (click)="openDialogAuditlog()" mat-stroked-button color="" class="btn text-primary"
+              style="margin-right:5px">
               Audit Log
             </button>
-            <button (click)="logout()" mat-stroked-button color="" class="btn text-danger">
+            <button (click)="logout()" mat-stroked-button color="" class="btn text-danger" style="margin-right:5px">
               Logout
             </button>
           </div>
@@ -55,8 +77,6 @@
                     <option value="4">Lapsed Actual Debtor Name List</option>
                     <option value="5">Filed/Lapsed Actual Debtor Name List</option>
                     <option value="6">Document Number</option>
-
-
                   </select>
                 </mat-form-field>
                 <!-- file type -->
@@ -132,11 +152,11 @@
                   </th>
                 </tr>
                 <tr>
-                  <td matRipple  mat-cell *matCellDef="let element" scope="row" class="align-middle  font-weight-light"
+                  <td matRipple mat-cell *matCellDef="let element" scope="row" class="align-middle  font-weight-light"
                     style="padding-left: 5px; padding-right: 5px;">
                     <div *ngIf="column==='#'">
                       <mat-checkbox [checked]="floridaDTO.checkbox"
-                        (change)="selectedRowCheckbox($event, element['File Number'])"></mat-checkbox>
+                        (change)="selectedRowCheckbox($event, element['anchor'])"></mat-checkbox>
                     </div>
                     <div *ngIf="column==='operation'"> <button (click)="openDialog(element['anchor'] )"
                         class="btn btn-primary bg-white text-primary">Details</button> </div>
@@ -176,26 +196,14 @@
             </button>
           </div>
         </div>
+        
 
-
-
-
-
-
+        
       </mat-card>
 
       <!-- .container-fluid -->
 
     </div>
-
-
-
-
-
-
-
-
-
 
 
   </div>
