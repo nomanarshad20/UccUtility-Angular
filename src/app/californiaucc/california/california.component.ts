@@ -14,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewpopupComponent } from 'src/app/viewpopup/viewpopup/viewpopup.component';
+
 
 import { AuditlogComponent } from 'src/app/auditlog/auditlog/auditlog.component';
 import { PDFDocument } from 'pdf-lib'

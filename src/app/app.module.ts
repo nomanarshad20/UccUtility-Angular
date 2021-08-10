@@ -47,9 +47,7 @@ import { CaliforniaviewpopupComponent } from './californiaucc/californiaviewpopu
 const appRoute: Route[] = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-
   { path: 'login', component: LoginComponent },
-  { path: 'scrapping', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) },
   { path: 'florida', component: FloridaComponent },
   { path: 'california', component: CaliforniaComponent }
 
@@ -65,7 +63,8 @@ const appRoute: Route[] = [
     FloridaComponent,
     FloridaviewpopupComponent,
     CaliforniaComponent,
-    CaliforniaviewpopupComponent
+    CaliforniaviewpopupComponent,
+    AuditlogComponent
   ],
   imports: [
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RowDataService } from './../../Service/row-data.service';
-import { HistoryModel } from '../../Scrapping/my-tool/HistoryModel';
+import { HistoryModel } from '../auditlog/HistoryModel';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
