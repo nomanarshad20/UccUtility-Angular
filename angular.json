@@ -27,6 +27,14 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
+
+              {
+                		"glob": "**/*",
+                		"input": "./node_modules/pspdfkit/dist/pspdfkit-lib/",
+                		"output": "./assets/pspdfkit-lib/"
+                	},
+
+
               "src/favicon.ico",
               "src/assets"
             ],
@@ -103,6 +111,12 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
+
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pspdfkit/dist/pspdfkit-lib/",
+                "output": "./assets/pspdfkit-lib/"
+              },
               "src/favicon.ico",
               "src/assets"
             ],

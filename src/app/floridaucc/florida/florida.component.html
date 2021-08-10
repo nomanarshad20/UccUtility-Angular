@@ -1,3 +1,7 @@
+
+
+
+
 <div>
   <div class="parallax-window container-fluid">
     <nav class="navbar navbar-inverse container">
@@ -116,8 +120,8 @@
               <mat-chip-list aria-label="data area">
                 <mat-chip class="label label-default">Search : {{floridaDTO.searchValue}}</mat-chip>
 
-                <mat-chip class="label label-default">Selected : {{selectedRowCount}}</mat-chip>
-                <mat-chip color="primary" selected *ngIf="selectedRowCount>0"
+                <mat-chip class="label label-default">Selected : {{selectedRowArray.length}}</mat-chip>
+                <mat-chip color="primary" selected *ngIf="selectedRowArray.length>0"
                   (click)="downloadSelectedRowsPdfMergeFile()">
                   Downlaod pdf Merge File </mat-chip>
               </mat-chip-list>

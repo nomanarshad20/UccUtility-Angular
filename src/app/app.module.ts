@@ -34,6 +34,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { AuditlogComponent } from '@app/auditlog/auditlog/auditlog.component';
 import { FloridaviewpopupComponent } from './floridaucc/floridapopup/floridaviewpopup/floridaviewpopup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CaliforniaComponent } from './californiaucc/california/california.component';
+import { CaliforniaviewpopupComponent } from './californiaucc/californiaviewpopup/californiaviewpopup.component';
 
 
 
@@ -48,7 +50,8 @@ const appRoute: Route[] = [
 
   { path: 'login', component: LoginComponent },
   { path: 'scrapping', loadChildren: () => import('./Scrapping/my-tool/scrapping.module').then(m => m.ScrappingModule) },
-  { path: 'florida', component: FloridaComponent }
+  { path: 'florida', component: FloridaComponent },
+  { path: 'california', component: CaliforniaComponent }
 
 ];
 
@@ -60,7 +63,9 @@ const appRoute: Route[] = [
     AppComponent,
     LoginComponent,
     FloridaComponent,
-    FloridaviewpopupComponent
+    FloridaviewpopupComponent,
+    CaliforniaComponent,
+    CaliforniaviewpopupComponent
   ],
   imports: [
 
@@ -102,7 +107,8 @@ const appRoute: Route[] = [
   ],
   entryComponents: [
     FloridaviewpopupComponent,
-    AuditlogComponent
+    AuditlogComponent,
+    CaliforniaviewpopupComponent,
   ],
 
 

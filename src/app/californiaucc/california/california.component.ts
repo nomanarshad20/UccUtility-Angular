@@ -1,6 +1,9 @@
-import { RowDataService } from './../../Service/row-data.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Scrapping } from '../../californiaucc/Scrapping.DTO';
+
+
+import { RowDataService } from './../../Service/row-data.service';
+
+import { Scrapping } from '../Scrapping.DTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
@@ -21,20 +24,16 @@ import moment = require('moment');
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
-
-
-
-
-
+import { CaliforniaviewpopupComponent } from '../californiaviewpopup/californiaviewpopup.component';
 
 
 
 @Component({
-  selector: 'app-my-tool',
-  templateUrl: './my-tool.component.html',
-  styleUrls: ['./my-tool.component.css'],
+  selector: 'app-california',
+  templateUrl: './california.component.html',
+  styleUrls: ['./california.component.css']
 })
-export class MyToolComponent implements OnInit, AfterViewInit {
+export class CaliforniaComponent implements OnInit , AfterViewInit {
   scrappingModel: Scrapping = new Scrapping();
   template: any;
   rows: any = [];
@@ -207,7 +206,7 @@ export class MyToolComponent implements OnInit, AfterViewInit {
   openDialog(id: any, fileNumber: any) {
 
 
-    const dialogRef = this.dialog.open(ViewpopupComponent, {
+    const dialogRef = this.dialog.open(CaliforniaviewpopupComponent, {
       height: '700px',
       width: '1000px',
       disableClose: false,
@@ -223,7 +222,6 @@ export class MyToolComponent implements OnInit, AfterViewInit {
       console.log(" thsi sis pop up value unknown");
       console.log(`Dialog result: ${result}`);
     });
-
   }
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Scrapping } from '../../Scrapping/my-tool/Scrapping.DTO';
+import { Scrapping } from '../../californiaucc/Scrapping.DTO';
 import { RowDataService } from './../../Service/row-data.service';
 
 

@@ -25,7 +25,8 @@ import { MatListModule } from '@angular/material/list';
 import { FloridaviewpopupComponent } from '../floridapopup/floridaviewpopup/floridaviewpopup.component';
 import jsPDF from 'jspdf';
 import { DOCUMENT } from '@angular/common';
-const Jimp = require('jimp');
+
+
 
 
 
@@ -64,7 +65,7 @@ export class FloridaComponent implements OnInit {
 
 
   dataSource!: MatTableDataSource<string>;
-  floridaDownloadLinks: any = [];
+
 
 
 
@@ -93,83 +94,14 @@ export class FloridaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ddff();
+  
 
   }
 
   ngAfterViewInit() {
-  //  this.dataSource.paginator = this.paginator;
-  //  this.dataSource.sort = this.sort;
+    //  this.dataSource.paginator = this.paginator;
+    //  this.dataSource.sort = this.sort;
   }
-
-
-
-  async ddff(){
-
-    const documents = ["https://www.floridaucc.com/uccweb/RetrieveImage.aspx?sst=&sov=0&sot=Filed%20Compact%20Debtor%20Name%20List&st=aros&fn=202000909858&rn=99698&ii=N&ft=&epn=", "https://www.floridaucc.com/uccweb/RetrieveImage.aspx?fn=202001037609"]
-    
-    let file = ["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/330px-Image_created_with_a_mobile_phone.png" ,"https://t3.ftcdn.net/jpg/03/11/50/44/360_F_311504462_3lHdBZoFtpElMgLI45FIPfsxnxN9weLq.jpg"];  
-      
-
-
-    
-    // //const doc = new jsPDF();  
-    // const doc =new jsPDF('p', 'pt', 'a4');
-    // const pdfWidth = doc.internal.pageSize.getWidth();
-    //   const pdfHeight = doc.internal.pageSize.getHeight();
-      
-    //   let blob = await fetch(file[1]).then(r => r.blob());
-    //   let reader = new FileReader(); 
-    //   reader.readAsDataURL(blob);  
-    //   reader.onload = () => {  
-    //     const base64ImgString = (reader.result as string).split(',')[1];  
-    //  //   doc.addImage(base64ImgString, 0, 0, pdfWidth, pdfHeight);  
-    //     doc.addImage(base64ImgString, "JPEG",0, 0, pdfWidth, pdfHeight, "alias2" , 'NONE');
-        
-    //   };  
-    
-    //   doc.save('TestPDF.pdf')  
-
-
-
-
-
-
-  //   const doc =new jsPDF('p', 'pt', 'a4');
-  // const img1 = documents[1];
-  // const img2 = file[0];
-
-
-  // const pdfWidth = doc.internal.pageSize.getWidth();
-  //  const pdfHeight = doc.internal.pageSize.getHeight();
-
-  // doc.addImage(img1, "JPEG", 0, 0, pdfWidth, pdfHeight, "alias1", 'SLOW');
-  // doc.addPage();
-  // doc.setPage(2);
-  // doc.addImage(img2, "JPEG", 0, 0, pdfWidth, pdfHeight , "alias2", 'SLOW');
-  // doc.save("sample.pdf");
-
-
-  await Jimp.read('https://images.pexels.com/photos/4629485/pexels-photo-4629485.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')
-  .then(image => {
-    // Process the image
-
-
-  })
-  .catch(err => {
-    // Handle exceptions.
-  });
-
-
-
-
-
-  }
-
-
-
-
-  
 
 
 
@@ -194,6 +126,8 @@ export class FloridaComponent implements OnInit {
 
 
   GetData() {
+
+    this.selectedRowArray = [];
     if (this.floridaDTO.optionType == '6') {
       this.openFloridaModleView();
     } else {
@@ -212,7 +146,7 @@ export class FloridaComponent implements OnInit {
     let json = JSON.stringify(this.floridaDTO);
     await this.rowdataservice.searcFloridaData(json)
       .then((res: any) => {
-       
+
         this.floridaDTO = res;
         //console.log(this.floridaDTO);
         this.prepareTableAndData();
@@ -398,7 +332,7 @@ export class FloridaComponent implements OnInit {
 
     for (let i = 0; i < this.selectedRowArray.length; i++) {
 
-      
+
       this.floridaDTONew = new FloridaDTO();
       this.floridaDTONew.anchor = this.selectedRowArray[i];
       this.selectedRowFloridaList.push(this.floridaDTONew);
@@ -408,42 +342,20 @@ export class FloridaComponent implements OnInit {
 
     let jsonList = JSON.stringify(this.selectedRowFloridaList);
 
+    this.selectedRowFloridaList= [];
     await this.rowdataservice.getFloridaDocLinksByAnchors(jsonList)
       .then((res: any) => {
-        this.floridaDownloadLinks = res;
+
+        const byteArray = new Uint8Array(atob(res["Base64"]).split('').map(char => char.charCodeAt(0)));
+        const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+        var randomname = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        saveAs(blob, 'License_' + randomname + '.pdf');
       })
       .catch((error) => {
         console.log("getFloridaDocLinksByAnchors " + JSON.stringify(error));
       });
 
-
-
-
-      
-    
-    //   const doc = new jsPDF();  
-    // let reader = new FileReader();  
-    
-    // for (let i = 0; i < this.floridaDownloadLinks.length; i++) {
-    //  let url = this.floridaDownloadLinks[i];
-
-     
-    //  reader.readAsDataURL(url);  
-    //   reader.onload = () => {  
-        
-     
-
-    //     var imgData = 'data:image/jpeg;base64,'+ Base64.encode('Koala.jpeg');
-
-
-    //     const base64ImgString = (reader.result as string).split(',')[1];  
-    //     doc.addImage(base64ImgString, 15, 40, 50, 50);   
-    //     doc.save('TestPDF')  
-    //   };  
-    
-
-    //  console.log(this.floridaDownloadLinks[i]);
-    //}
 
 
 
@@ -487,8 +399,6 @@ export class FloridaComponent implements OnInit {
 
 
 
-}
-function sharp(arg0: string) {
-  throw new Error('Function not implemented.');
+
 }
 
