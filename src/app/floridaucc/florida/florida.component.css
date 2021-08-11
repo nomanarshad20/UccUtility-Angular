@@ -28,8 +28,10 @@
   {
     width: 100%;
   }
+
+
   .container {
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 10px;
   }
   .display-1 b
@@ -71,9 +73,6 @@
   
   .tital-family{
    
-  
-    
-           
         font-weight: bold;
         text-align: center;
         font-size: 30px;
@@ -92,12 +91,8 @@
   
   }
   
-  .gradiant-black{
-   
-  
-  
-  }
-  
+
+
   
   
   

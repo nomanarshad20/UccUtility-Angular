@@ -1,22 +1,23 @@
-
-
-
-
 <div>
   <div class="parallax-window container-fluid">
+
+
+
+
     <nav class="navbar navbar-inverse container">
       <div class="navbar-header">
-        <img src="../../../assets/license.png" alt="" style="width: 45%; border-radius: 100%" /><span
-          class="tital-family title-fonts" style="background-color: rgba(240, 236, 236, 0.11)">UccUtility
-        </span>
+        <img src="../../../assets/license.png" style="border-radius:100% ;">
+        <h1 class="titalVal title-fonts">UCC UTILITY</h1>
       </div>
+
+
 
       <ul class="nav navbar-nav navbar-right">
         <li>
           <div class="btn-group">
 
 
-
+            <!-- 
             <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-right:5px">
               <label class="btn btn-outline-primary btn-toggle active">
                 <input type="radio" name="options" id="option1" autocomplete="off" checked> California
@@ -24,9 +25,7 @@
               <label class="btn btn-outline-primary btn-toggle">
                 <input type="radio" name="options" id="option2" autocomplete="off"> Florida
               </label>
-
-            </div>
-
+            </div> -->
 
 
 
@@ -35,11 +34,12 @@
 
 
 
-            <button (click)="openDialogAuditlog()" mat-stroked-button color="" class="btn text-primary"
+
+            <button (click)="openDialogAuditlog()" mat-stroked-button color="" class="btn btn-primary"
               style="margin-right:5px">
               Audit Log
             </button>
-            <button (click)="logout()" mat-stroked-button color="" class="btn text-danger" style="margin-right:5px">
+            <button (click)="logout()" mat-stroked-button color="" class="btn btn-danger " style="margin-right:5px">
               Logout
             </button>
           </div>
@@ -51,7 +51,7 @@
 
 
     <div class="container">
-      <mat-card class="mat-elevation-z4">
+      <mat-card class="mat-elevation-z4 transparentAll">
         <mat-tab-group dynamicHeight>
           <mat-tab label="Florida Search">
             <div class="row">
@@ -111,7 +111,7 @@
 
     <div class="container-fluid " [style.display]="isDataAvailable ? 'block' : 'none'">
 
-      <mat-card class="mat-elevation-z4">
+      <mat-card class="mat-elevation-z4 transparentAll ">
 
         <div>
           <!--table navbar -->
@@ -150,20 +150,20 @@
             <div>
               <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
                 <tr>
-                  <th class="text-uppercase gradiant-black   text-white align-middle " scope="col" mat-header-cell
+                  <th class="text-uppercase gradiant-black text-white align-middle " scope="col" mat-header-cell
                     *matHeaderCellDef mat-sort-header>
-                    <div class=" align-middle">{{column}} </div>
+                    {{column}}
                   </th>
                 </tr>
                 <tr>
                   <td matRipple mat-cell *matCellDef="let element" scope="row" class="align-middle  font-weight-light"
-                    style="padding-left: 5px; padding-right: 5px;">
+                    style="padding-left: 2px; padding-right: 2px;">
                     <div *ngIf="column==='#'">
                       <mat-checkbox [checked]="floridaDTO.checkbox"
                         (change)="selectedRowCheckbox($event, element['anchor'])"></mat-checkbox>
                     </div>
                     <div *ngIf="column==='operation'"> <button (click)="openDialog(element['anchor'] )"
-                        class="btn btn-primary bg-white text-primary">Details</button> </div>
+                        class="btn btn-primary bg-white text-dark">Details</button> </div>
                     <div *ngIf="column!=='#' && column!=='operation'" class="">{{element[column]}}
                     </div>
                   </td>
@@ -200,9 +200,9 @@
             </button>
           </div>
         </div>
-        
 
-        
+
+
       </mat-card>
 
       <!-- .container-fluid -->

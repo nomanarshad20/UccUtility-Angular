@@ -1,20 +1,18 @@
-.bodyMain{
-    height: 100%;
-   
-  }
+
   
   .width-100
   {
     width: 100%;
   }
-  .container {
-    padding-top: 50px;
-    padding-bottom: 10px;
-  }
+  
+
+
   .display-1 b
   {
     font-size: 15px;
   }
+
+
   th{
   
     text-align: end;
@@ -41,18 +39,11 @@
   
   /* ************* blure back view *********** */
   
-  .parallax-window {
-    
   
-  }
   
   
   
   .tital-family{
-   
-  
-    
-           
         font-weight: bold;
         text-align: center;
         font-size: 30px;
@@ -71,13 +62,7 @@
   
   }
   
-  .gradiant-black{
-   
-  
-  
-  }
-  
-  
+
   
   
   
@@ -110,11 +95,11 @@
     padding: 20px;
   
   }
-  /* html {
-    scroll-behavior: smooth;
-  } */
-  /* ************* blure back view *********** */
   
+  .container {
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
   
   
   

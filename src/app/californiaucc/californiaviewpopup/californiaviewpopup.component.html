@@ -1,27 +1,25 @@
 <div mat-dialog-title class="row ">
-    <div class="col">
-      <nav  class="navbar navbar-inverse container align-center gradiant-black text-white mat-elevation-z4">
-        <div class="navbar-header">
-          <div class="navbar-brand" >
-            <h2>License History</h2>
-          </div>
+  <div class="col">
+    <nav class="navbar navbar-inverse container align-center gradiant-black text-white mat-elevation-z4">
+      <div class="navbar-header">
+        <div class="navbar-brand">
+          <h2>License History</h2>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li>  
-            <button  mat-dialog-close class="btn btn-danger bg-white text-danger">Close</button>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <button mat-dialog-close class="btn btn-danger bg-white text-danger">Close</button>
         </li>
-        </ul>
-      </nav>
-    </div>
+      </ul>
+    </nav>
   </div>
-  <mat-dialog-content>
-  <div  class="row">  
-  
+</div>
+<mat-dialog-content>
+  <div class="row">
+
     <div class="col-sm-8">
-      
-      
-    
-  
+
+
       <mat-accordion *ngFor="let history of historyArray; let i = index" class="mat-elevation-z4 ">
         <mat-expansion-panel style="margin-top: 10px; " class="notice2 mat-elevation-z8">
           <mat-expansion-panel-header class="text-white bg-secondary">
@@ -31,54 +29,54 @@
                 history['AMENDMENT_TYPE']}} {{ history['AMENDMENT_DATE']}} </span>
             </mat-panel-title>
             <mat-panel-description>
-  
+
             </mat-panel-description>
           </mat-expansion-panel-header>
-  
+
           <div class="" style="padding: 10px;">
-  
+
             <div class="row">
               <div class="col">
-                <p  class="align-middle  font-smaller font-italic text-primary">Document
+                <p class="align-middle  font-smaller font-italic text-primary">Document
                   Type</p>
                 <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_TYPE']}}</p>
-  
+
               </div>
               <div class="col">
-                <p class=" align-middle  font-smaller font-italic text-primary" >File
+                <p class=" align-middle  font-smaller font-italic text-primary">File
                   Number</p>
                 <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_NUM']}}</p>
               </div>
-  
+
               <div class="col">
-                <p  class=" align-middle  font-smaller font-italic text-primary" >Date</p>
+                <p class=" align-middle  font-smaller font-italic text-primary">Date</p>
                 <p class="align-middle  font-smaller text-muted"> {{ history['AMENDMENT_DATE']}}</p>
               </div>
-  
+
               <div class="col">
                 <button style="cursor: pointer;" class="btn btn-outline-primary btn-sm" type="button"
                   (click)="openUrl( history['DOWNLOAD_LINK'])"> <i class="fa fa-file-pdf-o"></i> Download</button>
               </div>
             </div>
-  
+
           </div>
-  
+
         </mat-expansion-panel>
       </mat-accordion>
-  
+
       <!-- expandable left end -->
     </div>
     <div class="col-sm-4">
       <!-- mat card right -->
       <div class="row">
-  
+
         <div class="col-sm-12" style="padding: 15px;">
           <div *ngFor="let details of detailsArray; let i = index">
-  
-            <mat-card class="notice" >
+
+            <mat-card class="notice">
               <div class="col  font-smaller font-italic" style=" color: rgb(5, 130, 168);"> {{
                 details['LABEL']}} </div>
-              <div class="col font-smaller text-muted" >{{ details['VALUE']}}</div>
+              <div class="col font-smaller text-muted">{{ details['VALUE']}}</div>
             </mat-card>
           </div>
         </div>
@@ -86,8 +84,4 @@
       </div>
     </div>
   </div>
-  </mat-dialog-content>
-  
-  
-  
-  
+</mat-dialog-content>
