@@ -11,5 +11,7 @@ export class Scrapping{
   CHECKBOX = false;
   EMAIL : string='';
   PASSWORD :string='';
+  SELECTED_STATES :string='';
+  
 }
 

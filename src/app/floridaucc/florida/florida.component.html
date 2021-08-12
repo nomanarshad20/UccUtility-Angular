@@ -7,27 +7,32 @@
     <nav class="navbar navbar-inverse container">
       <div class="navbar-header">
         <img src="../../../assets/license.png" style="border-radius:100% ;">
-        <h1 class="titalVal title-fonts">UCC UTILITY</h1>
+        <p class="titalVal">UCC UTILITY</p>
       </div>
 
 
 
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <div class="btn-group">
+          <div class=""> 
 
 
-            <!-- 
-            <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-right:5px">
-              <label class="btn btn-outline-primary btn-toggle active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> California
-              </label>
-              <label class="btn btn-outline-primary btn-toggle">
-                <input type="radio" name="options" id="option2" autocomplete="off"> Florida
-              </label>
-            </div> -->
 
 
+    
+
+           
+
+          
+            
+          <mat-form-field appearance=""  >
+            <mat-label class="text-white">State</mat-label>
+            <mat-select class="text-white " style=" color: lavender;"  [(ngModel)]="defaultSelectedState"  (selectionChange)="changeStateNavigation($event)">
+              <mat-option  *ngFor="let stateName of statesList" [value]="stateName">
+                {{stateName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
 
 
@@ -62,7 +67,7 @@
                 <mat-form-field class="" style="width: 100%;">
                   <mat-label>Name or File number</mat-label>
                   <input matInput id="search-focus" type="search" id="form1" [(ngModel)]="floridaDTO.searchValue"
-                    class="text-dark" />
+                    class="text-dark transparentAll" />
                 </mat-form-field>
 
               </div>
@@ -163,7 +168,7 @@
                         (change)="selectedRowCheckbox($event, element['anchor'])"></mat-checkbox>
                     </div>
                     <div *ngIf="column==='operation'"> <button (click)="openDialog(element['anchor'] )"
-                        class="btn btn-primary bg-white text-dark">Details</button> </div>
+                        class="btn btn-primary bg-white text-primary">Details</button> </div>
                     <div *ngIf="column!=='#' && column!=='operation'" class="">{{element[column]}}
                     </div>
                   </td>

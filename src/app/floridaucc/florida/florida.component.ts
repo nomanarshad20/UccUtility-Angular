@@ -32,6 +32,7 @@ import { DOCUMENT } from '@angular/common';
 
 
 
+
 @Component({
   selector: 'app-florida',
   templateUrl: './florida.component.html',
@@ -50,7 +51,12 @@ export class FloridaComponent implements OnInit {
   listCount = 0;
   isDataAvailable: boolean = false;
 
+  
+  
 
+  statesList: any = ['California', 'Florida'];
+  defaultSelectedState = this.statesList[1];
+  
   selectedRowArray: any = [];
   selectedRowCount = 0;
 
@@ -94,7 +100,7 @@ export class FloridaComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
+
 
   }
 
@@ -342,7 +348,7 @@ export class FloridaComponent implements OnInit {
 
     let jsonList = JSON.stringify(this.selectedRowFloridaList);
 
-    this.selectedRowFloridaList= [];
+    this.selectedRowFloridaList = [];
     await this.rowdataservice.getFloridaDocLinksByAnchors(jsonList)
       .then((res: any) => {
 
@@ -357,45 +363,26 @@ export class FloridaComponent implements OnInit {
       });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // let param = {
     //   anchor  :  this.floridaDTO.anchor,
     //   id  :  this.floridaDTO.anchor,
     // }
 
 
-
-
-
-
-
-
-
-
   }
 
 
+
+
+
+
+  changeStateNavigation(event : any){
+    console.log(event.value.toString());
+    if(this.statesList[1] !== event.value.toString()){
+      console.log('fdffddfdfdfdfddffdf    '  ,  '/'+event.value.toLowerCase( ));
+      this.router.navigate(['/'+event.value.toLowerCase( )]);
+    }
+  }
 
 
 

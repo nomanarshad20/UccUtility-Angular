@@ -36,7 +36,7 @@ import { FloridaviewpopupComponent } from './floridaucc/floridapopup/floridaview
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CaliforniaComponent } from './californiaucc/california/california.component';
 import { CaliforniaviewpopupComponent } from './californiaucc/californiaviewpopup/californiaviewpopup.component';
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -102,7 +102,8 @@ const appRoute: Route[] = [
     MatCheckboxModule,
     MatGridListModule,
     MatListModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatSelectModule
   ],
   entryComponents: [
     FloridaviewpopupComponent,

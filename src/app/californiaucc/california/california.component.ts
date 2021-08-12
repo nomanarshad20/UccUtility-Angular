@@ -46,6 +46,8 @@ export class CaliforniaComponent implements OnInit , AfterViewInit {
   isDataAvailable: boolean = false;
   step = 0;
 
+  statesList: any = ['California', 'Florida'];
+  defaultSelectedState = this.statesList[0];
   selectedRowArray: any = [];
   selectedRowCount = 0;
 
@@ -369,6 +371,14 @@ export class CaliforniaComponent implements OnInit , AfterViewInit {
   }
 
 
+  
+  changeStateNavigation(event : any){
+    console.log(event.value.toString());
+    if(this.statesList[0] !== event.value.toString()){
+      console.log('fdffddfdfdfdfddffdf    '  ,  '/'+event.value.toLowerCase( ));
+      this.router.navigate(['/'+event.value.toLowerCase( )]);
+    }
+  }
 
 
   // main class ended

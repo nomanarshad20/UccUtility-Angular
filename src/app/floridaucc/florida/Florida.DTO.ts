@@ -7,7 +7,6 @@ export class FloridaDTO{
   previous : string='';
   tableJson : string='';
   checkbox = false;
-  anchor : string= '';
-  
+  anchor : string= '';  
 }
 

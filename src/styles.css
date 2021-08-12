@@ -30,14 +30,21 @@ html, body {height: 100%;
 
   
 .titalVal{
-  font-family: Poppins-Regular;
+  /* font-family: Poppins-Regular; */
   /* font-size: 45px; */
-background: -webkit-linear-gradient(rgb(75, 36, 138), #333);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-.title-fonts{
-  font-family: Poppins-Regular;
+
+
+
+font-family: Poppins-Bold;
+ font-size: 20px; 
+color: rgb(75, 36, 138);
+line-height: 1.2;
+text-align: center;
+text-transform: uppercase;
+display: block;
+
+
+
 }
 
 
