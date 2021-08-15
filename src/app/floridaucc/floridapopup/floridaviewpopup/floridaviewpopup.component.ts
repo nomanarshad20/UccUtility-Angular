@@ -59,27 +59,34 @@ export class FloridaviewpopupComponent implements OnInit {
 
   prepareAllListsAndDataFromResultJson() {
     try { this.statusList = this.getKeyValueFromJsonResult("Status"); } catch (error) {
-      this.toastNotification.error(error, 'Status c', this.toastr);
+      //console.log(error);
+      //this.toastNotification.error(error, 'Status c', this.toastr);
     }
     try { this.debtorPartiesList = this.getKeyValueFromJsonResult("DebtorParties"); } catch (error) {
-      this.toastNotification.error(error, 'DebtorParties Parse Failed', this.toastr);
+     // console.log(error);
+      //this.toastNotification.error(error, 'DebtorParties Parse Failed', this.toastr);
     }
     try { this.securedPartiesList = this.getKeyValueFromJsonResult("SecuredParties"); } catch (error) {
-      this.toastNotification.error(error, 'SecuredParties Parse Failed', this.toastr);
+      //console.log(error);
+      //this.toastNotification.error(error, 'SecuredParties Parse Failed', this.toastr);
     }
     try { this.documentImagesList = this.getKeyValueFromJsonResult("DocumentImages"); } catch (error) {
-      this.toastNotification.error(error, 'DocumentImages Parse Failed', this.toastr);
+      //console.log(error);
+      //this.toastNotification.error(error, 'DocumentImages Parse Failed', this.toastr);
     }
     try {
       let filingHistory = this.getKeyValueFromJsonResult("FilingHistory");
       try { this.fillingDownloadList = filingHistory["fillingDownload"]; } catch (error) {
-        this.toastNotification.error(error, 'FilingHistory Parse Failed', this.toastr);
+        //console.log(error);
+        //this.toastNotification.error(error, 'FilingHistory Parse Failed', this.toastr);
       }
       try { this.fillingTable = filingHistory["fillingTable"]; } catch (error) {
-        this.toastNotification.error(error, 'fillingTable Parse Failed', this.toastr);
+        //console.log(error);
+        //this.toastNotification.error(error, 'fillingTable Parse Failed', this.toastr);
       }
     } catch (error) {
-      this.toastNotification.error(error, 'Florida Parse Failed', this.toastr);
+      //console.log(error);
+      //this.toastNotification.error(error, 'Florida Parse Failed', this.toastr);
     }
   }
 

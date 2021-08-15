@@ -299,7 +299,7 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
 
       this.saveAuditLog("PDF bundle Downloaded");
 
-      this.toastNotification.success("File Downloading", '', this.toastr);
+      this.toastNotification.success("PDF bundle Downloaded", '', this.toastr);
 
     } catch (error) {
       console.log('File downloading Failed' + error);

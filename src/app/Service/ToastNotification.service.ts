@@ -48,7 +48,7 @@ export class ToastNotification {
       
       error(msg:string , header:string , toastr: ToastrService){
       toastr.error(msg, header,{
-        timeOut: 3000,
+        timeOut: 6000,
         positionClass: 'toast-bottom-right',
         closeButton: true,
         easing: 'ease-in'
