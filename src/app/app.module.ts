@@ -37,7 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CaliforniaComponent } from './californiaucc/california/california.component';
 import { CaliforniaviewpopupComponent } from './californiaucc/californiaviewpopup/californiaviewpopup.component';
 import {MatSelectModule} from '@angular/material/select';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -45,13 +45,17 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 const appRoute: Route[] = [
-
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'florida', component: FloridaComponent },
-  { path: 'california', component: CaliforniaComponent }
-
+  { path: 'california', component: CaliforniaComponent },
+  { path: '', redirectTo: 'login'  , pathMatch: 'full'},
+  { path: '**', component: LoginComponent }
 ];
+      
+
+
+
+
 
 
 
@@ -103,13 +107,16 @@ const appRoute: Route[] = [
     MatGridListModule,
     MatListModule,
     FontAwesomeModule,
-    MatSelectModule
+    MatSelectModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   entryComponents: [
     FloridaviewpopupComponent,
     AuditlogComponent,
     CaliforniaviewpopupComponent,
   ],
+  exports: [RouterModule],
 
 
 

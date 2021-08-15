@@ -10,15 +10,15 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class RowDataService {
+export class HttpRequestService {
   respons: any;
 
 
-  //javaServerPort : string = "8443";
-  javaServerPort: string = "9595";
+ javaServerPort: string = "8443";
+ // javaServerPort: string = "9595";
 
-  javaServerIp: string = "localhost";
-  //javaServerIp :string = "162.214.196.99";
+  //javaServerIp: string = "localhost";
+  javaServerIp: string = "162.214.196.99";
 
 
   constructor(private httpclient: HttpClient) {
@@ -33,6 +33,7 @@ export class RowDataService {
     const headerss = { 'Content-type': 'application/json' };
     return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
   }
+
 
 
   getCompanyDetails(value: any): Observable<any> {
@@ -70,37 +71,36 @@ export class RowDataService {
     // return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
 
 
-    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog';
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog';
     //console.log(serchUrl);
     return this.httpclient.get(serchUrl, { headers: { 'Content-type': 'application/json' } }).toPromise();
 
   }
 
 
+
+
+
   getHistory(auditlogJson: any): Observable<any> {
     const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/get';
-  //  console.log(serchUrl);
-
     return this.httpclient.post<any>(serchUrl, auditlogJson, {
       headers: {
         'Content-type': "application/json"
-
       }
     });
-
 
   }
 
 
 
+
+
   saveAuditlog(auditlogJson: any): Observable<any> {
     const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/create';
-  //  console.log(serchUrl);
-
+    //  console.log(serchUrl);
     return this.httpclient.post<any>(serchUrl, auditlogJson, {
       headers: {
         'Content-type': "application/json"
-
       }
     });
   }
@@ -109,62 +109,64 @@ export class RowDataService {
 
 
   searcFloridaData(searchJson: any) {
-    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search';
-  //  console.log(serchUrl);
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search';
+    //  console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
-        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
-         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+        'Content-type': "application/json"
+      }
     }).toPromise();
   }
 
   getNextFloridaData(searchJson: any) {
-    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/next';
-   // console.log(serchUrl);
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/next';
+    // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
-        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
-         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+        'Content-type': "application/json"
+      }
     }).toPromise();
   }
 
 
   getPreviousFloridaData(searchJson: any) {
-    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/previous';
-   // console.log(serchUrl);
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/previous';
+    // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
-        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
-         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+        'Content-type': "application/json"
+      }
     }).toPromise();
   }
 
 
   searcFlorida2ndPageResult(searchJson: any) {
-    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result';
-   // console.log(serchUrl);
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result';
+    // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
-        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
-         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+        'Content-type': "application/json"
+      }
     }).toPromise();
   }
 
 
   getFloridaDocLinksByAnchors(searchJson: any) {
-    const serchUrl = 'http://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result/link';
-   // console.log(serchUrl);
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result/link';
+    // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
-        'Content-type': "application/json" ,'Access-Control-Allow-Origin': "*",
-         'Access-Control-Allow-Methods': "*"  ,"Access-Control-Allow-Headers": "*"}
+        'Content-type': "application/json"
+      }
     }).toPromise();
   }
+
+
 
 
 

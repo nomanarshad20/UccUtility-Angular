@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FloridaDTO } from '@app/floridaucc/florida/Florida.DTO';
-import { RowDataService } from 'src/app/Service/row-data.service';
-
+import { HttpRequestService } from '@app/Service/HttpRequest.service';
+import { ToastNotification } from '@app/Service/ToastNotification.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,10 +13,6 @@ import { RowDataService } from 'src/app/Service/row-data.service';
 })
 export class FloridaviewpopupComponent implements OnInit {
 
-  
-  
-
-  
   floridaDTO: FloridaDTO = new FloridaDTO();
 
   floridaResultJson: any = "";
@@ -23,82 +20,74 @@ export class FloridaviewpopupComponent implements OnInit {
   debtorPartiesList: any = "";
   securedPartiesList: any = "";
   documentImagesList: any = "";
-  fillingDownloadList: any = "";  
-  fillingTable: any = "";   
+  fillingDownloadList: any = "";
+  fillingTable: any = "";
 
-  isShown: boolean =true;
+  isShown: boolean = true;
 
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) public floridaDtoPass: any, public rowdataservice: RowDataService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public floridaDtoPass: any, public httpRequestService: HttpRequestService,
+    private toastNotification: ToastNotification, private toastr: ToastrService) {
 
   }
 
   async ngOnInit(): Promise<void> {
+    try {
 
-    this.floridaDTO = this.floridaDtoPass.floridaDto;
+      this.floridaDTO = this.floridaDtoPass.floridaDto;
+      let json = JSON.stringify(this.floridaDTO);
 
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%111");
-    //console.log(anchor);
-   // console.log(this.floridaDTO);
+      await this.httpRequestService.searcFlorida2ndPageResult(json)
+        .then((res: any) => {
+          this.floridaResultJson = res;
+          this.prepareAllListsAndDataFromResultJson();
+          this.isShown = false;
+        })
+        .catch((error) => {
+          this.isShown = false;
+          console.log("Florida Detail APi" + error);
+          this.toastNotification.error(error, 'Florida Detail APi', this.toastr);
+        });
 
-    let json = JSON.stringify(this.floridaDTO);
-
-    await this.rowdataservice.searcFlorida2ndPageResult(json)
-      .then((res: any) => {
-        console.log(`^^^^^^^^^^^^^^^^^^^^^^^^^^^XXXXXX2`);
-        this.floridaResultJson = res;
-        console.log(res);
-        this.prepareAllListsAndDataFromResultJson();
-        this.isShown = false;
-      })
-      .catch((error) => {
-        this.isShown = false;
-        console.log("search data rejected with " + JSON.stringify(error));
-      });
-
-
-    
-    
-    
-    
-    
-
-
+    } catch (error) {
+      this.toastNotification.error(error, '', this.toastr);
+    }
   }
 
 
 
 
-  prepareAllListsAndDataFromResultJson(){
-
-    try {this.statusList= this.getKeyValueFromJsonResult("Status"); } catch (Exception) {}  
-    try { this.debtorPartiesList= this.getKeyValueFromJsonResult("DebtorParties"); } catch (Exception) {}  
-    try { this.securedPartiesList= this.getKeyValueFromJsonResult("SecuredParties"); } catch (Exception) {}  
-    try {  this.documentImagesList= this.getKeyValueFromJsonResult("DocumentImages"); } catch (Exception) {}  
-    try { let filingHistory =  this.getKeyValueFromJsonResult("FilingHistory"); 
-    try { this.fillingDownloadList= filingHistory["fillingDownload"]; } catch (Exception) {}  
-    try { this.fillingTable= filingHistory["fillingTable"]; } catch (Exception) {}  
-  } catch (Exception) {}  
-   
-
-    
-   
-   
-  
-   
-   
-   
+  prepareAllListsAndDataFromResultJson() {
+    try { this.statusList = this.getKeyValueFromJsonResult("Status"); } catch (error) {
+      this.toastNotification.error(error, 'Status c', this.toastr);
+    }
+    try { this.debtorPartiesList = this.getKeyValueFromJsonResult("DebtorParties"); } catch (error) {
+      this.toastNotification.error(error, 'DebtorParties Parse Failed', this.toastr);
+    }
+    try { this.securedPartiesList = this.getKeyValueFromJsonResult("SecuredParties"); } catch (error) {
+      this.toastNotification.error(error, 'SecuredParties Parse Failed', this.toastr);
+    }
+    try { this.documentImagesList = this.getKeyValueFromJsonResult("DocumentImages"); } catch (error) {
+      this.toastNotification.error(error, 'DocumentImages Parse Failed', this.toastr);
+    }
+    try {
+      let filingHistory = this.getKeyValueFromJsonResult("FilingHistory");
+      try { this.fillingDownloadList = filingHistory["fillingDownload"]; } catch (error) {
+        this.toastNotification.error(error, 'FilingHistory Parse Failed', this.toastr);
+      }
+      try { this.fillingTable = filingHistory["fillingTable"]; } catch (error) {
+        this.toastNotification.error(error, 'fillingTable Parse Failed', this.toastr);
+      }
+    } catch (error) {
+      this.toastNotification.error(error, 'Florida Parse Failed', this.toastr);
+    }
   }
 
 
-  getKeyValueFromJsonResult(key: any){
-   const myResult= {"Status":[{"Status":"FILED","Date_Filed":"09/13/2012","Summary_For_Filing":"20120751228X","Expires":"09/13/2022","Filings_Completed_Thru":"07/27/2021"}],"DebtorParties":["UNITED HEALTH AND REHABILITATION CENTER LLC2040 NE 163RD ST, STE 208 NORTH MIAMI BEACH FL 33162\n","UNITED HEALTH AND REHAB CENTER300 LEDGEWOOD PLACE, SUITE 301 ROCKLAND MA 02370\n"],"SecuredParties":["APZB INDUSTRIES 300 LEDGEWOOD PLACE, SUITE 301 ROCKLAND MA 02370"],"DocumentImages":[{"Pages":"1","Type":"UCC1","anchor":"https://www.floridaucc.com/uccweb/RetrieveImage.aspx?sst=&sov=0&sot=Filed%20Compact%20Debtor%20Name%20List&st=united+health+centers+foundation&fn=20120751228X&rn=1362645&ii=Y&ft=&epn=","Filing_Date":"09/13/2012","Document_Number":"20120751228X"}],"FilingHistory":{"fillingDownload":[{"name":"201700635490","value":"https://www.floridaucc.com/uccweb/RetrieveImage.aspx?fn=201700635490"}],"fillingTable":"<table id=\"mainTable\" class=\"table table-sm\" width=\"100%\" class=\"table table-sm table-borderless \"> \n <tbody>  \n  <tr class=\"GridCaption\"> \n   <th>DOCUMENT NUMBER</th> \n   <th>TYPE</th> \n   <th>DATE</th> \n   <th>PAGES</th> \n   <th>ACTIONS</th> \n  </tr> \n  <tr class=\"GridAltItem\"> \n   <td><a href=\"https://www.floridaucc.com/uccweb/RetrieveImage.aspx?fn=201700635490\" target=\"_blank\">201700635490</a></td> \n   <td>UCC3</td> \n   <td>03/20/2017</td> \n   <td>1</td> \n   <td>1</td> \n  </tr> \n  <tr class=\"GridAltItem\"> \n   <td colspan=\"5\"> \n    <table border=\"0\" width=\"100%\" class=\"table table-sm table-borderless \"> \n     <tbody> \n      <tr class=\"GridAltItem\"> \n       <td width=\"20%\">1) Continuation</td> \n       <td width=\"90%\"></td> \n      </tr> \n     </tbody> \n    </table> </td> \n  </tr> \n </tbody> \n</table>"}};
-   
+  getKeyValueFromJsonResult(key: any) {
     return this.floridaResultJson[key];
-   
-  // return  myResult[key];
   }
 
- // window.location.href = downloadLink;
+
+
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpRequestService } from '@app/Service/HttpRequest.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Scrapping } from '../../californiaucc/Scrapping.DTO';
-import { RowDataService } from './../../Service/row-data.service';
+import { ToastNotification } from '@app/Service/ToastNotification.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 
@@ -15,10 +17,7 @@ import { RowDataService } from './../../Service/row-data.service';
 
 
 export class LoginComponent {
-
   scrappingModellogin: Scrapping = new Scrapping();
-  title = 'MyDemoa';
-  durationInSeconds = 5;
 
   creadentialArray: any[] = [
     { email: "GerardiT", pass: "Scr@p3r12021" },
@@ -38,23 +37,17 @@ export class LoginComponent {
     { email: "admin", pass: "Pakistan22" }
   ];
 
-  constructor(public rowdataservice: RowDataService, private router: Router
-    , private _snackBar: MatSnackBar) {
+  constructor(public httpRequestService: HttpRequestService, private router: Router
+    , private _snackBar: MatSnackBar, private toastNotification: ToastNotification, private toastr: ToastrService) {
 
 
 
     let loginValue = localStorage.getItem('loginKey');
     if (loginValue != null) {
-      this.router.navigate(['/florida']);
-      //this.router.navigate(['/scrapping']);
+      //this.router.navigate(['/florida']);
+      this.router.navigate(['/scrapping']);
 
-      
     }
-
-
-
-
-
   }
 
 
@@ -62,40 +55,39 @@ export class LoginComponent {
 
 
   signIn() {
-    let isFound: boolean = false;
-    for (var i = 0; i < this.creadentialArray.length; i++) {
+    try {
 
-      let row = this.creadentialArray[i];
-      if (row['pass'] === this.scrappingModellogin.PASSWORD && row['email'] === this.scrappingModellogin.EMAIL) {
-        console.log('break');
+      let isFound: boolean = false;
+      for (var i = 0; i < this.creadentialArray.length; i++) {
 
-        // session value here
-        localStorage.setItem('loginKey', 'yes');
-        localStorage.setItem('userName', '' + this.scrappingModellogin.EMAIL);
-        isFound = true;
-        break;
+        let row = this.creadentialArray[i];
+        if (row['pass'] === this.scrappingModellogin.PASSWORD && row['email'] === this.scrappingModellogin.EMAIL) {
+
+          // session value here
+          localStorage.setItem('loginKey', 'yes');
+          localStorage.setItem('userName', '' + this.scrappingModellogin.EMAIL);
+          isFound = true;
+          break;
+        }
       }
-    }
 
-    if (isFound) {
+      if (isFound) {
 
-      let data = {
-        id: "",
-        action: "User Login",
-        timestamp: '' + new Date() + '',
-        userName: '' + this.scrappingModellogin.EMAIL
-      };
-      this.rowdataservice.saveAuditlog(data).subscribe((res) => {
-      });
+        this.saveAuditLog("Downloaded Pdf File");
 
-      //this.router.navigate(['/scrapping']);
-      this.router.navigate(['/florida']);
-    } else {
-      this.openSnackBar('Wrong Id or Password', 'OK');
+        this.router.navigate(['/california']);
+        //  this.router.navigate(['/florida']);
+      } else {
+        this.openSnackBar('Wrong Id or Password', 'OK');
+      }
+
+    } catch (error) {
+      console.log(error)
+      this.toastNotification.error(error, '', this.toastr);
     }
 
 
-    console.log('ending method');
+
   }
 
 
@@ -104,5 +96,33 @@ export class LoginComponent {
       duration: 1000,
     });
   }
+
+
+
+
+
+  saveAuditLog(msgLog: string) {
+    let data = {
+      id: "",
+      action: msgLog,
+      timestamp: '' + new Date() + '',
+      userName: '' + localStorage.getItem('userName')
+    };
+
+    this.httpRequestService.saveAuditlog(data)
+      .subscribe(
+        (response) => {
+        },
+        (error) => {
+          this.toastNotification.error(error, 'AuditLog Create Failed', this.toastr);
+        }
+      )
+  }
+
+
+
+
+
+
 
 }

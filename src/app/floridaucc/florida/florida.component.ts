@@ -1,6 +1,4 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { RowDataService } from './../../Service/row-data.service';
-
 import { FloridaDTO } from './Florida.DTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
@@ -25,8 +23,9 @@ import { MatListModule } from '@angular/material/list';
 import { FloridaviewpopupComponent } from '../floridapopup/floridaviewpopup/floridaviewpopup.component';
 import jsPDF from 'jspdf';
 import { DOCUMENT } from '@angular/common';
-
-
+import { ToastrService } from 'ngx-toastr';
+import { HttpRequestService } from '@app/Service/HttpRequest.service';
+import { ToastNotification } from '@app/Service/ToastNotification.service';
 
 
 
@@ -42,7 +41,6 @@ export class FloridaComponent implements OnInit {
 
 
   floridaDTO: FloridaDTO = new FloridaDTO();
-
   floridaDTONew: FloridaDTO = new FloridaDTO();
 
 
@@ -51,12 +49,10 @@ export class FloridaComponent implements OnInit {
   listCount = 0;
   isDataAvailable: boolean = false;
 
-  
-  
 
   statesList: any = ['California', 'Florida'];
   defaultSelectedState = this.statesList[1];
-  
+
   selectedRowArray: any = [];
   selectedRowCount = 0;
 
@@ -68,20 +64,16 @@ export class FloridaComponent implements OnInit {
   sort!: MatSort;
   @ViewChild(MatAccordion)
   accordion!: MatAccordion;
-
-
   dataSource!: MatTableDataSource<string>;
 
 
 
 
-  constructor(public rowdataservice: RowDataService, matDatepickerModule: MatDatepickerModule,
+  constructor(public httpRequestService: HttpRequestService, matDatepickerModule: MatDatepickerModule,
     matCardModule: MatCardModule, matIconModule: MatIconModule, matNativeDateModule: MatNativeDateModule,
-    public dialog: MatDialog, public sanitizer: DomSanitizer
-    , private _snackBar: MatSnackBar, private router: Router, public matListModule: MatListModule) {
-
-
-
+    public dialog: MatDialog, public sanitizer: DomSanitizer, private _snackBar: MatSnackBar,
+    private router: Router, public matListModule: MatListModule,
+    private toastr: ToastrService, private toastNotification: ToastNotification) {
 
 
 
@@ -95,26 +87,10 @@ export class FloridaComponent implements OnInit {
     if (this.floridaDTO.optionType == null || this.floridaDTO.optionType == "") {
       this.floridaDTO.optionType = "0";
     }
-
   }
 
-  ngOnInit(): void {
-
-
-
-  }
-
-  ngAfterViewInit() {
-    //  this.dataSource.paginator = this.paginator;
-    //  this.dataSource.sort = this.sort;
-  }
-
-
-
-
-
-
-
+  ngOnInit(): void { }
+  ngAfterViewInit() { }
 
 
 
@@ -132,12 +108,15 @@ export class FloridaComponent implements OnInit {
 
 
   GetData() {
-
-    this.selectedRowArray = [];
-    if (this.floridaDTO.optionType == '6') {
-      this.openFloridaModleView();
-    } else {
-      this.getFloridaTableSearchData();
+    try {
+      this.selectedRowArray = [];
+      if (this.floridaDTO.optionType == '6') {
+        this.openFloridaModleView();
+      } else {
+        this.getFloridaTableSearchData();
+      }
+    } catch (error) {
+      this.toastNotification.error(error, '', this.toastr);
     }
   }
 
@@ -150,15 +129,14 @@ export class FloridaComponent implements OnInit {
 
   async getFloridaTableSearchData() {
     let json = JSON.stringify(this.floridaDTO);
-    await this.rowdataservice.searcFloridaData(json)
+    await this.httpRequestService.searcFloridaData(json)
       .then((res: any) => {
-
         this.floridaDTO = res;
-        //console.log(this.floridaDTO);
         this.prepareTableAndData();
       })
       .catch((error) => {
-        console.log("search data rejected with " + JSON.stringify(error));
+        console.log('Florida table search data'+error)
+        this.toastNotification.error(error, 'Florida Search', this.toastr);
       });
   }
 
@@ -178,7 +156,6 @@ export class FloridaComponent implements OnInit {
         "anchor": value['anchor'],
         "#": false,
         "operation": "button"
-
       };
       rowObject.push(data);
     }
@@ -188,7 +165,6 @@ export class FloridaComponent implements OnInit {
 
 
   openDialogAuditlog() {
-
     const dialogRefAudit = this.dialog.open(AuditlogComponent, {
       height: '730px',
       width: '1000px',
@@ -199,7 +175,7 @@ export class FloridaComponent implements OnInit {
     });
 
     dialogRefAudit.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //code
     });
 
   }
@@ -210,7 +186,6 @@ export class FloridaComponent implements OnInit {
       this.selectedRowArray.push(selectedAnchor);
     } else {
       this.selectedRowArray = this.selectedRowArray.filter((item: any) => item !== selectedAnchor);
-
     }
     this.selectedRowCount = this.selectedRowArray.length;
   }
@@ -218,55 +193,52 @@ export class FloridaComponent implements OnInit {
 
 
   logout() {
-
-    let data = {
-      id: "",
-      action: "User Logout",
-      timestamp: '' + new Date() + '',
-      userName: '' + localStorage.getItem('userName')
-    };
-    this.rowdataservice.saveAuditlog(data).subscribe((res) => {
-    });
-
+    this.saveAuditLog("User Logout");
+    
     localStorage.clear();
-    console.log('session ended');
+    console.log('user session ended');
     this.router.navigate(['/login']);
   }
 
 
 
   async previousButton() {
+    try {
 
-    let json = JSON.stringify(this.floridaDTO);
-    await this.rowdataservice.getPreviousFloridaData(json)
-      .then((res: any) => {
-        this.floridaDTO = res;
-        //console.log(this.floridaDTO);
-      })
-      .catch((error) => {
-        console.log("previous data rejected with " + JSON.stringify(error));
-      });
+      let json = JSON.stringify(this.floridaDTO);
+      await this.httpRequestService.getPreviousFloridaData(json)
+        .then((res: any) => {
+          this.floridaDTO = res;
+        })
+        .catch((error) => {
+          console.log("previous page" + error);
+          this.toastNotification.error(error, 'Florida Previous Api', this.toastr);
+        });
 
-    this.prepareTableAndData();
+      this.prepareTableAndData();
 
-
-
+    } catch (error) {
+      this.toastNotification.error(error, '', this.toastr);
+    }
   }
 
 
   async nextButton() {
+    try {
+      let json = JSON.stringify(this.floridaDTO);
+      await this.httpRequestService.getNextFloridaData(json)
+        .then((res: any) => {
+          this.floridaDTO = res;
+        })
+        .catch((error) => {
+          console.log("next APi " + JSON.stringify(error));
+          this.toastNotification.error(error, 'Florida Next Api', this.toastr);
+        });
 
-    let json = JSON.stringify(this.floridaDTO);
-    await this.rowdataservice.getNextFloridaData(json)
-      .then((res: any) => {
-        this.floridaDTO = res;
-        //console.log(this.floridaDTO);
-      })
-      .catch((error) => {
-        console.log("next data rejected with " + JSON.stringify(error));
-      });
-
-    this.prepareTableAndData();
+      this.prepareTableAndData();
+    } catch (error) {
+      this.toastNotification.error(error, '', this.toastr);
+    }
   }
 
 
@@ -307,9 +279,7 @@ export class FloridaComponent implements OnInit {
 
 
   openDialog(anchor: any) {
-
     this.floridaDTO.anchor = anchor;
-
     const dialogRef = this.dialog.open(FloridaviewpopupComponent, {
       height: '700px',
       width: '1000px',
@@ -323,52 +293,46 @@ export class FloridaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //code
     });
 
   }
 
 
   async downloadSelectedRowsPdfMergeFile() {
+    try {
+
+      this.toastNotification.info('Pdf Bundle Downloading started' ,'', this.toastr);
+      for (let i = 0; i < this.selectedRowArray.length; i++) {
+        this.floridaDTONew = new FloridaDTO();
+        this.floridaDTONew.anchor = this.selectedRowArray[i];
+        this.selectedRowFloridaList.push(this.floridaDTONew);
+      }
 
 
 
+      let jsonList = JSON.stringify(this.selectedRowFloridaList);
+      this.selectedRowFloridaList = [];
+      await this.httpRequestService.getFloridaDocLinksByAnchors(jsonList)
+        .then((res: any) => {
 
+          const byteArray = new Uint8Array(atob(res["Base64"]).split('').map(char => char.charCodeAt(0)));
+          const blob = new Blob([byteArray], { type: 'application/pdf' });
 
+          var randomname = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          saveAs(blob, 'License_' + randomname + '.pdf');
 
-    for (let i = 0; i < this.selectedRowArray.length; i++) {
+          this.saveAuditLog("PDF bundle Downloaded");
+          this.toastNotification.success("PDF bundle Downloaded" ,'', this.toastr);
+        })
+        .catch((error) => {
+          console.log("Pdf Merge Failed" + JSON.stringify(error));
+          this.toastNotification.error(error, 'Pdf Merge Failed', this.toastr);
+        });
 
-
-      this.floridaDTONew = new FloridaDTO();
-      this.floridaDTONew.anchor = this.selectedRowArray[i];
-      this.selectedRowFloridaList.push(this.floridaDTONew);
+    } catch (error) {
+      this.toastNotification.error(error, 'Pdf Download Failed', this.toastr);
     }
-
-
-
-    let jsonList = JSON.stringify(this.selectedRowFloridaList);
-
-    this.selectedRowFloridaList = [];
-    await this.rowdataservice.getFloridaDocLinksByAnchors(jsonList)
-      .then((res: any) => {
-
-        const byteArray = new Uint8Array(atob(res["Base64"]).split('').map(char => char.charCodeAt(0)));
-        const blob = new Blob([byteArray], { type: 'application/pdf' });
-
-        var randomname = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        saveAs(blob, 'License_' + randomname + '.pdf');
-      })
-      .catch((error) => {
-        console.log("getFloridaDocLinksByAnchors " + JSON.stringify(error));
-      });
-
-
-    // let param = {
-    //   anchor  :  this.floridaDTO.anchor,
-    //   id  :  this.floridaDTO.anchor,
-    // }
-
-
   }
 
 
@@ -376,14 +340,34 @@ export class FloridaComponent implements OnInit {
 
 
 
-  changeStateNavigation(event : any){
+  changeStateNavigation(event: any) {
     console.log(event.value.toString());
-    if(this.statesList[1] !== event.value.toString()){
-      console.log('fdffddfdfdfdfddffdf    '  ,  '/'+event.value.toLowerCase( ));
-      this.router.navigate(['/'+event.value.toLowerCase( )]);
+    if (this.statesList[1] !== event.value.toString()) {
+      this.router.navigate(['/' + event.value.toLowerCase()]);
     }
   }
 
+
+
+
+  
+  saveAuditLog(msgLog :string){
+    let data = {
+      id: "",
+      action: msgLog,
+      timestamp: '' + new Date() + '',
+      userName: '' + localStorage.getItem('userName')
+    };
+
+    this.httpRequestService.saveAuditlog(data)
+    .subscribe(
+      (response) => {
+      },
+      (error) => {            
+        this.toastNotification.error(error ,'AuditLog Create Failed', this.toastr);
+      }
+    )
+  }
 
 
 
