@@ -45,12 +45,13 @@ export class FloridaviewpopupComponent implements OnInit {
         })
         .catch((error) => {
           this.isShown = false;
-          console.log("Florida Detail APi" + error);
-          this.toastNotification.error(error, 'Florida Detail APi', this.toastr);
+          console.log(error);
+          this.toastNotification.error(error.message, 'Florida Detail APi', this.toastr);
         });
 
     } catch (error) {
-      this.toastNotification.error(error, '', this.toastr);
+      console.log(error);
+      this.toastNotification.error(error.message, '', this.toastr);
     }
   }
 

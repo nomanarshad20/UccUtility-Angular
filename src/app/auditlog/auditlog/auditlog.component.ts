@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpRequestService } from '@app/Service/HttpRequest.service';
 import { HistoryModel } from '../auditlog/HistoryModel';
 import { PageEvent } from '@angular/material/paginator';
+import { ToastNotification } from '@app/Service/ToastNotification.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-auditlog',
@@ -16,7 +19,6 @@ export class AuditlogComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageIndex = 0;
   // MatPaginator Output
-  // MatPaginator Output
   pageEvent!: PageEvent;
 
 
@@ -27,31 +29,51 @@ export class AuditlogComponent implements OnInit {
   auditlogJson!: HistoryModel[];
 
 
-  constructor(public httpRequestService: HttpRequestService) {
 
 
 
-  }
+  constructor(public httpRequestService: HttpRequestService, private toastNotification: ToastNotification,
+    private toastr: ToastrService) { }
 
 
   handlePageEvent(event: PageEvent) {
 
-    this.length = event.length;
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
+    try {
 
-    let filterDto = {
-      length: this.length,
-      pageSize: this.pageSize,
-      pageIndex: this.pageIndex,
-      items: ""
-    };
+      this.length = event.length;
+      this.pageSize = event.pageSize;
+      this.pageIndex = event.pageIndex;
 
-    this.httpRequestService.getHistory(filterDto).subscribe((res) => {
-      this.auditlogJson = res['items'];
-      this.length = res['length'];
-    });
+      let filterDto = {
+        length: this.length,
+        pageSize: this.pageSize,
+        pageIndex: this.pageIndex,
+        items: ""
+      };
 
+
+
+
+
+
+
+      this.httpRequestService.getHistory(filterDto)
+        .subscribe(
+          (response) => {
+            this.auditlogJson = response['items'];
+            this.length = response['length'];
+          },
+          (error) => {
+            console.log(error);
+            this.toastNotification.error(error.message, 'AuditLog retrive history', this.toastr);
+          }
+        )
+
+
+    } catch (error) {
+      console.log(error);
+      this.toastNotification.error(error.message, '', this.toastr);
+    }
 
 
   }
@@ -68,12 +90,24 @@ export class AuditlogComponent implements OnInit {
       pageIndex: this.pageIndex,
       items: ""
     };
-   
-    this.httpRequestService.getHistory(filterDto).subscribe((res) => {
-      this.auditlogJson = res['items'];
-      this.length = res['length'];
-    });
-   
+
+
+
+
+    this.httpRequestService.getHistory(filterDto)
+      .subscribe(
+        (response) => {
+          this.auditlogJson = response['items'];
+          this.length = response['length'];
+        },
+        (error) => {
+          console.log(error);
+          this.toastNotification.error(error.message, 'AuditLog retrive history', this.toastr);
+        }
+      )
+
+
+
 
 
   }
