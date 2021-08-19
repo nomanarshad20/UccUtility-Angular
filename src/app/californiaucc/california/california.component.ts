@@ -135,14 +135,19 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
             this.dataSource.sort = this.sort;
           },
           (error) => {
-            this.toastNotification.error(error, 'California Search Failed', this.toastr);
+            console.log(error);
+            if (error.status === 400) {
+              this.toastNotification.info("Results more then 1000", 'Search Criteria Conflict', this.toastr);
+            } else {
+              this.toastNotification.error(error.message, 'California Search Failed', this.toastr);
+            }
+
           }
         )
 
-
-
     } catch (error) {
-      this.toastNotification.error(error, '', this.toastr);
+      console.log(error);
+      this.toastNotification.error(error.message, 'California Sreach data faild', this.toastr);
     }
   }
 
@@ -191,7 +196,8 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
           const FullJson = response;
         },
         (error) => {
-          this.toastNotification.error(error, '', this.toastr);
+          console.log(error);
+          this.toastNotification.error(error.message, 'California Detail Api Failed', this.toastr);
         }
       )
   }
@@ -267,8 +273,8 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
             }
           })
           .catch((error) => {
-            console.log("File Downloading Failed" + error);
-            this.toastNotification.info("File Downloading Failed", '', this.toastr);
+            console.log(error);
+            this.toastNotification.error("File Downloading Failed", '', this.toastr);
           });
 
 
@@ -302,8 +308,8 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
       this.toastNotification.success("PDF bundle Downloaded", '', this.toastr);
 
     } catch (error) {
-      console.log('File downloading Failed' + error);
-      this.toastNotification.error(error, 'File downloading Failed', this.toastr);
+      console.log( error);
+      this.toastNotification.error(error.message, 'File downloading Failed', this.toastr);
     }
   }
 

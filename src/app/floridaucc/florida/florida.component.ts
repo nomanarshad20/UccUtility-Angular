@@ -116,7 +116,8 @@ export class FloridaComponent implements OnInit {
         this.getFloridaTableSearchData();
       }
     } catch (error) {
-      this.toastNotification.error(error, '', this.toastr);
+      console.log(error);
+      this.toastNotification.error(error.message, '', this.toastr);
     }
   }
 
@@ -135,8 +136,8 @@ export class FloridaComponent implements OnInit {
         this.prepareTableAndData();
       })
       .catch((error) => {
-        console.log('Florida table search data'+error)
-        this.toastNotification.error(error, 'Florida Search', this.toastr);
+        console.log(error)
+        this.toastNotification.error(error.message, 'Florida Search', this.toastr);
       });
   }
 
@@ -211,14 +212,15 @@ export class FloridaComponent implements OnInit {
           this.floridaDTO = res;
         })
         .catch((error) => {
-          console.log("previous page" + error);
-          this.toastNotification.error(error, 'Florida Previous Api', this.toastr);
+          console.log(error);
+        this.toastNotification.error(error.message, 'Florida Previous Api', this.toastr);
         });
 
       this.prepareTableAndData();
 
     } catch (error) {
-      this.toastNotification.error(error, '', this.toastr);
+      console.log(error);
+      this.toastNotification.error(error.message, '', this.toastr);
     }
   }
 
@@ -231,13 +233,14 @@ export class FloridaComponent implements OnInit {
           this.floridaDTO = res;
         })
         .catch((error) => {
-          console.log("next APi " + JSON.stringify(error));
-          this.toastNotification.error(error, 'Florida Next Api', this.toastr);
+          console.log(error);
+          this.toastNotification.error(error.message, 'Florida Next Api', this.toastr);
         });
 
       this.prepareTableAndData();
     } catch (error) {
-      this.toastNotification.error(error, '', this.toastr);
+      console.log(error);
+      this.toastNotification.error(error.message, '', this.toastr);
     }
   }
 
@@ -326,12 +329,13 @@ export class FloridaComponent implements OnInit {
           this.toastNotification.success("PDF bundle Downloaded" ,'', this.toastr);
         })
         .catch((error) => {
-          console.log("Pdf Merge Failed" + JSON.stringify(error));
-          this.toastNotification.error(error, 'Pdf Merge Failed', this.toastr);
+          console.log(error);
+          this.toastNotification.error(error.message, 'Pdf Merge Failed', this.toastr);
         });
 
     } catch (error) {
-      this.toastNotification.error(error, 'Pdf Download Failed', this.toastr);
+      console.log(error);
+      this.toastNotification.error(error.message, 'Pdf Download Failed', this.toastr);
     }
   }
 
@@ -364,7 +368,8 @@ export class FloridaComponent implements OnInit {
       (response) => {
       },
       (error) => {            
-        this.toastNotification.error(error ,'AuditLog Create Failed', this.toastr);
+        console.log(error);
+        this.toastNotification.error(error.message ,'AuditLog Create Failed', this.toastr);
       }
     )
   }

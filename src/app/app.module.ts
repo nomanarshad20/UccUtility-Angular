@@ -109,7 +109,7 @@ const appRoute: Route[] = [
     FontAwesomeModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({preventDuplicates: true})
+    ToastrModule.forRoot() //({preventDuplicates: true}
   ],
   entryComponents: [
     FloridaviewpopupComponent,

@@ -40,7 +40,8 @@ export class CaliforniaviewpopupComponent implements OnInit {
     this.getLicenseDetails(this.licenseSelectedId);
     this.getLicenseHistory(this.licenseFileNumber);
   }catch(error){
-    this.toastNotification.error(error ,'', this.toastr);
+    console.log(error);
+    this.toastNotification.error(error.message ,'', this.toastr);
   }
   }
 
@@ -52,8 +53,8 @@ export class CaliforniaviewpopupComponent implements OnInit {
         this.detailsArray = response['DRAWER_DETAIL_LIST'];
       },
       (error) => {            
-        console.log('California Details Failed'+ error);
-        this.toastNotification.error(error ,'California Details Failed', this.toastr);
+        console.log( error);
+        this.toastNotification.error(error.message ,'California Details Failed', this.toastr);
       }
     )
 
@@ -67,8 +68,8 @@ export class CaliforniaviewpopupComponent implements OnInit {
         this.historyArray = FullJson['AMENDMENT_LIST'];
       },
       (error) => {            
-        console.log('California File history Failed'+ error);
-        this.toastNotification.error(error ,'California File history', this.toastr);
+        console.log(error);
+        this.toastNotification.error(error.message ,'California File history', this.toastr);
       }
     )
 
@@ -95,8 +96,9 @@ export class CaliforniaviewpopupComponent implements OnInit {
     .subscribe(
       (response) => {
       },
-      (error) => {            
-        this.toastNotification.error(error ,'AuditLog Create Failed', this.toastr);
+      (error) => {     
+        console.log(error);       
+        this.toastNotification.error(error.message ,'AuditLog Create Failed', this.toastr);
       }
     )
   }
