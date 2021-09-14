@@ -50,7 +50,7 @@ export class FloridaComponent implements OnInit {
   isDataAvailable: boolean = false;
 
 
-  statesList: any = ['California', 'Florida'];
+  statesList: any = ['California', 'Florida' , 'NYC'];
   defaultSelectedState = this.statesList[1];
 
   selectedRowArray: any = [];
@@ -140,6 +140,14 @@ export class FloridaComponent implements OnInit {
         this.toastNotification.error(error.message, 'Florida Search', this.toastr);
       });
   }
+
+
+  
+
+
+  
+
+
 
 
   prepareDataTableRows(row: any) {
