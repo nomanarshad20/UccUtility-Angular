@@ -24,10 +24,11 @@
 
                         <mat-form-field appearance="">
                             <mat-label class="text-white">State</mat-label>
-                            <mat-select class="text-white " style=" color: lavender;" [(ngModel)]="defaultSelectedState"
+                            <mat-select [(ngModel)]="defaultSelectedState"
                                 (selectionChange)="changeStateNavigation($event)">
                                 <mat-option *ngFor="let stateName of statesList" [value]="stateName">
-                                    {{stateName}}
+                                    <span>{{stateName}}
+                                    </span>
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -222,13 +223,13 @@
 
                                 <mat-radio-group [(ngModel)]="newYork.pLapsed" aria-label="Filing Status">
                                     <mat-radio-button value="1">All Filings</mat-radio-button>
-                                    <mat-radio-button value="0">Unlapsed Filings</mat-radio-button>
+                                    <mat-radio-button value="0" class="ml-3">Unlapsed Filings</mat-radio-button>
                                 </mat-radio-group>
 
 
                                 <mat-radio-group [(ngModel)]="newYork.pFiletype" aria-label="File Type">
-                                    <mat-radio-button value="ALL">All Filings</mat-radio-button>
-                                    <mat-radio-button value="FTL">Federal Tax Liens</mat-radio-button>
+                                    <mat-radio-button value="ALL" class="ml-3">All Filings</mat-radio-button>
+                                    <mat-radio-button value="FTL" class="ml-3">Federal Tax Liens</mat-radio-button>
                                 </mat-radio-group>
 
                             </div>
@@ -238,11 +239,15 @@
 
 
 
-                            <div class="width-100" style="align-content: center; align-items: center;">
-                                <button mat-raised-button type="button" class="btn-sreach btn width-80"
-                                    (click)="GetDataDebtor()">
-                                    <i class="fa fa-search"></i>
-                                </button>
+                            <div class="row mx-auto">
+                                <div class="col-md-4">
+                                    <div class="width-100" style="align-content: center; align-items: center;">
+                                        <button mat-raised-button type="button" class="btn-sreach btn width-80"
+                                            (click)="GetDataDebtor()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -259,29 +264,35 @@
 
                             <div class="row">
 
-                                <mat-form-field class="width-100">
-                                    <mat-label>Filing Number *</mat-label>
-                                    <input matInput id="search-focus" type="search" id="form8"
-                                        [(ngModel)]="newYork.pName" class="text-dark" />
-                                </mat-form-field>
+                                <div class="col-md-5">
+                                    <mat-form-field class="width-100">
+                                        <mat-label>Filing Number *</mat-label>
+                                        <input matInput id="search-focus" type="search" id="form8"
+                                            [(ngModel)]="newYork.p_filenum" class="text-dark" />
+                                    </mat-form-field>
+                                </div>
 
 
 
-                                <mat-form-field appearance="">
-                                    <mat-label class="">Year</mat-label>
-                                    <mat-select class="text-white ">
-                                        <mat-option *ngFor="let year of yearList" [value]="year">
-                                            {{year}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                                <div class="col-md-5">
+                                    <mat-form-field appearance="" class="width-100">
+                                        <mat-label class="">Year</mat-label>
+                                        <mat-select [(ngModel)]="newYork.p_year" class="text-white ">
+                                            <mat-option *ngFor="let year of yearList" [value]="year">
+                                                {{year}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
 
 
-                                <div class="width-100" style="align-content: center; align-items: center;">
-                                    <button mat-raised-button type="button" class="btn-sreach btn width-80"
-                                        (click)="GetFileNoData()">
-                                        <i class="fa fa-search"></i>
-                                    </button>
+                                <div class="col-md-2">
+                                    <div class="width-100" style="align-content: center; align-items: center;">
+                                        <button mat-raised-button type="button" class="btn-sreach btn width-80"
+                                            (click)="GetFileNoData()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -376,20 +387,28 @@
                                         <!-- First row of table -->
                                         <div class="gradiant-gray" style=" padding: 10px;">
                                             <div class="row">
-                                                <div class="col-sm-2 Poppins-Bold"><b>Debtor Name:</b></div>
-                                                <div class="col-sm-4 font-weight-light">{{element['Debtor Name']}}
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Debtor Name:</b>
                                                 </div>
-                                                <div class="col-sm-2 Poppins-Bold"><b>Debtor Address:</b> </div>
-                                                <div class="col-sm-4 font-weight-light">{{element['Debtor Address']}}
+                                                <div class="col-sm-4 font-weight-light text-secondary">{{element['Debtor
+                                                    Name']}}
+                                                </div>
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Debtor Address:</b>
+                                                </div>
+                                                <div class="col-sm-4 font-weight-light text-secondary">{{element['Debtor
+                                                    Address']}}
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-sm-2 Poppins-Bold"><b>Secured Party Name:</b></div>
-                                                <div class="col-sm-4 font-weight-light">{{element['Secured Party
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Secured Party
+                                                        Name:</b></div>
+                                                <div class="col-sm-4 font-weight-light text-secondary">
+                                                    {{element['Secured Party
                                                     Name']}} </div>
-                                                <div class="col-sm-2 Poppins-Bold"><b>Secured Address:</b> </div>
-                                                <div class="col-sm-4 font-weight-light">{{element['Secured Address']}}
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Secured
+                                                        Address:</b> </div>
+                                                <div class="col-sm-4 font-weight-light text-secondary">
+                                                    {{element['Secured Address']}}
                                                 </div>
                                             </div>
                                         </div>
@@ -414,11 +433,15 @@
                                                         <tr *ngFor="let innerMap of element['uccList']"
                                                             class="align-middle">
                                                             <td class="text-align-center">{{innerMap['File no.']}}</td>
-                                                            <td class="text-align-center">{{innerMap['Lapse Date']}}</td>
+                                                            <td class="text-align-center">{{innerMap['Lapse Date']}}
+                                                            </td>
                                                             <td class="text-align-center">{{innerMap['File Date']}}</td>
-                                                            <td class="text-align-center">{{innerMap['Filing Type']}}</td>
+                                                            <td class="text-align-center">{{innerMap['Filing Type']}}
+                                                            </td>
                                                             <td class="text-align-center">{{innerMap['Pages']}}</td>
-                                                            <td class="text-align-center"> <button [disabled]="!innerMap['Image']" (click)="openUrl(innerMap['Image'] )"
+                                                            <td class="text-align-center"> <button
+                                                                    [disabled]="!innerMap['Image']"
+                                                                    (click)="openUrl(innerMap['Image'] )"
                                                                     class="btn btn-sm btn-primary bg-white text-primary">Download
                                                                     PDF</button></td>
                                                         </tr>

@@ -12,6 +12,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { PDFDocument } from 'pdf-lib'
 import { saveAs } from 'file-saver';
 import moment = require('moment');
+import { MatDialog } from '@angular/material/dialog';
+import { AuditlogComponent } from '@app/auditlog/auditlog/auditlog.component';
 
 @Component({
   selector: 'app-newyork',
@@ -55,7 +57,8 @@ export class NewyorkComponent implements OnInit {
 
 
   constructor(private router: Router, public httpRequestService: HttpRequestService,
-    private toastNotification: ToastNotification, private toastr: ToastrService, public matRadioModule: MatRadioModule) {
+    private toastNotification: ToastNotification, private toastr: ToastrService, public matRadioModule: MatRadioModule,
+    public dialog: MatDialog) {
     this.newYork.pLapsed = "1";
     this.newYork.pFiletype = "ALL";
 
@@ -68,49 +71,80 @@ export class NewyorkComponent implements OnInit {
 
 
   async GetDataDebtor() {
-    console.log(this.newYork);
 
-
-
-    let jsonRes = [{ "Debtor Name": "ARIZONA LLC", "Secured Address": "209 HAVEMEYER STREET, BROOKLYN, NY 11211-0000, USA", "uccList": [{ "Pages": "1", "File no.": "246583", "Lapse Date": "12/17/2006", "Image": "", "File Date": "12/17/2001", "Filing Type": "Financing Statement" }], "Secured Party Name": "THE DIME SAVINGS BANK OF WILLIAMSBURGH", "index": "1", "Debtor Address": "442 WEST 54TH STREET, NEW YORK, NY 10019-0000, USA" }, { "Debtor Name": "ARIZONA LLC", "Secured Address": "125 WEST 75TH STREET, NEW YORK, NY 10027-0000, USA", "uccList": [{ "Pages": "3", "File no.": "202856", "Lapse Date": "09/04/2007", "Image": "", "File Date": "09/04/2002", "Filing Type": "Financing Statement" }, { "Pages": "2", "File no.": "200409270974754", "Lapse Date": "09/04/2007", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=15485843&pidmname=DEFAULT&pApp=UCC ", "File Date": "09/27/2004", "Filing Type": "Termination" }], "Secured Party Name": "CARVER FEDERAL SAVINGS BANK", "index": "2", "Debtor Address": "442 WEST 54TH STREET, NEW YORK, NY 10019-0000, USA" }, { "Debtor Name": "ARIZONA LLC", "Secured Address": "209 HAVEMEYER STREET, BROOKLYN, NY 11211, USA", "uccList": [{ "Pages": "1", "File no.": "200809260661822", "Lapse Date": "09/26/2013", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=18383234&pidmname=DEFAULT&pApp=UCC ", "File Date": "09/26/2008", "Filing Type": "Financing Statement" }, { "Pages": "1", "File no.": "201106300353223", "Lapse Date": "09/26/2013", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=21919688&pidmname=DEFAULT&pApp=UCC ", "File Date": "06/30/2011", "Filing Type": "Termination" }], "Secured Party Name": "THE DIME SAVINGS BANK OF WILLIAMSBURGH", "index": "3", "Debtor Address": "442 WEST 54TH STREET, NEW YORK, NY 10019, USA" }, { "Debtor Name": "ARIZONA LLC", "Secured Address": "565 FIFTH AVENUE, NEW YORK, NY 10017, USA", "uccList": [{ "Pages": "1", "File no.": "201106225678724", "Lapse Date": "06/22/2016", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=21859945&pidmname=DEFAULT&pApp=UCC ", "File Date": "06/22/2011", "Filing Type": "Financing Statement" }, { "Pages": "1", "File no.": "201604255480563", "Lapse Date": "06/22/2021", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=31907388&pidmname=DEFAULT&pApp=UCC", "File Date": "04/25/2016", "Filing Type": "Continuation" }, { "Pages": "1", "File no.": "201809270459434", "Lapse Date": "06/22/2021", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=36253185&pidmname=DEFAULT&pApp=UCC ", "File Date": "09/27/2018", "Filing Type": "Termination" }], "Secured Party Name": "SIGNATURE BANK", "index": "4", "Debtor Address": "442 WEST 54TH STREET, NEW YORK, NY 10019, USA" }, { "Debtor Name": "ARIZONA LLC", "Secured Address": "209 HAVEMEYER STREET, BROOKLYN, NY 11211, USA", "uccList": [{ "Pages": "2", "File no.": "201302150087119", "Lapse Date": "02/15/2018", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=25606686&pidmname=DEFAULT&pApp=UCC ", "File Date": "02/15/2013", "Filing Type": "Financing Statement" }], "Secured Party Name": "THE DIME SAVINGS BANK OF WILLIAMSBURGH", "index": "5", "Debtor Address": "442 WEST 54TH STREET, NEW YORK, NY 10019, USA" }, { "Debtor Name": "ARIZONA LLC", "Secured Address": "565 FIFTH AVENUE, NEW YORK, NY 10017, USA", "uccList": [{ "Pages": "1", "File no.": "201508055865892", "Lapse Date": "08/05/2020", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=30688835&pidmname=DEFAULT&pApp=UCC ", "File Date": "08/05/2015", "Filing Type": "Financing Statement" }, { "Pages": "1", "File no.": "201809270459458", "Lapse Date": "08/05/2020", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=36253191&pidmname=DEFAULT&pApp=UCC ", "File Date": "09/27/2018", "Filing Type": "Termination" }], "Secured Party Name": "SIGNATURE BANK", "index": "6", "Debtor Address": "87 EAST 116TH STREET, SUITE 302, NEW YORK, NY 10029, USA" }, { "Debtor Name": "ARIZONA LLC", "Secured Address": "300 CADMAN PLAZA EAST, 8TH FLOOR, BROOKLYN, NY 11201, USA", "uccList": [{ "Pages": "1", "File no.": "201702230089411", "Lapse Date": "02/23/2022", "Image": "https://appext20.dos.ny.gov/ASPIMGView/imgview.aspx?pdocid=33310533&pidmname=DEFAULT&pApp=UCC ", "File Date": "02/23/2017", "Filing Type": "Financing Statement" }], "Secured Party Name": "DIME COMMUNITY BANK", "index": "7", "Debtor Address": "87 EAST 116TH STREET, SUITE 302, NEW YORK, NY 10029, USA" }];
-
-    this.isDataAvailable = true;
-    this.DataTableRow = jsonRes;
-    this.dataSource = new MatTableDataSource(this.DataTableRow);
-    this.listCount = this.DataTableRow.length;
-
-
-
-
-    // let json = JSON.stringify(this.newYork);
-    // await this.httpRequestService.searchNycDataDebtor(json)
-    //   .then((res: any) => {
-    //         let dd = res;
-    //         console.log(res);
-
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //     this.toastNotification.error(error.message, 'NYC Search', this.toastr);
-    //   });
-  }
-
-
-
-  async GetFileNoData() {
-    console.log(this.newYork);
+    if(this.newYork.pName==""){
+      this.toastNotification.info("Write Bussiness name please", 'NYC Search', this.toastr);
+      return;
+    }
 
     let json = JSON.stringify(this.newYork);
     await this.httpRequestService.searchNycDataDebtor(json)
       .then((res: any) => {
         let dd = res;
         console.log(res);
+        this.DataTableRow = res;
+        this.dataSource = new MatTableDataSource(this.DataTableRow);
+        this.listCount = this.DataTableRow.length;
+        this.isDataAvailable = this.listCount > 0 ? true : false;
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
 
       })
       .catch((error) => {
         console.log(error)
         this.toastNotification.error(error.message, 'NYC Search', this.toastr);
       });
+
+
+  }
+
+
+  openUrl(siteWeb: string) {
+        //  this.saveAuditLog("Downloaded Pdf File");
+    
+        console.log("XXXXXXXX download file " + siteWeb);
+    
+    
+       // window.location.href = fileURL;
+         window.open(siteWeb, "_blank");
+        //window.location.href = siteWeb;
+      }
+
+
+  async GetFileNoData() {
+
+    if(this.newYork.pName==""){
+      this.toastNotification.info("Write FileNumber and year please", 'NYC Search', this.toastr);
+      return;
+    }
+    
+
+    let json = JSON.stringify(this.newYork);
+    await this.httpRequestService.searchNycDataFileNumber(json)
+      .then((res: any) => {
+        let dd = res;
+        console.log(res);
+
+
+        this.DataTableRow = res;
+        this.dataSource = new MatTableDataSource(this.DataTableRow);
+        this.listCount = this.DataTableRow.length;
+
+
+        this.isDataAvailable = this.listCount > 0 ? true : false;
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+
+      })
+      .catch((error) => {
+        console.log(error)
+        this.toastNotification.error(error.message, 'NYC Search', this.toastr);
+      });
+
+
   }
 
 
@@ -126,21 +160,21 @@ export class NewyorkComponent implements OnInit {
       this.selectedRowArray = this.selectedRowArray.filter((item: any) => item !== selectedId);
     }
     this.selectedRowCount = this.selectedRowArray.length;
-    console.log(this.selectedRowArray); 
+    console.log(this.selectedRowArray);
   }
 
 
   async downloadSelectedRowsPdfMergeFile() {
     try {
       this.toastNotification.info('Pdf Bundle Downloading Started', '', this.toastr);
-     let selectedPdfLinkList: any = [];
+      let selectedPdfLinkList: any = [];
       for (let indexSelected = 0; indexSelected < this.selectedRowArray.length; indexSelected++) {
         const id = this.selectedRowArray[indexSelected];
         for (let index = 0; index < this.DataTableRow.length; index++) {
           const element = this.DataTableRow[index];
-          if(element['index'] ==  id ){
+          if (element['index'] == id) {
             element['uccList'].forEach(elementImg => {
-              if(elementImg['Image'] !== ""){
+              if (elementImg['Image'] !== "") {
                 selectedPdfLinkList.push(elementImg['Image']);
               }
             });
@@ -162,7 +196,7 @@ export class NewyorkComponent implements OnInit {
           saveAs(blob, 'License_' + randomname + '.pdf');
 
           this.saveAuditLog("PDF bundle Downloaded");
-          this.toastNotification.success("PDF bundle Downloaded" ,'', this.toastr);
+          this.toastNotification.success("PDF bundle Downloaded", '', this.toastr);
         })
         .catch((error) => {
           console.log(error);
@@ -172,20 +206,33 @@ export class NewyorkComponent implements OnInit {
 
 
 
-      
 
-     
+
+
 
 
 
     } catch (error) {
-      console.log( error);
+      console.log(error);
       this.toastNotification.error(error.message, 'File downloading Failed', this.toastr);
     }
 
   }
 
   openDialogAuditlog() {
+
+    const dialogRefAudit = this.dialog.open(AuditlogComponent, {
+      height: '730px',
+      width: '1000px',
+      disableClose: false,
+      autoFocus: true,
+      hasBackdrop: true,
+      backdropClass: 'scroolHide'
+    });
+
+    dialogRefAudit.afterClosed().subscribe(result => {
+      //code
+    });
 
   }
 
@@ -243,24 +290,13 @@ export class NewyorkComponent implements OnInit {
 
 
 
-  openUrl(siteWeb: string) {
-    //  this.saveAuditLog("Downloaded Pdf File");
-
-    console.log("XXXXXXXX download file " + siteWeb);
   
-  
-   // window.location.href = fileURL;
-     window.open(siteWeb, "_blank");
-    //window.location.href = siteWeb;
-  }
 
 
 
 
 
 
-
-  
 
 
 

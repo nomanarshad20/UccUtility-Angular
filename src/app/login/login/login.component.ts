@@ -45,8 +45,8 @@ export class LoginComponent {
     let loginValue = localStorage.getItem('loginKey');
     if (loginValue != null) {
       //this.router.navigate(['/florida']);
-     // this.router.navigate(['/california']);
-      this.router.navigate(['/nyc']);
+      this.router.navigate(['/california']);
+     // this.router.navigate(['/nyc']);
       
 
     }
