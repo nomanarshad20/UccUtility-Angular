@@ -1,23 +1,21 @@
-
-
 <!-- <div class="row">
   <div class="col">
     <button  mat-dialog-close class="btn btn-danger bg-white text-danger" style="float: right;">Close</button>
   </div>
-</div> -->  
+</div> -->
 <div mat-dialog-title class="mat-elevation-z8">
-<nav class="navbar container align-center gradiant-black text-white navbar-fixed-top font-weight-light">
-  <div class="navbar-header">
-    <div class="navbar-brand" >
-      <h2>Audit Log</h2>
+  <nav class="navbar container align-center gradiant-black text-white navbar-fixed-top font-weight-light">
+    <div class="navbar-header">
+      <div class="navbar-brand">
+        <h2>Audit Log</h2>
+      </div>
     </div>
-  </div>
-  <ul class="nav navbar-nav navbar-right">
-    <li>  
-      <button  mat-dialog-close class="btn btn-danger bg-white text-danger">Close</button>
-  </li>
-  </ul>
-</nav>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <button mat-dialog-close class="btn btn-danger bg-white text-danger">Close</button>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 
@@ -25,52 +23,55 @@
 
 
 
+<div class="align-middle " style="">
+
+  <mat-dialog-content  class="">
+
+    <div *ngFor="let log of auditlogJson">
 
 
-<mat-dialog-content>
 
-<div *ngFor="let log of auditlogJson">
-
+      <div class="  gradiant-gray " style="margin-top: 5px;">
 
 
-  <div class="card  mat-elevation-z2 align-middle  " style="margin-top: 5px;">
+        <div class="row   text-monospace align-middle  text-capitalize " style="  padding: 7px;">
+          <div class="col-sm-1 ">
+            <p class="font-weight-bolder text-center"> {{log.id}} <span style="color: darkgrey;">|</span></p>
+          </div>
 
+          <div class="col-sm-3  ">
+             <i class="fa fa-user-circle " aria-hidden="true"></i> <span class="text-secondary">
+                {{log.userName}}</span>
+          </div>
 
-    <div class="row   text-monospace align-middle  text-capitalize "style="  padding: 7px;">
-      <div class="col-sm-1 " >
-        <p class="font-weight-bolder text-center" > {{log.id}} <span style="color: darkgrey;">|</span></p>
-      </div>
-
-      <div class="col-sm-3  ">
-        <p > <i class="fa fa-user-circle " aria-hidden="true"></i> <span class="text-secondary"> {{log.userName}}</span></p>
-      </div>
-
-      <div class="col-sm-3 text-secondary">
-        <!-- 
+          <div class="col-sm-3 text-secondary">
+            <!-- 
           <i class="fa fa-sign-out" aria-hidden="true"></i>
           <i class="fa fa-sign-in" aria-hidden="true"></i>
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i> -->
 
 
-        <p><i class="fa fa-sign-in" aria-hidden="true"></i><span class="text-secondary">  {{log.action}}</span> </p>
-      </div>
+            <i class="fa fa-sign-in" aria-hidden="true"></i><span class="text-secondary"> {{log.action}}</span> 
+          </div>
 
-      <div class="col ">
-        <p><i class="fa fa-clock-o" aria-hidden="true"></i> <span class="text-secondary">  {{log.timestamp}}</span> </p>
+          <div class="col ">
+            <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="text-secondary"> {{log.timestamp}}</span>
+            
+          </div>
+
+        </div>
       </div>
 
     </div>
-  </div>
 
+
+
+
+  </mat-dialog-content>
+
+  <div mat-dialog-actions>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="handlePageEvent($event)" [pageIndex]="pageIndex">
+    </mat-paginator>
+  </div>
 </div>
-
-
-
-
-</mat-dialog-content>
-
-<div mat-dialog-title>
-  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-    (page)="handlePageEvent($event)" [pageIndex]="pageIndex">
-  </mat-paginator>
-  </div>

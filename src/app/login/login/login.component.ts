@@ -46,6 +46,8 @@ export class LoginComponent {
     if (loginValue != null) {
       //this.router.navigate(['/florida']);
       this.router.navigate(['/california']);
+     // this.router.navigate(['/nyc']);
+      
 
     }
   }

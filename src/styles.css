@@ -2,9 +2,11 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/ngx-toastr/toastr.css";
 
-html, body {height: 100%;
-    
-/*     
+html,
+body {
+  height: 100%;
+
+  /*     
     background: repeating-radial-gradient(
         farthest-corner at 20% 20%,
   
@@ -12,57 +14,76 @@ html, body {height: 100%;
       rgba(255, 255, 255, 0.897) 900px
     );   */
 
-    /* background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%); */
+  /* background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%); */
 
 
-    
-      
-      /* background: linear-gradient( to bottom, #e3ffe7, #d9e7ff); */
-      background-image: url("./assets/cool-background.svg");
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-      width: 100%;
-      height: 100%;
-  
+
+
+  /* background: linear-gradient( to bottom, #e3ffe7, #d9e7ff); */
+  background-image     : url("./assets/cool-background.svg");
+  background-repeat    : no-repeat;
+  background-attachment: fixed;
+  background-size      : cover;
+  width                : 100%;
+  height               : 100%;
+
 
 }
-    
 
-  
-.titalVal{
+
+
+.titalVal {
   /* font-family: Poppins-Regular; */
   /* font-size: 45px; */
 
 
 
-font-family: Poppins-Bold;
- font-size: 20px; 
-color: rgb(75, 36, 138);
-line-height: 1.2;
-text-align: center;
-text-transform: uppercase;
-display: block;
+  font-family: Poppins-Bold;
+  font-size  : 20px;
+  color      : rgb(124, 80, 186);
+  color      : linear-gradient(0deg, rgba(124, 80, 186, 1) 0%, rgba(33, 37, 107, 1) 100%);
+
+  line-height   : 1.2;
+  text-align    : center;
+  text-transform: uppercase;
+  display       : block;
 
 
 
 }
 
 
-.transparentAll{
-   background: rgba(255, 255, 255, 0.767);
+.gradiant-gray{
+  /* https://cssgradient.io/ */
+  background: rgb(186,186,186);
+background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(230,230,230,1) 100%);
+}
+
+.transparentAll {
+  background: rgba(255, 255, 255, 0.767);
 }
 
 
-.gradiant-black{
+.gradiant-black-no-radious {
+  background: rgb(124,80,186);
+background: linear-gradient(0deg, rgba(124,80,186,0.9783263647255778) 0%, rgba(33,37,107,0.9587185215883228) 100%);
+}
 
 
+.gradiant-black {
 
+  border-radius: 3px;
+  background: rgb(124,80,186);
+background: linear-gradient(0deg, rgba(124,80,186,0.9783263647255778) 0%, rgba(33,37,107,0.9587185215883228) 100%);
 
   /* background: #282694cb; */
 
-   background: rgba(30, 40, 122, 0.842); 
-/* 
+
+  /* 
+   background: rgba(30, 40, 122, 0.842);  */
+
+
+  /* 
   background-color:  #555757;
   background: #555757; 
   background: -webkit-linear-gradient(to bottom, #8b939a, #636568, #5b6467);  
@@ -70,36 +91,50 @@ display: block;
    */
 }
 
+.Ubuntu-Bold{
+  font-family: Ubuntu-Bold;
+}
+
+
+.Poppins-Bold{
+  font-family: Poppins-Bold;
+}
+
+.Poppins-SemiBold{
+  font-family: Poppins-SemiBold;
+}
+
 
 
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../src/assets/fonts/poppins/Poppins-Regular.ttf'); 
+  src        : url('../src/assets/fonts/poppins/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('../src/assets/fonts/poppins/Poppins-Medium.ttf'); 
+  src        : url('../src/assets/fonts/poppins/Poppins-Medium.ttf');
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../src/assets/fonts/poppins/Poppins-Bold.ttf'); 
+  src        : url('../src/assets/fonts/poppins/Poppins-Bold.ttf');
 }
 
 @font-face {
   font-family: Poppins-SemiBold;
-  src: url('../src/assets/fonts/poppins/Poppins-SemiBold.ttf'); 
+  src        : url('../src/assets/fonts/poppins/Poppins-SemiBold.ttf');
 }
 
 
 @font-face {
   font-family: Ubuntu-Regular;
-  src: url('../src/assets/fonts/ubuntu/Ubuntu-Bold.ttf'); 
+  src        : url('../src/assets/fonts/ubuntu/Ubuntu-Bold.ttf');
 }
 
 @font-face {
   font-family: Ubuntu-Bold;
-  src: url('../src/assets/fonts/ubuntu/Ubuntu-Bold.ttf'); 
+  src        : url('../src/assets/fonts/ubuntu/Ubuntu-Bold.ttf');
 }
+

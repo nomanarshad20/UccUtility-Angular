@@ -13,12 +13,14 @@ import { Observable } from 'rxjs';
 export class HttpRequestService {
   respons: any;
 
-
- javaServerPort: string = "8443";
- // javaServerPort: string = "9595";
-
-  //javaServerIp: string = "localhost";
+  // *****server configration *****
   javaServerIp: string = "162.214.196.99";
+  javaServerPort: string = "8443";
+
+  // *****local configration *****
+  //javaServerPort: string = "9595";
+  //javaServerIp: string = "localhost";
+  
 
 
   constructor(private httpclient: HttpClient) {
@@ -167,16 +169,58 @@ export class HttpRequestService {
   }
 
 
+  getNYCSelectedMergeDocByLinks(searchJson: any) {
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/download/pdf';
+    // console.log(serchUrl);
+
+    return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json"
+      }
+    }).toPromise();
+  }
+
+
+
+
+  searchNycDataDebtor(searchJson: any) {
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/search/name';
+    //  console.log(serchUrl);
+   return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json"
+      }
+    }).toPromise();
+  }
+
+
+  searchNycDataFileNumber(searchJson: any) {
+    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/search/filenumber';
+    //  console.log(serchUrl);
+   return this.httpclient.post<any>(serchUrl, searchJson, {
+      headers: {
+        'Content-type': "application/json"
+      }
+    }).toPromise();
+  }
+
+
+
+
+
 
 
 
 }
 
+
+
+
 // 'Content-type': "application/json",
 // 'Access-Control-Allow-Origin': "*",
 // 'Access-Control-Allow-Methods': "*",
-// // 'Access-Control-Allow-Methods': "GET, POST, PUT, DELETE, OPTIONS",
-// // "Access-Control-Allow-Headers": "origin, content-type, accept, x-requested-with",
+//  'Access-Control-Allow-Methods': "GET, POST, PUT, DELETE, OPTIONS",
+//  "Access-Control-Allow-Headers": "origin, content-type, accept, x-requested-with",
 // "Access-Control-Allow-Headers": "*",
 // 'Referrer-Policy' :"no-referrer"
-// // 'Referrer-Policy' :"no-referrer-when-downgrade"
+// 'Referrer-Policy' :"no-referrer-when-downgrade"

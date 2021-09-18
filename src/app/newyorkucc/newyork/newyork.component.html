@@ -1,0 +1,492 @@
+<div>
+    <div class="parallax-window container-fluid">
+
+
+
+        <nav class="navbar navbar-inverse container">
+            <div class="navbar-header">
+                <img src="../../../assets/license.png" style="border-radius:100% ;">
+                <h1 class="titalVal">UCC UTILITY</h1>
+            </div>
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="">
+
+
+
+
+
+
+
+
+                        <mat-form-field appearance="">
+                            <mat-label class="text-white">State</mat-label>
+                            <mat-select [(ngModel)]="defaultSelectedState"
+                                (selectionChange)="changeStateNavigation($event)">
+                                <mat-option *ngFor="let stateName of statesList" [value]="stateName">
+                                    <span>{{stateName}}
+                                    </span>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+
+
+
+
+
+
+
+                        <button (click)="openDialogAuditlog()" mat-stroked-button color="" class="btn btn-primary"
+                            style="margin-right:5px">
+                            Audit Log
+                        </button>
+                        <button (click)="logout()" mat-stroked-button color="" class="btn btn-danger "
+                            style="margin-right:5px">
+                            Logout
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="container">
+            <mat-card class="mat-elevation-z4 transparentAll">
+                <mat-tab-group dynamicHeight>
+                    <mat-tab label="Standard Search">
+
+
+
+                        <div class="row text-center">
+
+
+                            <div class="col-sm-6">
+                                <!-- first Row -->
+
+
+                                <mat-form-field class="width-100">
+                                    <mat-label>Business Name *</mat-label>
+                                    <input matInput id="search-focus" type="search" id="form1"
+                                        [(ngModel)]="newYork.pName" class="text-dark" />
+                                </mat-form-field>
+
+
+
+                                <mat-form-field class="width-100 ">
+                                    <mat-label>Last Name *</mat-label>
+                                    <input matInput id="search-focus" type="search" id="form2"
+                                        [(ngModel)]="newYork.pLast" class="text-dark" />
+                                </mat-form-field>
+
+                                <mat-form-field class=" width-100">
+                                    <mat-label>Suffix(Optional)</mat-label>
+                                    <input matInput id="search-focus" type="search" id="form5"
+                                        [(ngModel)]="newYork.pSuffix" class="text-dark" />
+                                </mat-form-field>
+
+                                <mat-form-field class=" width-100">
+                                    <mat-label>City(Optional)</mat-label>
+                                    <input matInput id="search-focus" type="search" id="form6"
+                                        [(ngModel)]="newYork.pCity" class="text-dark" />
+                                </mat-form-field>
+
+
+
+
+
+                            </div>
+                            <div class="col-sm-6">
+                                <!-- second Row -->
+
+
+                                <mat-form-field class="width-100 ">
+                                    <mat-label>First Name (Optional)</mat-label>
+                                    <input matInput id="search-focus" type="search" id="form3"
+                                        [(ngModel)]="newYork.pFirst" class="text-dark" />
+                                </mat-form-field>
+
+
+
+
+
+                                <mat-form-field class=" width-100">
+                                    <mat-label>Middle Name(Optional)</mat-label>
+                                    <input matInput id="search-focus" type="search" id="form4"
+                                        [(ngModel)]="newYork.pMiddle" class="text-dark" />
+                                </mat-form-field>
+
+
+                                <mat-form-field class="width-100">
+                                    <mat-label>State(Optional)</mat-label>
+                                    <select matNativeControl [(ngModel)]="newYork.pState">
+                                        <option value="RI">RI</option>
+                                        <option value="AB">AB</option>
+                                        <option value="BC">BC</option>
+                                        <option value="MB">MB</option>
+                                        <option value="NB">NB</option>
+                                        <option value="NF">NF</option>
+                                        <option value="NT">NT</option>
+                                        <option value="NS">NS</option>
+                                        <option value="NU">NU</option>
+                                        <option value="ON">ON</option>
+                                        <option value="PE">PE</option>
+                                        <option value="QC">QC</option>
+                                        <option value="SK">SK</option>
+                                        <option value="YT">YT</option>
+                                        <option value="AE">AE</option>
+                                        <option value="AK">AK</option>
+                                        <option value="AL">AL</option>
+                                        <option value="AR">AR</option>
+                                        <option value="AS">AS</option>
+                                        <option value="AZ">AZ</option>
+                                        <option value="CA">CA</option>
+                                        <option value="CO">CO</option>
+                                        <option value="CT">CT</option>
+                                        <option value="DC">DC</option>
+                                        <option value="DE">DE</option>
+                                        <option value="FL">FL</option>
+                                        <option value="FM">FM</option>
+                                        <option value="GA">GA</option>
+                                        <option value="GU">GU</option>
+                                        <option value="HI">HI</option>
+                                        <option value="IA">IA</option>
+                                        <option value="ID">ID</option>
+                                        <option value="IL">IL</option>
+                                        <option value="IN">IN</option>
+                                        <option value="KS">KS</option>
+                                        <option value="KY">KY</option>
+                                        <option value="LA">LA</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MD">MD</option>
+                                        <option value="ME">ME</option>
+                                        <option value="MH">MH</option>
+                                        <option value="MI">MI</option>
+                                        <option value="MN">MN</option>
+                                        <option value="MO">MO</option>
+                                        <option value="MP">MP</option>
+                                        <option value="MS">MS</option>
+                                        <option value="MT">MT</option>
+                                        <option value="NA">NA</option>
+                                        <option value="NC">NC</option>
+                                        <option value="ND">ND</option>
+                                        <option value="NE">NE</option>
+                                        <option value="NH">NH</option>
+                                        <option value="NJ">NJ</option>
+                                        <option value="NM">NM</option>
+                                        <option value="NV">NV</option>
+                                        <option value="NY">NY</option>
+                                        <option value="OH">OH</option>
+                                        <option value="OK">OK</option>
+                                        <option value="OR">OR</option>
+                                        <option value="PA">PA</option>
+                                        <option value="PR">PR</option>
+                                        <option value="PW">PW</option>
+                                        <option value="RI">RI</option>
+                                        <option value="SC">SC</option>
+                                        <option value="SD">SD</option>
+                                        <option value="TN">TN</option>
+                                        <option value="TX">TX</option>
+                                        <option value="UT">UT</option>
+                                        <option value="VA">VA</option>
+                                        <option value="VI">VI</option>
+                                        <option value="VT">VT</option>
+                                        <option value="WA">WA</option>
+                                        <option value="WI">WI</option>
+                                        <option value="WV">WV</option>
+                                        <option value="WY">WY</option>
+                                    </select>
+                                </mat-form-field>
+
+
+
+
+                                <mat-radio-group [(ngModel)]="newYork.pLapsed" aria-label="Filing Status">
+                                    <mat-radio-button value="1">All Filings</mat-radio-button>
+                                    <mat-radio-button value="0" class="ml-3">Unlapsed Filings</mat-radio-button>
+                                </mat-radio-group>
+
+
+                                <mat-radio-group [(ngModel)]="newYork.pFiletype" aria-label="File Type">
+                                    <mat-radio-button value="ALL" class="ml-3">All Filings</mat-radio-button>
+                                    <mat-radio-button value="FTL" class="ml-3">Federal Tax Liens</mat-radio-button>
+                                </mat-radio-group>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="row mx-auto">
+                                <div class="col-md-4">
+                                    <div class="width-100" style="align-content: center; align-items: center;">
+                                        <button mat-raised-button type="button" class="btn-sreach btn width-80"
+                                            (click)="GetDataDebtor()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                    </mat-tab>
+
+
+
+                    <mat-tab label="File No Search">
+                        <div class="container">
+
+
+                            <div class="row">
+
+                                <div class="col-md-5">
+                                    <mat-form-field class="width-100">
+                                        <mat-label>Filing Number *</mat-label>
+                                        <input matInput id="search-focus" type="search" id="form8"
+                                            [(ngModel)]="newYork.p_filenum" class="text-dark" />
+                                    </mat-form-field>
+                                </div>
+
+
+
+                                <div class="col-md-5">
+                                    <mat-form-field appearance="" class="width-100">
+                                        <mat-label class="">Year</mat-label>
+                                        <mat-select [(ngModel)]="newYork.p_year" class="text-white ">
+                                            <mat-option *ngFor="let year of yearList" [value]="year">
+                                                {{year}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+
+                                <div class="col-md-2">
+                                    <div class="width-100" style="align-content: center; align-items: center;">
+                                        <button mat-raised-button type="button" class="btn-sreach btn width-80"
+                                            (click)="GetFileNoData()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card>
+        </div>
+
+
+        <br>
+
+
+
+
+
+
+
+
+        <div class="container-fluid " [style.display]="isDataAvailable ? 'block' : 'none'">
+            <mat-card class="mat-elevation-z4 transparentAll">
+                <div>
+                    <!--table navbar -->
+                    <nav class="navbar">
+                        <ul class="nav navbar-nav">
+                            <mat-chip-list aria-label="data area">
+                                <mat-chip class="label label-default">Search : {{cardSearchValue}}</mat-chip>
+                                <mat-chip class="label label-default"> Total : {{listCount}}</mat-chip>
+                                <mat-chip class="label label-default">Selected : {{selectedRowCount}}</mat-chip>
+                                <mat-chip color="primary" selected *ngIf="selectedRowCount>0"
+                                    (click)="downloadSelectedRowsPdfMergeFile()">
+                                    Downlaod pdf Merge File </mat-chip>
+                            </mat-chip-list>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <mat-form-field>
+                                    <mat-label>Filter Record</mat-label>
+                                    <input matInput type="text" name="search" (keyup)="applyFilter($event)"
+                                        autocomplete="off" class="text-dark" />
+                                </mat-form-field>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!--table navbar end-->
+                </div>
+
+
+
+
+
+
+
+                <div class="table-responsive ">
+                    <table mat-table [dataSource]="dataSource" matSort class="table table-sm">
+
+                        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns"
+                            class="mat-elevation-z4">
+                            <tr>
+                                <th class="text-uppercase gradiant-black text-white align-middle " scope="col"
+                                    mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{column}}
+                                </th>
+                            </tr>
+                            <tr>
+                                <td matRipple mat-cell *matCellDef="let element" scope="row"
+                                    class="font-weight-light   align-middle">
+
+                                    <!-- if comumn is # checkbox print -->
+                                    <div *ngIf="column==='#'">
+                                        <mat-checkbox [checked]="newYork.checkbox"
+                                            (change)="selectedRowCheckbox($event, element['index'])">
+                                        </mat-checkbox>
+                                    </div>
+
+                                    <!-- if comumn is Not # -->
+
+                                    <div *ngIf="column!=='#'" class="">
+
+                                        <!-- First row of table -->
+                                        <div class="gradiant-gray" style=" padding: 10px;">
+                                            <div class="row">
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Debtor Name:</b>
+                                                </div>
+                                                <div class="col-sm-4 font-weight-light text-secondary">{{element['Debtor
+                                                    Name']}}
+                                                </div>
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Debtor Address:</b>
+                                                </div>
+                                                <div class="col-sm-4 font-weight-light text-secondary">{{element['Debtor
+                                                    Address']}}
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Secured Party
+                                                        Name:</b></div>
+                                                <div class="col-sm-4 font-weight-light text-secondary">
+                                                    {{element['Secured Party
+                                                    Name']}} </div>
+                                                <div class="col-sm-2 Poppins-Bold text-secondary"><b>Secured
+                                                        Address:</b> </div>
+                                                <div class="col-sm-4 font-weight-light text-secondary">
+                                                    {{element['Secured Address']}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- second row of table -->
+                                        <div class="row ">
+                                            <div class="table-responsive ">
+                                                <table class="table table-sm  table-hover ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-align-center" scope="col">File no.</th>
+                                                            <th class="text-align-center" scope="col">Lapse Date</th>
+                                                            <th class="text-align-center" scope="col">File Date</th>
+                                                            <th class="text-align-center" scope="col">Filing Type</th>
+                                                            <th class="text-align-center" scope="col">Pages</th>
+                                                            <th class="text-align-center" scope="col">Download</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let innerMap of element['uccList']"
+                                                            class="align-middle">
+                                                            <td class="text-align-center">{{innerMap['File no.']}}</td>
+                                                            <td class="text-align-center">{{innerMap['Lapse Date']}}
+                                                            </td>
+                                                            <td class="text-align-center">{{innerMap['File Date']}}</td>
+                                                            <td class="text-align-center">{{innerMap['Filing Type']}}
+                                                            </td>
+                                                            <td class="text-align-center">{{innerMap['Pages']}}</td>
+                                                            <td class="text-align-center"> <button
+                                                                    [disabled]="!innerMap['Image']"
+                                                                    (click)="openUrl(innerMap['Image'] )"
+                                                                    class="btn btn-sm btn-primary bg-white text-primary">Download
+                                                                    PDF</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+
+                        <!-- (click)="openDialog(element['id'] , element['File Number'] )" -->
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "</td>
+                        </tr>
+
+                    </table>
+                    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true">
+                    </mat-paginator>
+
+                </div>
+
+            </mat-card>
+            <!-- .container-fluid -->
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+    <nav class=" text-center align-middle text-secondary" style="  height: 35px; margin-top: 40px;">
+    </nav>
+
+
+</div>

@@ -38,6 +38,9 @@ import { CaliforniaComponent } from './californiaucc/california/california.compo
 import { CaliforniaviewpopupComponent } from './californiaucc/californiaviewpopup/californiaviewpopup.component';
 import {MatSelectModule} from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
+import { ColoradoComponent } from './coloradoucc/colorado/colorado.component';
+import { NewyorkComponent } from './newyorkucc/newyork/newyork.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 
@@ -48,6 +51,8 @@ const appRoute: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'florida', component: FloridaComponent },
   { path: 'california', component: CaliforniaComponent },
+  { path: 'nyc', component: NewyorkComponent },
+  { path: 'colorado', component: ColoradoComponent },
   { path: '', redirectTo: 'login'  , pathMatch: 'full'},
   { path: '**', component: LoginComponent }
 ];
@@ -68,7 +73,9 @@ const appRoute: Route[] = [
     FloridaviewpopupComponent,
     CaliforniaComponent,
     CaliforniaviewpopupComponent,
-    AuditlogComponent
+    AuditlogComponent,
+    ColoradoComponent,
+    NewyorkComponent
   ],
   imports: [
 
@@ -109,7 +116,9 @@ const appRoute: Route[] = [
     FontAwesomeModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot() //({preventDuplicates: true}
+    ToastrModule.forRoot(), //({preventDuplicates: true}
+    MatRadioModule
+
   ],
   entryComponents: [
     FloridaviewpopupComponent,

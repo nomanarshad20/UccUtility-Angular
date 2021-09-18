@@ -42,7 +42,7 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
   isDataAvailable: boolean = false;
   step = 0;
 
-  statesList: any = ['California', 'Florida'];
+  statesList: any = ['California', 'Florida' , 'NYC'];
   defaultSelectedState = this.statesList[0];
   selectedRowArray: any = [];
   selectedRowCount = 0;
