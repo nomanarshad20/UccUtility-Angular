@@ -30,7 +30,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./california.component.css']
 })
 export class CaliforniaComponent implements OnInit, AfterViewInit {
+
   scrappingModel: Scrapping = new Scrapping();
+
+  
   template: any;
   rows: any = [];
   edge: any;
@@ -146,8 +149,8 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
         )
 
     } catch (error) {
+      this.toastNotification.error("Main Method failed", 'California Sreach data faild', this.toastr);
       console.log(error);
-      this.toastNotification.error(error.message, 'California Sreach data faild', this.toastr);
     }
   }
 
@@ -309,7 +312,7 @@ export class CaliforniaComponent implements OnInit, AfterViewInit {
 
     } catch (error) {
       console.log( error);
-      this.toastNotification.error(error.message, 'File downloading Failed', this.toastr);
+      this.toastNotification.error("", 'File downloading Failed', this.toastr);
     }
   }
 

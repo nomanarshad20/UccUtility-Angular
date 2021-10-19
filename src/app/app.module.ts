@@ -41,6 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { ColoradoComponent } from './coloradoucc/colorado/colorado.component';
 import { NewyorkComponent } from './newyorkucc/newyork/newyork.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { HeaderComponent } from './headerucc/header/header.component';
+import { FooterComponent } from './footerucc/footer/footer.component';
 
 
 
@@ -75,7 +77,9 @@ const appRoute: Route[] = [
     CaliforniaviewpopupComponent,
     AuditlogComponent,
     ColoradoComponent,
-    NewyorkComponent
+    NewyorkComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
 

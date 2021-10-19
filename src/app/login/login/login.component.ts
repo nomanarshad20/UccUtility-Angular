@@ -85,7 +85,7 @@ export class LoginComponent {
 
     } catch (error) {
       console.log(error)
-      this.toastNotification.error(error, '', this.toastr);
+      this.toastNotification.error(error, 'Error on Login', this.toastr);
     }
 
 
