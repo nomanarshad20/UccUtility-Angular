@@ -82,18 +82,21 @@ export class NewyorkComponent implements OnInit {
       .then((res: any) => {
         let dd = res;
         console.log(res);
-        this.DataTableRow = res;
+        if(res.msg){
+          this.toastNotification.success(res.msg, 'NYC Search', this.toastr);
+          return;
+        }
+        this.DataTableRow = res.data;
         this.dataSource = new MatTableDataSource(this.DataTableRow);
         this.listCount = this.DataTableRow.length;
         this.isDataAvailable = this.listCount > 0 ? true : false;
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-
       })
       .catch((error) => {
         console.log(error)
-        this.toastNotification.error(error.message, 'NYC Search', this.toastr);
+        this.toastNotification.error(error.message  + error.error.msg, 'NYC Search', this.toastr);
       });
 
 
@@ -102,8 +105,7 @@ export class NewyorkComponent implements OnInit {
 
   openUrl(siteWeb: string) {
         //  this.saveAuditLog("Downloaded Pdf File");
-    
-        console.log("XXXXXXXX download file " + siteWeb);
+        console.log("download file " + siteWeb);
     
     
        // window.location.href = fileURL;
@@ -113,8 +115,8 @@ export class NewyorkComponent implements OnInit {
 
 
   async GetFileNoData() {
-
-    if(this.newYork.pName==""){
+    
+    if(this.newYork.p_filenum=="" || this.newYork.p_year==""){
       this.toastNotification.info("Write FileNumber and year please", 'NYC Search', this.toastr);
       return;
     }
@@ -125,9 +127,12 @@ export class NewyorkComponent implements OnInit {
       .then((res: any) => {
         let dd = res;
         console.log(res);
+        if(res.msg){
+          this.toastNotification.success(res.msg, 'NYC Search', this.toastr);
+          return;
+        }
 
-
-        this.DataTableRow = res;
+        this.DataTableRow = res.data;
         this.dataSource = new MatTableDataSource(this.DataTableRow);
         this.listCount = this.DataTableRow.length;
 
@@ -277,7 +282,6 @@ export class NewyorkComponent implements OnInit {
 
   logout() {
     this.saveAuditLog("User Logout");
-
     localStorage.clear();
     console.log('session ended');
     this.router.navigate(['/login']);

@@ -220,17 +220,28 @@
 
 
 
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>Filing Status</p>
+                                        <mat-radio-group [(ngModel)]="newYork.pLapsed" aria-label="Filing Status">
+                                            <mat-radio-button value="1">All Filings</mat-radio-button>
+                                            <mat-radio-button value="0" class="ml-3">Unlapsed Filings</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>File Type</p>
+                                        <mat-radio-group [(ngModel)]="newYork.pFiletype" aria-label="File Type">
+                                            <mat-radio-button value="ALL" >All Filings</mat-radio-button>
+                                            <mat-radio-button value="FTL" class="ml-3">Federal Tax Liens</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
 
-                                <mat-radio-group [(ngModel)]="newYork.pLapsed" aria-label="Filing Status">
-                                    <mat-radio-button value="1">All Filings</mat-radio-button>
-                                    <mat-radio-button value="0" class="ml-3">Unlapsed Filings</mat-radio-button>
-                                </mat-radio-group>
+
+                               
 
 
-                                <mat-radio-group [(ngModel)]="newYork.pFiletype" aria-label="File Type">
-                                    <mat-radio-button value="ALL" class="ml-3">All Filings</mat-radio-button>
-                                    <mat-radio-button value="FTL" class="ml-3">Federal Tax Liens</mat-radio-button>
-                                </mat-radio-group>
+                            
 
                             </div>
 

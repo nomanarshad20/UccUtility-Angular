@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Http2ServerRequest } from 'http2';
 
 
 
@@ -14,12 +15,15 @@ export class HttpRequestService {
   respons: any;
 
   // *****server configration *****
-  javaServerIp: string = "162.214.196.99";
-  javaServerPort: string = "8443";
+ // javaServerIp: string = "162.214.196.99";
+  //javaServerPort: string = "8443";
 
   // *****local configration *****
-  //javaServerPort: string = "9595";
-  //javaServerIp: string = "localhost";
+  javaServerPort: string = "9595";
+  javaServerIp: string = "localhost";
+
+ // httpSecure: string = 'https://';
+   httpSecure: string = 'http://';
   
 
 
@@ -73,7 +77,7 @@ export class HttpRequestService {
     // return this.httpclient.post<any>(serchUrl, searchJson, { headers: { 'Content-type': 'application/json' } });
 
 
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog';
     //console.log(serchUrl);
     return this.httpclient.get(serchUrl, { headers: { 'Content-type': 'application/json' } }).toPromise();
 
@@ -84,7 +88,7 @@ export class HttpRequestService {
 
 
   getHistory(auditlogJson: any): Observable<any> {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/get';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/get';
     return this.httpclient.post<any>(serchUrl, auditlogJson, {
       headers: {
         'Content-type': "application/json"
@@ -98,7 +102,7 @@ export class HttpRequestService {
 
 
   saveAuditlog(auditlogJson: any): Observable<any> {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/create';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/auditlog/create';
     //  console.log(serchUrl);
     return this.httpclient.post<any>(serchUrl, auditlogJson, {
       headers: {
@@ -111,7 +115,7 @@ export class HttpRequestService {
 
 
   searcFloridaData(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search';
     //  console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
@@ -122,7 +126,7 @@ export class HttpRequestService {
   }
 
   getNextFloridaData(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/next';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/next';
     // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
@@ -134,7 +138,7 @@ export class HttpRequestService {
 
 
   getPreviousFloridaData(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/previous';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/previous';
     // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
@@ -146,7 +150,7 @@ export class HttpRequestService {
 
 
   searcFlorida2ndPageResult(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result';
     // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
@@ -158,7 +162,7 @@ export class HttpRequestService {
 
 
   getFloridaDocLinksByAnchors(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result/link';
+    const serchUrl = this.httpSecure+ this.javaServerIp + ':' + this.javaServerPort + '/api/florida/search/result/link';
     // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
@@ -170,7 +174,7 @@ export class HttpRequestService {
 
 
   getNYCSelectedMergeDocByLinks(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/download/pdf';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/download/pdf';
     // console.log(serchUrl);
 
     return this.httpclient.post<any>(serchUrl, searchJson, {
@@ -184,7 +188,7 @@ export class HttpRequestService {
 
 
   searchNycDataDebtor(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/search/name';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/search/name';
     //  console.log(serchUrl);
    return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
@@ -195,7 +199,7 @@ export class HttpRequestService {
 
 
   searchNycDataFileNumber(searchJson: any) {
-    const serchUrl = 'https://' + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/search/filenumber';
+    const serchUrl = this.httpSecure + this.javaServerIp + ':' + this.javaServerPort + '/api/nyc/search/filenumber';
     //  console.log(serchUrl);
    return this.httpclient.post<any>(serchUrl, searchJson, {
       headers: {
